@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Театр кукол — афиша и&nbsp;бронирование билетов</title>
+<link rel="stylesheet" href="styles.css?v=64">
+</head>
+<body>
+
+<div class="page booking-page">
+
+  <div class="booking-topbar">
+    <a class="logo" href="index.html"><img src="frames/логотип 21.png" alt="Театр кукол"></a>
+    <div class="booking-tabs">
+      <button data-tab="playbill" class="active">афиша</button>
+      <button data-tab="seats">выбор мест</button>
+      <button data-tab="order">оформление заказа</button>
+      <button data-tab="pay">оплата</button>
+      <button data-tab="print">печать билетов</button>
+    </div>
+    <a href="index.html" class="booking-close" aria-label="закрыть"><img src="icons/close-x.svg" alt=""></a>
+  </div>
+
+  <!-- ===================== ПАНЕЛЬ: АФИША ===================== -->
+  <section class="booking-panel active" data-panel="playbill">
+    <p class="playbill-notice">При&nbsp;выборе спектакля пожалуйста обратите внимание<br>на&nbsp;рекомендованный для&nbsp;посещения возраст!<br>Билеты приобретаются для&nbsp;каждого зрителя, независимо от&nbsp;возраста.</p>
+    <div class="playbill-list">
+      <div class="playbill-row"><span class="dt">12.03 — 11.00</span><span class="title">Кошкин дом 4+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Кошкин дом" data-age="4+" data-dt="12.03 — 11.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">12.03 — 16.00</span><span class="title">Кошкин дом 4+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Кошкин дом" data-age="4+" data-dt="12.03 — 16.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">13.03 — 11.00</span><span class="title">Гуси-лебеди 3+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Гуси-лебеди" data-age="3+" data-dt="13.03 — 11.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">13.03 — 16.00</span><span class="title">Гуси-лебеди 3+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Гуси-лебеди" data-age="3+" data-dt="13.03 — 16.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">14.03 — 11.00</span><span class="title">Айболит 3+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Айболит" data-age="3+" data-dt="14.03 — 11.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">14.03 — 16.00</span><span class="title">Айболит 3+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Айболит" data-age="3+" data-dt="14.03 — 16.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">15.03 — 11.00</span><span class="title">Колобок 0+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Колобок" data-age="0+" data-dt="15.03 — 11.00">купить билет</button></div>
+      <div class="playbill-row"><span class="dt">15.03 — 16.00</span><span class="title">Колобок 0+</span><button class="btn-buy-ticket" data-goto="seats" data-show="Колобок" data-age="0+" data-dt="15.03 — 16.00">купить билет</button></div>
+    </div>
+  </section>
+
+  <!-- ===================== ПАНЕЛЬ: ВЫБОР МЕСТ ===================== -->
+  <section class="booking-panel" data-panel="seats">
+    <div class="seat-canvas">
+      <div class="show-nav">
+        <button class="arrow-btn" aria-label="назад" data-show-prev><img src="icons/seat-expand-left.svg" alt=""></button>
+        <h2 id="seat-show-title">Гуси-лебеди</h2>
+        <span class="age" id="seat-show-age">3+</span>
+        <span class="dt" id="seat-show-dt">13.03 — 11.00</span>
+        <button class="arrow-btn" aria-label="вперёд" data-show-next><img src="icons/seat-expand-left.svg" alt=""></button>
+      </div>
+      <div class="stage">сцена</div>
+      <div class="seat-map"><div id="seat-rows"></div></div>
+      <div class="seat-legend">
+        <span>1700</span><span>1500</span><span>1300</span><span>1100</span>
+      </div>
+      <div class="seat-checkout">
+        <button class="btn btn-red" id="to-order-step" data-goto="order">оформить заказ (<span data-seat-count>0</span> мест)</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ПАНЕЛЬ: ОФОРМЛЕНИЕ ЗАКАЗА ===================== -->
+  <section class="booking-panel" data-panel="order">
+    <div class="order-note">
+      <h1>Внимание!</h1>
+      <p>Проверьте дату и&nbsp;время мероприятия, выбранные места, заполните анкету для&nbsp;оплаты заказа.</p>
+    </div>
+    <div class="show-nav" style="margin:30px 0 40px;">
+      <button class="arrow-btn" aria-label="назад" data-show-prev>&#8592;</button>
+      <h2 id="order-show-title">Гуси-лебеди</h2><span class="age" id="order-show-age">3+</span><span class="dt" id="order-show-dt">13.03 — 11.00</span>
+      <button class="arrow-btn" aria-label="вперёд" data-show-next>&#8594;</button>
+    </div>
+
+    <div class="order-layout">
+      <div>
+        <p style="font-size:18px;font-weight:600;margin-bottom:20px;">Оформление билетов:</p>
+        <div id="ticket-rows">
+          <p style="color:var(--ink-soft);font-size:14px;">Места ещё не выбраны — вернитесь на&nbsp;шаг «выбор мест».</p>
+        </div>
+
+        <p style="font-size:18px;font-weight:600;margin:36px 0 20px;">Данные покупателя:</p>
+        <form class="buyer-form" id="buyer-form">
+          <div class="grid2">
+            <input type="text" placeholder="Фамилия" required>
+            <select required><option value="">Тип документа *</option><option>Паспорт РФ</option><option>Свидетельство о&nbsp;рождении</option></select>
+            <input type="text" placeholder="Имя" required>
+            <input type="text" placeholder="Серия документа">
+            <input type="text" placeholder="Отчество">
+            <input type="text" placeholder="Номер документа">
+            <input type="tel" placeholder="Телефон" required>
+            <label class="chk"><input type="checkbox" required> Даю* согласие на&nbsp;обработку персональных данных</label>
+            <input type="email" placeholder="E-mail" required>
+          </div>
+          <button type="submit" class="btn btn-red">перейти к&nbsp;оплате</button>
+        </form>
+      </div>
+
+      <div class="order-summary">
+        <div class="total">ИТОГО: <b id="order-total">0 руб.</b></div>
+        <label class="chk"><input type="checkbox"> Выслать электронный чек на E-mail</label>
+        <label class="chk"><input type="checkbox"> Выслать электронный билет на E-mail</label>
+        <label class="chk"><input type="checkbox" required> Я&nbsp;согласен с&nbsp;правилами покупки электронных билетов</label>
+        <button class="btn btn-red" data-goto="pay">перейти к&nbsp;оформлению</button>
+        <p class="pay-note">Оплата происходит через ВТБ (ПАО) с&nbsp;использованием банковских карт следующих платёжных систем:</p>
+        <div class="pay-icons">
+          <img src="frames/visa.png" alt="VISA">
+          <img src="frames/mir.png" alt="МИР">
+          <img src="frames/сбп свг 1.png" alt="СБП">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ПАНЕЛЬ: ОПЛАТА ===================== -->
+  <section class="booking-panel" data-panel="pay">
+    <div class="placeholder-panel">
+      <p style="font-size:22px;color:var(--ink);margin-bottom:14px;">Переход на&nbsp;защищённую страницу оплаты ВТБ (ПАО)</p>
+      <p>Здесь будет встроена форма банковского эквайринга.</p>
+      <button class="btn btn-red" style="margin-top:30px;" data-goto="print">оплатить (демо)</button>
+    </div>
+  </section>
+
+  <!-- ===================== ПАНЕЛЬ: ПЕЧАТЬ БИЛЕТОВ ===================== -->
+  <section class="booking-panel" data-panel="print">
+    <div class="placeholder-panel">
+      <p style="font-size:22px;color:var(--ink);margin-bottom:14px;">Оплата прошла успешно</p>
+      <p>Билеты отправлены на&nbsp;указанный E-mail. Вы можете распечатать их или показать QR-код на&nbsp;входе.</p>
+      <a href="index.html" class="btn btn-gold" style="margin-top:30px;">на&nbsp;главную</a>
+    </div>
+  </section>
+
+</div>
+
+<script src="script.js?v=19"></script>
+<script>
+  var shows = Array.from(document.querySelectorAll('[data-show]')).map(function(btn){
+    return {show: btn.dataset.show, age: btn.dataset.age, dt: btn.dataset.dt};
+  });
+  var currentShowIndex = shows.findIndex(function(s){ return s.show === 'Гуси-лебеди' && s.dt === '13.03 — 11.00'; });
+  if (currentShowIndex < 0) currentShowIndex = 0;
+
+  var showFonts = {
+    'Кошкин дом': 'rep-font-koshkin',
+    'Гуси-лебеди': 'rep-font-gusi',
+    'Айболит': 'rep-font-aibolit',
+    'Колобок': 'rep-font-kolobok'
+  };
+
+  function renderShow(){
+    var s = shows[currentShowIndex];
+    var fontClass = showFonts[s.show] || '';
+    ['seat', 'order'].forEach(function(prefix){
+      var titleEl = document.getElementById(prefix + '-show-title');
+      var ageEl = document.getElementById(prefix + '-show-age');
+      var dtEl = document.getElementById(prefix + '-show-dt');
+      if (titleEl) titleEl.textContent = s.show;
+      if (ageEl) ageEl.textContent = s.age;
+      if (dtEl) dtEl.textContent = s.dt;
+      if (prefix === 'seat'){
+        [titleEl, ageEl].forEach(function(el){
+          if (!el) return;
+          Object.keys(showFonts).forEach(function(k){ el.classList.remove(showFonts[k]); });
+          if (fontClass) el.classList.add(fontClass);
+        });
+      }
+    });
+  }
+
+  document.querySelectorAll('[data-show]').forEach(function(btn, i){
+    btn.addEventListener('click', function(){
+      currentShowIndex = i;
+      renderShow();
+    });
+  });
+  document.querySelectorAll('[data-show-prev]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentShowIndex = (currentShowIndex - 1 + shows.length) % shows.length;
+      renderShow();
+    });
+  });
+  document.querySelectorAll('[data-show-next]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      currentShowIndex = (currentShowIndex + 1) % shows.length;
+      renderShow();
+    });
+  });
+  renderShow();
+
+  var buyerForm = document.getElementById('buyer-form');
+  if (buyerForm){
+    buyerForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      document.querySelector('[data-tab="pay"]').click();
+    });
+  }
+</script>
+</body>
+</html>

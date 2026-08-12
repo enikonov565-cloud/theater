@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Театр кукол — главная</title>
+<link rel="stylesheet" href="styles.css?v=89">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ===================== HERO + ХЕДЕР ===================== -->
+  <section class="play-hero">
+    <img class="hero-media" src="frames/лес-фон-хиро.png" alt="Сказочный лес">
+
+    <header class="site-header"><div class="site-header-inner">
+      <div class="header-left">
+        <button class="topbar-burger" aria-label="меню" data-menu-toggle="nav-menu"><span></span><span></span><span></span></button>
+        <a class="logo" href="index.html"><img class="logo-img" src="frames/логотип 2.png" alt="Театр кукол"></a>
+      </div>
+      <div class="menu-panel" id="nav-menu">
+        <a href="index.html">главная</a>
+        <a href="index.html#o-teatre">о&nbsp;театре</a>
+        <a href="index.html#repertuar">репертуар</a>
+        <a href="вопросы-и-ответы.html">вопросы и&nbsp;ответы</a>
+        <a href="index.html#o-teatre">контакты</a>
+      </div>
+      <div class="header-actions">
+        <a href="index.html#blizhajshie" class="btn btn-outline">ближайшее представление</a>
+        <a href="афиша.html" class="btn btn-red">купить билеты</a>
+      </div></div>
+    </header>
+
+    <video class="branch left" autoplay muted playsinline>
+      <source src="frames/ветка-лист.webm" type="video/webm">
+    </video>
+    <video class="branch right" autoplay muted playsinline>
+      <source src="frames/ветка-лист.webm" type="video/webm">
+    </video>
+
+    <video class="mushroom left" autoplay muted playsinline>
+      <source src="frames/гриб-куст.webm" type="video/webm">
+    </video>
+    <video class="mushroom right" autoplay muted playsinline>
+      <source src="frames/гриб-куст-право3.webm" type="video/webm">
+    </video>
+    <video class="witch" autoplay muted playsinline>
+      <source src="frames/баба-яга-молчит.webm" type="video/webm">
+    </video>
+
+    <div class="play-title-card">
+      <img src="frames/гуси название представления.png" alt="Гуси-лебеди">
+    </div>
+  </section>
+
+  <!-- ===================== ПРОМО: СЕМЕЙНЫЙ ДЕНЬ / ВИКТОРИНА ===================== -->
+  <section class="promo-banner">
+    <h2 class="promo-heading">Семейный день<br>в&nbsp;музее театра кукол</h2>
+    <div class="promo-family"><img src="frames/семья.png" alt=""></div>
+    <p class="promo-date">21 мая 2026г с 10:00</p>
+    <div class="promo-program">
+      <p class="list-title">в&nbsp;программе:</p>
+      <ul>
+        <li><img src="icons/checkmark.svg" alt="">экскурсия по&nbsp;музею<br>Театра Кукол</li>
+        <li><img src="icons/checkmark.svg" alt="">мастер-классы</li>
+        <li><img src="icons/checkmark.svg" alt="">развлекательная<br>программа</li>
+      </ul>
+    </div>
+    <p class="promo-quiz-lead">Пройдите викторину<br>и&nbsp;получите пригласительный билет</p>
+    <p class="promo-quiz-title">ВИКТОРИНА:</p>
+    <p class="promo-quiz-question">Знаете<br>ли&nbsp;вы историю кукольного театра?</p>
+    <a href="викторина.html#quiz-start" class="promo-hint"><img src="icons/hint-tap.svg" alt=""><p>Ответь на&nbsp;все вопросы, чтобы получить подарки</p></a>
+    <div class="promo-photos">
+      <img class="ph ph-a" src="frames/Screenshot_16.png" alt="Пригласительный билет">
+      <img class="ph ph-b" src="frames/Screenshot_18.png" alt="Пригласительный билет">
+      <img class="ph ph-c" src="frames/Screenshot_19.png" alt="Пригласительный билет">
+    </div>
+  </section>
+
+  <!-- ===================== БЛИЖАЙШИЕ ПРЕДСТАВЛЕНИЯ ===================== -->
+  <section class="section-dark" id="blizhajshie" data-carousel>
+    <h2 class="section-title">Ближайшие<br>представления</h2>
+    <button class="arrow-btn arrow-left" aria-label="назад"><img src="icons/rep-arrow2.svg" alt="" style="transform:rotate(180deg) scaleY(-1);"></button>
+    <button class="arrow-btn arrow-right" aria-label="вперёд"><img src="icons/rep-arrow2.svg" alt=""></button>
+    <div class="show-grid" data-track>
+      <div class="show-card">
+        <div class="thumb"><img class="cover-img" src="frames/IMG_20260318_222105.png" alt="Кошкин дом"></div>
+        <h3 class="rep-font-koshkin">Кошкин дом</h3>
+        <p class="dates">12.03 — 11.00; 16.00<br>20.03 — 11.00; 16.00</p>
+        <a href="афиша.html" class="btn-buy-ticket">купить билет</a>
+      </div>
+      <div class="show-card">
+        <div class="thumb"><img class="cover-img" src="frames/гуси-сцена.jpg" alt="Гуси-лебеди"></div>
+        <h3 class="rep-font-gusi">Гуси-лебеди</h3>
+        <p class="dates">13.03 — 11.00; 16.00<br>21.03 — 11.00; 16.00</p>
+        <a href="афиша.html" class="btn-buy-ticket">купить билет</a>
+      </div>
+      <div class="show-card">
+        <div class="thumb"><img class="cover-img" src="frames/7c9f7d8a-58b7-48c4-939f-ec4cb22c3e2d_b6a72888-187a-493c-b027-33e9e2f877e7.png" alt="Айболит"></div>
+        <h3 class="rep-font-aibolit">Айболит</h3>
+        <p class="dates">14.03 — 11.00; 16.00<br>22.03 — 11.00; 16.00</p>
+        <a href="афиша.html" class="btn-buy-ticket">купить билет</a>
+      </div>
+      <div class="show-card">
+        <div class="thumb"><img class="cover-img" src="frames/9c670e1e-eb0f-42a7-a597-39ec2c7de1a1_c409b13a-e003-4b60-b7ec-a4bc60844353.png" alt="Колобок"></div>
+        <h3 class="rep-font-kolobok">КОЛОБОК</h3>
+        <p class="dates">15.03 — 11.00; 16.00<br>23.03 — 11.00; 16.00</p>
+        <a href="афиша.html" class="btn-buy-ticket">купить билет</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ПОЧЕМУ СТОИТ К&nbsp;НАМ ПРИЙТИ ===================== -->
+  <section class="why-section">
+    <h2 class="why-heading">ПОЧЕМУ СТОИТ К&nbsp;НАМ ПРИЙТИ?</h2>
+
+    <div class="why-photo why-photo-main"><video autoplay muted loop playsinline><source src="анимация/гуси-лебеди-анимация.mp4" type="video/mp4"></video><div class="why-timer"><div class="why-timer-fill"></div></div></div>
+    <div class="why-photo why-photo-1"><video muted playsinline preload="auto"><source src="анимация/колобок-анимация.mp4" type="video/mp4"></video></div>
+    <div class="why-photo why-photo-2"><video muted playsinline preload="auto"><source src="анимация/айболит-анимация.mp4" type="video/mp4"></video></div>
+    <div class="why-photo why-photo-3"><video muted playsinline preload="auto"><source src="анимация/кошкин-дом-анимация.mp4" type="video/mp4"></video></div>
+
+    <p class="why-item why-item-1">Магия волшебства, которую<br>нельзя увидеть на&nbsp;экране</p>
+    <img class="why-divider why-divider-1" src="icons/divider-arrow5.svg" alt="">
+    <p class="why-item why-item-2">Атмосфера уютного мира<br>без&nbsp;страха и&nbsp;стресса</p>
+    <img class="why-divider why-divider-2" src="icons/divider-arrow6.svg" alt="">
+    <p class="why-item why-item-3">Эстетика «ручной работы»<br>- источник восхищения</p>
+    <img class="why-divider why-divider-3" src="icons/divider-arrow6.svg" alt="">
+    <p class="why-item why-item-4">Эффект «совместного<br>переживания» для&nbsp;всей семьи</p>
+
+    <a href="index.html#repertuar" class="why-btn btn-repertoire">РЕПЕРТУАР</a>
+  </section>
+
+  <!-- ===================== РЕПЕРТУАР ===================== -->
+  <section class="repertoire-section" id="repertuar" data-repertoire>
+    <h2 class="repertoire-heading">РЕПЕРТУАР</h2>
+    <img class="rep-arrow left" src="icons/rep-arrow2.svg" alt="назад" data-rep-prev>
+    <img class="rep-arrow right" src="icons/rep-arrow2.svg" alt="вперёд" data-rep-next>
+    <div class="repertoire-row" data-rep-row></div>
+    <a href="афиша.html" class="rep-btn-buy">КУПИТЬ БИЛЕТ</a>
+  </section>
+
+  <!-- ===================== О&nbsp;ТЕАТРЕ ===================== -->
+  <section class="about-section" id="o-teatre">
+    <div class="about-grid">
+      <div class="about-photo"><img class="cover-img" src="frames/IMG_20260319_184546.webp" alt="Здание театра"></div>
+      <div class="about-text">
+        <h2>О&nbsp;театре</h2>
+        <div class="block block-1">Мы здесь ради мгновений, когда в&nbsp;полном зале дети радуются, а&nbsp;взрослые снова верят. Наш театр — живой организм, где нет зрителей, а&nbsp;только желанные гости. Приходите на&nbsp;спектакли, экскурсии и&nbsp;мастер-классы — мы покажем вам, как&nbsp;стучит кукольное сердце.</div>
+        <div class="about-divider about-divider-1"></div>
+        <div class="block block-2">«Куклы — это просто игрушки?» — нет, у&nbsp;нас особая вселенная. Здесь дерево и&nbsp;ткань обретают душу, взрослые снова верят в&nbsp;чудеса, а&nbsp;наши куклы выходят на&nbsp;сцену — и&nbsp;зал замирает.</div>
+        <div class="about-divider about-divider-2"></div>
+        <div class="block block-3">Серьёзность театра кукол подтверждает Международная ассоциация его деятелей. Именно на&nbsp;её конгрессе в 2000 году предложили учредить День театра кукол, а&nbsp;в 2003-м выбрали дату: 21 марта.</div>
+        <a href="index.html#repertuar" class="btn-repertoire">репертуар</a>
+      </div>
+      <div class="about-photos-col">
+        <div class="thumb"><img class="cover-img" src="frames/Rectangle 8809.png" alt="Зрительный зал театра"></div>
+        <div class="thumb"><img class="cover-img" src="frames/Rectangle 8810.png" alt="Коллекция кукол театра"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ОТЗЫВЫ ===================== -->
+  <section class="section-dark" id="otzyvy" data-carousel>
+    <h2 class="section-title">Отзывы</h2>
+    <button class="arrow-btn arrow-left" aria-label="назад"><img src="icons/rep-arrow2.svg" alt="" style="transform:rotate(180deg) scaleY(-1);"></button>
+    <button class="arrow-btn arrow-right" aria-label="вперёд"><img src="icons/rep-arrow2.svg" alt=""></button>
+    <div class="reviews-track" data-track>
+      <div class="review-card">
+        <div class="photo"><img class="cover-img" src="frames/01.png" alt="Дети на&nbsp;мастер-классе"></div>
+        <div class="body">
+          <div class="head">
+            <div class="who"><img class="avatar" src="frames/avatar-fox-painted.png" alt=""><div><div class="name">Фрау Лерерин</div><div class="level">Знаток города 9 уровня</div></div></div>
+            <button type="button" class="follow">Подписаться</button>
+          </div>
+          <div class="stars">★★★★★ &nbsp;30 декабря 2024</div>
+          <p class="text">Были на&nbsp;спектакле «Курочка ряба» в&nbsp;прошлом году. Дочке очень понравилось. Очень удобные кресла, можно сделать повыше для&nbsp;совсем маленьких зрителей. После спектакля можно поучаствовать в&nbsp;мастер-классе по&nbsp;разукрашиванию керамической игрушки. Мы так и&nbsp;сделали, и&nbsp;у нас дома живёт керамическая фигурка кошки. В&nbsp;фойе на&nbsp;1 и&nbsp;2 этаже можно посмотреть на&nbsp;театральные куклы. Кафетерий на&nbsp;2-м этаже.</p>
+        </div>
+        <a class="cta" href="спектакль-кошкин-дом.html#o-spektakle"><span class="label">Узнать подробнее о&nbsp;спектакле, «Кошкин&nbsp;дом»</span><img src="icons/review-link-red.svg" alt=""></a>
+      </div>
+      <div class="review-card mid">
+        <div class="photo"><img class="cover-img" src="frames/02.png" alt="Зрители в&nbsp;зале"></div>
+        <div class="body">
+          <div class="head">
+            <div class="who"><img class="avatar" src="frames/avatar-fox-icon.png" alt=""><div><div class="name">Тамара</div><div class="level">Знаток города 4 уровня</div></div></div>
+            <button type="button" class="follow">Подписаться</button>
+          </div>
+          <div class="stars">★★★★★ &nbsp;14 февраля</div>
+          <p class="text">Самый любимый театр! Ходим часто и&nbsp;с большим удовольствием! Дети у&nbsp;меня разного возраста, но&nbsp;им всем очень нравится! Уже и&nbsp;актёров узнают) После каждого спектакля мы рисуем главных героев, а&nbsp;ещё вдохновились на&nbsp;создание собственного домашнего театра! Спасибо прекрасным актёрам, режиссёрам и&nbsp;всем тем, кто имеет отношение к&nbsp;этому замечательному театру! Желаем вам творческих успехов, вдохновения и&nbsp;процветания❤️</p>
+        </div>
+        <a class="cta" href="спектакль-айболит.html#o-spektakle"><span class="label">Узнать подробнее о&nbsp;спектакле, «Айболит»</span><img src="icons/review-link-gold.svg" alt=""></a>
+      </div>
+      <div class="review-card">
+        <div class="photo"><img class="cover-img" src="frames/03.png" alt="Дети в&nbsp;зале"></div>
+        <div class="body">
+          <div class="head">
+            <div class="who"><img class="avatar" src="frames/avatar-smiley.png" alt=""><div><div class="name">Алёна П.</div><div class="level">Знаток города 5 уровня</div></div></div>
+            <button type="button" class="follow">Подписаться</button>
+          </div>
+          <div class="stars">★★★★★ &nbsp;26 сентября 2025</div>
+          <p class="text">Ходили с&nbsp;дочкой на&nbsp;спектакль «Мойдодыр». Замечательная классическая постановка. Яркие куклы, прекрасные актёры. Обстановка в&nbsp;театре камерная, уютная. В&nbsp;холле есть музей кукол, можно поближе рассмотреть эти шедевры. Проводят мастер-классы по&nbsp;росписи деревянных и&nbsp;фарфоровых фигурок. Мастера аккуратные, внимательные к&nbsp;детям, общаются заинтересованно, помогают. Впечатлений осталось много.</p>
+        </div>
+        <a class="cta" href="спектакль-колобок.html#o-spektakle"><span class="label">Узнать подробнее о&nbsp;спектакле, «Колобок»</span><img src="icons/review-link-red.svg" alt=""></a>
+      </div>
+    </div>
+    <div class="reviews-social">
+      <span class="label">Оставляйте свои отзывы:</span>
+      <span class="icons">
+        <img src="icons/social-yandex.svg" alt="Яндекс Карты">
+        <img src="icons/social-vk.svg" alt="ВКонтакте">
+        <img src="icons/social-telegram.svg" alt="Telegram">
+        <img src="icons/social-max.svg" alt="MAX">
+      </span>
+      <button type="button" class="review-open-btn" data-open-review-modal>Написать отзыв</button>
+    </div>
+  </section>
+
+  <!-- ===================== МОДАЛКА: ОСТАВИТЬ ОТЗЫВ ===================== -->
+  <div class="review-modal-overlay" data-review-modal>
+    <div class="review-modal">
+      <button type="button" class="review-modal-close" data-close-review-modal aria-label="Закрыть"><img src="icons/close-x.svg" alt=""></button>
+      <div class="review-modal-form">
+        <h3>Оставить отзыв</h3>
+        <p class="sub">Расскажите, как прошёл ваш визит в&nbsp;театр — это поможет нам стать лучше</p>
+        <form id="review-form">
+          <div class="rating" data-rating>
+            <button type="button" aria-label="1 звезда">★</button>
+            <button type="button" aria-label="2 звезды">★</button>
+            <button type="button" aria-label="3 звезды">★</button>
+            <button type="button" aria-label="4 звезды">★</button>
+            <button type="button" aria-label="5 звёзд">★</button>
+          </div>
+          <input type="text" placeholder="Ваше имя" required>
+          <textarea placeholder="Ваш отзыв" required></textarea>
+          <div class="review-photo-field">
+            <label class="review-photo-add" for="review-photo-input">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                <circle cx="12" cy="14" r="3.4" stroke="currentColor" stroke-width="1.6"/>
+              </svg>
+              <span>Добавить фото</span>
+            </label>
+            <input type="file" id="review-photo-input" accept="image/*" data-review-photo-input hidden>
+            <div class="review-photo-preview" data-review-photo-preview>
+              <img alt="">
+              <button type="button" class="remove" data-review-photo-remove aria-label="Удалить фото">✕</button>
+            </div>
+          </div>
+          <button type="submit">Отправить отзыв</button>
+        </form>
+      </div>
+      <div class="thanks">
+        <div class="big">🎉</div>
+        <h3>Спасибо за&nbsp;отзыв!</h3>
+        <p class="sub">Мы очень ценим ваше мнение и&nbsp;обязательно учтём его</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== ВОПРОСЫ И ОТВЕТЫ (превью) ===================== -->
+  <section class="section-dark" id="faq-preview">
+    <h2 class="section-title">Вопросы и ответы</h2>
+    <a class="faq-preview-item q1" href="вопросы-и-ответы.html">
+      <span class="q">Правила посещения Театра Кукол</span>
+      <span class="icon"></span>
+    </a>
+    <div class="faq-preview-divider d1"></div>
+    <a class="faq-preview-item q2" href="вопросы-и-ответы.html">
+      <span class="q">Есть ли льготные билеты?</span>
+      <span class="icon"></span>
+    </a>
+    <div class="faq-preview-divider d2"></div>
+    <a class="faq-preview-item q3" href="вопросы-и-ответы.html">
+      <span class="q">Действуют ли скидки, акции при покупке от 10 билетов?</span>
+      <span class="icon"></span>
+    </a>
+    <div class="faq-preview-divider d3"></div>
+    <a class="faq-preview-item q4" href="вопросы-и-ответы.html">
+      <span class="q">Надо ли покупать билет на ребенка до 3 лет?</span>
+      <span class="icon"></span>
+    </a>
+    <div class="faq-preview-divider d4"></div>
+    <a class="faq-preview-item q5" href="вопросы-и-ответы.html">
+      <span class="q">Как я могу вернуть деньги за билет?</span>
+      <span class="icon"></span>
+    </a>
+    <a href="index.html#repertuar" class="btn-repertoire">репертуар</a>
+  </section>
+
+  <!-- ===================== ФУТЕР ===================== -->
+  <footer class="site-footer-wrap">
+    <div class="site-footer">
+      <div class="footer-content">
+        <div class="footer-nav">
+          <a href="index.html">Главная</a>
+          <a href="index.html#o-teatre">О&nbsp;театре</a>
+          <a href="index.html#repertuar">Репертуар</a>
+          <a href="index.html#otzyvy">Отзывы</a>
+          <a href="вопросы-и-ответы.html">Вопросы и&nbsp;ответы</a>
+        </div>
+        <div class="footer-logo">
+          <img src="frames/логотип 2.png" alt="Театр кукол">
+        </div>
+        <div class="footer-contacts">
+          <p class="footer-contacts-label">контакты:</p>
+          <div class="footer-contact-rows">
+            <div class="footer-contact-row">москва,<br>ул ховрушенская 5</div>
+            <div class="footer-contact-row">+7 (922) 00-00-000<br>-администратор</div>
+            <div class="footer-contact-row"><a href="mailto:info@teatrrurol.ruu">info@teatrrurol.ruu</a></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-actions">
+        <a href="index.html#blizhajshie" class="btn-nearest">ближайшие представления</a>
+        <a href="афиша.html" class="btn-buy-ticket">купить билет</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script src="script.js?v=42"></script>
+</body>
+</html>
