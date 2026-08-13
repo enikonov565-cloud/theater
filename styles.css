@@ -924,7 +924,7 @@ p{margin:0;}
   .section-title{font-size:26px;margin-bottom:36px;}
   .section-dark[data-carousel]{height:auto;padding:56px 0 64px;}
   .section-dark[data-carousel] .section-title,
-  #otzyvy .section-title{position:static;transform:none;font-size:26px;padding:0 20px;white-space:normal;text-align:center;}
+  #otzyvy .section-title{position:static;transform:none;font-size:26px;margin-bottom:40px;padding:0 20px;white-space:normal;text-align:center;}
   .section-dark[data-carousel] .arrow-btn,
   #otzyvy .arrow-btn{display:none;}
   /* #otzyvy — ID-селектор в десктопной вёрстке сильнее по specificity,

@@ -358,6 +358,9 @@
       })();
     }
     blizTrack.addEventListener('mousemove', function(e){
+      // на мобильном карточки ширятся через CSS (78vw) под узкий экран —
+      // инлайновый style.width от эффекта увеличения перебивал бы это
+      if (window.innerWidth <= 767) return;
       var rect = blizTrack.getBoundingClientRect();
       var cx = e.clientX - rect.left;
       var n = blizShows.length;
