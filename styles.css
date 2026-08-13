@@ -904,16 +904,18 @@ p{margin:0;}
 
   /* ---------- Промо: семейный день / викторина ---------- */
   .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
-  .promo-heading{position:static;font-size:30px;}
-  .promo-family{position:static;width:220px;height:158px;order:5;}
-  .promo-date{position:static;font-size:22px;}
-  .promo-program{position:static;width:100%;gap:18px;}
+  .promo-heading{position:static;font-size:30px;order:1;}
+  .promo-family{position:static;width:220px;height:158px;order:2;margin:0 auto;}
+  .promo-date{position:static;font-size:22px;order:3;}
+  .promo-program{position:static;width:100%;gap:18px;order:4;}
   .promo-program .list-title{font-size:20px;}
   .promo-program li{font-size:16px;}
-  .promo-quiz-lead{position:static;font-size:18px;}
-  .promo-quiz-title{position:static;font-size:26px;white-space:normal;}
-  .promo-quiz-question{position:static;width:100%;font-size:18px;}
-  .promo-hint{position:static;width:100%;box-sizing:border-box;}
+  .promo-program ul{gap:14px;}
+  .promo-quiz-lead{position:static;font-size:18px;order:5;}
+  .promo-quiz-title{position:static;font-size:26px;white-space:normal;order:6;}
+  .promo-quiz-question{position:static;width:100%;font-size:18px;order:7;}
+  .quiz-question-br{display:none;}
+  .promo-hint{position:static;width:100%;box-sizing:border-box;order:8;}
   .promo-hint p{width:auto;flex:1;}
   .promo-photos{display:none;}
 
