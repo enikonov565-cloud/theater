@@ -835,6 +835,17 @@ p{margin:0;}
   body{overflow-x:hidden;}
   .page{width:100%;overflow-x:hidden;}
 
+  /* горизонтально прокручиваемые ленты (карточки спектаклей, отзывы,
+     репертуар, ряды кресел) — скроллбар виден в некоторых браузерах
+     полосой под контентом; сам скролл при этом остаётся рабочим. */
+  .show-grid,.reviews-track,.repertoire-row.rep-row-mobile,.seat-map{
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .show-grid::-webkit-scrollbar,
+  .reviews-track::-webkit-scrollbar,
+  .repertoire-row.rep-row-mobile::-webkit-scrollbar,
+  .seat-map::-webkit-scrollbar{display:none;}
+
   /* ---------- Хедер ---------- */
   .site-header-inner{width:100%;padding:16px 20px;}
   .header-left{gap:16px;}
@@ -956,7 +967,7 @@ p{margin:0;}
   .repertoire-row.rep-row-mobile{display:flex;overflow-x:auto;gap:16px;padding:0 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
   .rep-row-mobile .rep-card{position:static;flex:0 0 78vw;max-width:340px;scroll-snap-align:center;pointer-events:auto;}
   .rep-row-mobile .rep-image{position:static;width:100%;height:auto;aspect-ratio:4/3;border-radius:16px;}
-  .rep-row-mobile .rep-title-row{position:static;flex-direction:column;gap:6px;margin-top:14px;}
+  .rep-row-mobile .rep-title-row{position:static;flex-direction:column;gap:6px;margin:14px 0 20px;}
   .rep-row-mobile .rep-title-row h3{font-size:22px;white-space:normal;text-align:center;}
   .rep-row-mobile .rep-subtitle{font-size:13px;white-space:normal;}
   .rep-row-mobile .rep-card .rep-image img{opacity:1;}
