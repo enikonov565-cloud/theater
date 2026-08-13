@@ -5,6 +5,19 @@
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' руб.';
   }
 
+  /* ---------- Hero-декорации (ведьма, грибы, ветки): на некоторых мобильных
+     браузерах атрибут autoplay не срабатывает надёжно (особенно когда на
+     экране сразу несколько видео) — тогда видео так и остаётся чёрным
+     прямоугольником, ни разу не нарисовав кадр. Подстраховываемся явным
+     вызовом .play() — если autoplay уже сработал, это просто no-op. */
+  document.querySelectorAll('.play-hero video').forEach(function(video){
+    var tryPlay = function(){ video.play().catch(function(){}); };
+    tryPlay();
+    document.addEventListener('visibilitychange', function(){
+      if (!document.hidden && video.paused) tryPlay();
+    });
+  });
+
   /* ---------- Сдвиг фазы зацикленного видео: чтобы одинаковые ролики слева и
      справа не двигались синхронно, стартуем один из них с середины клипа. */
   document.querySelectorAll('video[data-phase-offset]').forEach(function(video){
