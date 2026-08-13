@@ -407,7 +407,9 @@
     var reviewIndex = 0;
     var reviewsTrack = otzyvySection.querySelector('[data-track]');
     function renderReviews(){
-      var n = Math.min(3, reviews.length), html = '';
+      // на мобильном стрелки скрыты, карусель — это просто горизонтальный
+      // свайп-список, поэтому показываем все отзывы сразу, а не по 3 с ротацией
+      var n = window.innerWidth <= 767 ? reviews.length : Math.min(3, reviews.length), html = '';
       for (var i = 0; i < n; i++){
         var r = reviews[(reviewIndex + i) % reviews.length];
         var isMid = (i === 1);

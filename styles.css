@@ -951,9 +951,9 @@ p{margin:0;}
   .show-card .btn-buy-ticket{width:100%;}
 
   .reviews-track{position:static;width:100%;height:auto;display:flex;overflow-x:auto;gap:16px;padding:0 20px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
-  .review-card{width:80vw;max-width:340px;height:auto;scroll-snap-align:center;}
+  .review-card{width:80vw;max-width:340px;height:auto;padding-bottom:20px;scroll-snap-align:center;}
   .review-card .photo{position:relative;height:200px;}
-  .review-card .body{position:static;padding:20px 22px;}
+  .review-card .body{position:static;padding:20px 22px;margin-top:-20px;}
   .review-card .cta{position:static;width:100%;margin-top:16px;}
 
   .reviews-social{position:static;transform:none;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 20px;margin-top:32px;}
