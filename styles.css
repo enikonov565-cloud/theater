@@ -814,3 +814,234 @@ p{margin:0;}
 .lead-card-hint .hint-icon{position:relative;width:40px;height:40px;flex:none;}
 .lead-card-hint .hint-icon img{position:absolute;left:-23.7px;top:-22.2px;width:93.4px;height:93.4px;max-width:none;}
 .lead-card-hint p{margin:0;width:215px;font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:16px;line-height:1.15;letter-spacing:.32px;color:#1f1f1f;}
+
+/* =====================================================
+   МОБИЛЬНАЯ ВЕРСИЯ (≤767px)
+   Ничего из правил выше не меняется — здесь только переопределения
+   для узких экранов: фикс-пиксельные Figma-фреймы (1920px) заменяются
+   на свободную вёрстку в одну колонку.
+   ===================================================== */
+@media (max-width: 767px){
+  html{overflow-x:hidden;}
+  body{overflow-x:hidden;}
+  .page{width:100%;overflow-x:hidden;}
+
+  /* ---------- Хедер ---------- */
+  .site-header-inner{width:100%;padding:16px 20px;}
+  .header-left{gap:16px;}
+  .site-header .logo img{height:28px;}
+  .site-header .header-actions{gap:10px;}
+  .site-header .header-actions .btn-outline{display:none;}
+  .site-header .header-actions .btn{padding:8px 16px;font-size:12px;}
+  .site-header + section{margin-top:64px;}
+  .menu-panel{left:16px;right:16px;min-width:0;padding:24px;}
+
+  /* ---------- Футер ---------- */
+  .site-footer-wrap{padding:48px 0;}
+  .site-footer{position:relative;width:calc(100% - 32px);height:auto;padding:36px 20px;}
+  .footer-content{position:static;flex-direction:column;gap:32px;align-items:flex-start;}
+  .footer-nav{gap:14px;}
+  .footer-nav a{font-size:16px;}
+  .footer-logo{width:160px;height:65px;}
+  .footer-contacts{width:100%;}
+  .footer-contacts-label{font-size:16px;}
+  .footer-contact-rows{gap:16px;}
+  .footer-contact-row{font-size:14px;white-space:normal;}
+  .footer-actions{position:static;flex-direction:column;gap:14px;margin-top:32px;width:100%;}
+  .footer-actions .btn-nearest,.footer-actions .btn-buy-ticket{width:100%;height:56px;font-size:13px;}
+
+  /* ---------- HERO (play-hero) ---------- */
+  .play-hero{height:100vh;min-height:580px;}
+  .play-title-card{width:200px;top:96px;}
+  .play-title-text{font-size:40px;top:100px;white-space:normal;width:90%;left:5%;transform:none;text-align:center;}
+  .play-hero .witch{width:280px;height:280px;bottom:-14px;}
+  .play-hero .branch{width:180px;height:180px;top:70px;}
+  .play-hero .mushroom.left{width:140px;height:140px;left:8px;bottom:-14px;}
+  .play-hero .mushroom.right{width:150px;height:150px;right:8px;bottom:-15px;}
+
+  /* ---------- Промо: семейный день / викторина ---------- */
+  .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
+  .promo-heading{position:static;font-size:30px;}
+  .promo-family{position:static;width:220px;height:158px;order:5;}
+  .promo-date{position:static;font-size:22px;}
+  .promo-program{position:static;width:100%;gap:18px;}
+  .promo-program .list-title{font-size:20px;}
+  .promo-program li{font-size:16px;}
+  .promo-quiz-lead{position:static;font-size:18px;}
+  .promo-quiz-title{position:static;font-size:26px;}
+  .promo-quiz-question{position:static;width:100%;font-size:18px;}
+  .promo-hint{position:static;width:100%;box-sizing:border-box;}
+  .promo-hint p{width:auto;flex:1;}
+  .promo-photos{display:none;}
+
+  /* ---------- «Ближайшие представления» / «Отзывы» (карусели) ---------- */
+  .section-dark{padding:56px 0 64px;}
+  .section-title{font-size:26px;margin-bottom:36px;}
+  .section-dark[data-carousel]{height:auto;padding:56px 0 64px;}
+  .section-dark[data-carousel] .section-title,
+  #otzyvy .section-title{position:static;transform:none;font-size:26px;padding:0 20px;white-space:normal;text-align:center;}
+  .section-dark[data-carousel] .arrow-btn,
+  #otzyvy .arrow-btn{display:none;}
+  /* #otzyvy — ID-селектор в десктопной вёрстке сильнее по specificity,
+     поэтому переопределяем его высоту здесь тем же ID-селектором */
+  .section-dark[data-carousel]#otzyvy{height:auto;padding:56px 0 64px;}
+
+  .show-grid{position:static;width:100%;height:auto;display:flex;overflow-x:auto;gap:16px;padding:0 20px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .show-card{width:78vw;max-width:320px;scroll-snap-align:center;}
+  .show-card .thumb{height:auto;aspect-ratio:1/1;}
+  .show-card h3{font-size:28px;}
+  .show-card .dates{font-size:16px;}
+  .show-card .btn-buy-ticket{width:100%;}
+
+  .reviews-track{position:static;width:100%;height:auto;display:flex;overflow-x:auto;gap:16px;padding:0 20px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .review-card{width:80vw;max-width:340px;height:auto;scroll-snap-align:center;}
+  .review-card .photo{position:relative;height:200px;}
+  .review-card .body{position:static;padding:20px 22px;}
+  .review-card .cta{position:static;width:100%;margin-top:16px;}
+
+  .reviews-social{position:static;transform:none;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 20px;margin-top:32px;}
+  .reviews-social .label{font-size:16px;white-space:normal;}
+
+  /* ---------- Репертуар (coverflow → простая горизонтальная лента) ---------- */
+  .repertoire-section{height:auto;padding:56px 0 64px;}
+  .repertoire-heading{position:static;transform:none;font-size:26px;text-align:center;padding:0 20px;margin-bottom:32px;white-space:normal;}
+  .rep-btn-buy{position:static;transform:none;margin:32px auto 0;}
+  .repertoire-row{position:static;width:100%;height:auto;}
+  .repertoire-row.rep-row-mobile{display:flex;overflow-x:auto;gap:16px;padding:0 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
+  .rep-row-mobile .rep-card{position:static;flex:0 0 78vw;max-width:340px;scroll-snap-align:center;pointer-events:auto;}
+  .rep-row-mobile .rep-image{position:static;width:100%;height:auto;aspect-ratio:4/3;border-radius:16px;}
+  .rep-row-mobile .rep-title-row{position:static;flex-direction:column;gap:6px;margin-top:14px;}
+  .rep-row-mobile .rep-title-row h3{font-size:22px;white-space:normal;text-align:center;}
+  .rep-row-mobile .rep-subtitle{font-size:13px;white-space:normal;}
+  .rep-row-mobile .rep-card .rep-image img{opacity:1;}
+
+  /* ---------- О театре ---------- */
+  .about-section{height:auto;padding:56px 20px;}
+  .about-grid{display:flex;flex-direction:column;gap:32px;}
+  .about-photo{position:static;width:100%;height:60vw;max-height:360px;}
+  .about-text{position:static;width:100%;height:auto;}
+  .about-text h2{position:static;font-size:28px;margin-bottom:20px;}
+  .about-text .block{position:static;width:100%;margin-bottom:20px;}
+  .about-text .about-divider{display:none;}
+  .about-text .btn-repertoire{position:static;width:100%;}
+  .about-photos-col{position:static;width:100%;height:auto;display:flex;gap:12px;}
+  .about-photos-col .thumb{position:static;width:50%;height:160px;}
+
+  /* ---------- Почему стоит к нам прийти ---------- */
+  .why-section{height:auto;padding:56px 20px;}
+  .why-heading{position:static;width:100%;height:auto;font-size:28px;margin-bottom:24px;}
+  .why-photo-main{position:static;width:100%;height:60vw;max-height:360px;margin-bottom:16px;}
+  .why-photo-1,.why-photo-2,.why-photo-3{display:none;}
+  .why-item{position:static;width:100%;font-size:17px;margin:18px 0;}
+  .why-divider{display:none;}
+  .why-btn{position:static;width:100%;margin-top:24px;}
+
+  /* ---------- О спектакле (страницы спектаклей) ----------
+     На мобильных страница спектакля показывает только компактный блок
+     «о спектакле» (маленькая анимация, аннотация, кнопка) — большой
+     hero-баннер с видео и заголовком скрыт, шапка с бургер-меню
+     остаётся (она зафиксирована и не зависит от высоты play-hero). */
+  .play-hero--detail{height:auto;min-height:0;background:none;}
+  .play-hero--detail::after{display:none;}
+  .play-hero--detail .hero-media,
+  .play-hero--detail .play-title-text{display:none;}
+
+  .spektakle-section{height:auto;padding:112px 20px 48px;}
+  .spektakle-photo{position:static;width:100%;height:60vw;max-height:340px;margin-bottom:24px;}
+  .spektakle-content{position:static;width:100%;height:auto;}
+  .spektakle-content .label,.spektakle-content .label-koshkin{position:static;width:100%;font-size:32px;}
+  .spektakle-content h1,.spektakle-content h1.rep-font-koshkin{position:static;width:100%;font-size:32px;margin-top:12px;}
+  .spektakle-content .desc,
+  .desc-aibolit,.desc-kolobok,.desc-koshkin,.desc-gusi{position:static;width:100%;margin:16px 0;}
+  .spektakle-content .age,.age-aibolit,.age-kolobok,.age-koshkin,.age-gusi{position:static;width:100%;}
+  .spektakle-content .btn-buy-ticket,.btn-aibolit,.btn-kolobok,.btn-koshkin,.btn-gusi{
+    position:static;width:346px;max-width:100%;height:80px;margin:20px auto 0;
+  }
+
+  /* ---------- FAQ-превью на главной ---------- */
+  #faq-preview.section-dark{height:auto;padding:56px 0 64px;}
+  #faq-preview .section-title{position:static;transform:none;font-size:26px;padding:0 20px;}
+  .faq-preview-item{position:static;transform:none;width:100%;padding:18px 20px;gap:16px;}
+  .faq-preview-item .q{font-size:16px;}
+  .faq-preview-divider{position:static;width:100%;left:0;}
+  #faq-preview .btn-repertoire{position:static;transform:none;width:calc(100% - 40px);margin:32px 20px 0;}
+
+  /* ---------- Страница «Вопросы и ответы» ---------- */
+  .faq-hero{padding:88px 20px 56px;}
+  .faq-hero .section-title{font-size:28px;margin-bottom:32px;}
+  .faq-list{width:100%;}
+  .faq-q{padding:22px 0;font-size:16px;}
+  .faq-a-inner .cols{grid-template-columns:1fr;gap:20px;}
+
+  /* ---------- 404 / отмена спектакля ---------- */
+  .curtain-page{height:auto;min-height:100vh;padding:80px 20px;}
+  .curtain-404{font-size:96px;margin-bottom:20px;}
+  .curtain-page h2{font-size:24px;}
+  .curtain-title{font-size:28px;}
+
+  /* ---------- Афиша: топбар и табы бронирования ---------- */
+  .booking-topbar{width:100%;height:auto;padding:16px 20px;box-sizing:border-box;}
+  .booking-topbar .logo{position:static;width:70px;height:25px;}
+  .booking-tabs{position:static;gap:16px;flex-wrap:wrap;margin-top:14px;}
+  .booking-tabs button{font-size:14px;}
+  .booking-close{position:absolute;right:16px;top:16px;left:auto;width:36px;height:36px;}
+  .booking-panel{padding:24px 20px 0;}
+
+  /* ---------- Афиша: список сеансов ---------- */
+  .playbill-notice{position:static;text-align:left;max-width:100%;margin:0 0 24px;}
+  .playbill-row{grid-template-columns:1fr;gap:8px;padding:16px 0;text-align:left;}
+  .playbill-row .btn{width:100%;}
+
+  /* ---------- Афиша: схема зала ---------- */
+  .seat-canvas{width:100%;height:auto;padding-bottom:40px;}
+  .seat-canvas .show-nav{position:static;flex-wrap:wrap;justify-content:center;gap:16px;margin:0 0 24px;}
+  .seat-canvas .show-nav h2,.seat-canvas .show-nav .age,.seat-canvas .show-nav .dt{font-size:24px;}
+  .seat-canvas .show-nav .arrow-btn{position:static;width:44px;height:44px;}
+  .seat-canvas .show-nav .arrow-btn img{width:14px;height:28px;}
+  .stage{position:static;width:100%;height:44px;font-size:16px;margin-bottom:20px;}
+  .seat-map{position:static;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;}
+  #seat-rows{align-items:flex-start;}
+  .seat{width:22px;height:22px;}
+  .seat-row{gap:4px;}
+  .seat-row .row-num{width:18px;font-size:11px;margin-right:2px;}
+  .seat-legend{position:static;width:100%;flex-wrap:wrap;gap:8px;margin-top:20px;}
+  .seat-legend span{width:calc(50% - 4px);height:48px;font-size:20px;}
+  .seat-checkout{position:static;margin-top:24px;}
+
+  /* ---------- Афиша: оформление заказа ---------- */
+  .order-layout{grid-template-columns:1fr;gap:32px;}
+  .buyer-form{padding:22px;}
+  .buyer-form .grid2{grid-template-columns:1fr;}
+
+  /* ---------- Викторина ---------- */
+  .quiz-page{padding:88px 20px 56px;}
+  .quiz-list{width:100%;}
+  .quiz-item{flex-direction:column;align-items:stretch;gap:24px;padding:20px;}
+  .quiz-item .photo{width:100%;height:56vw;max-height:280px;}
+  .quiz-body{width:100%;}
+  .quiz-item .q{margin-bottom:28px;font-size:18px;}
+  .quiz-options{gap:32px;justify-content:space-between;}
+  .quiz-opt{width:auto;gap:12px;}
+  .quiz-opt .opt-label{font-size:16px;}
+  .quiz-footer{width:100%;align-items:stretch;}
+  .quiz-score-pill,.quiz-result-pill{text-align:center;padding:14px;}
+  .quiz-result-pill{font-size:32px;}
+  .quiz-submit{width:100%;height:64px;gap:16px;justify-content:space-between;padding:0 20px;}
+
+  /* ---------- Лид-форма (получение пригласительного) ---------- */
+  .lead-page{width:100%;height:auto;padding:56px 20px 40px;}
+  .lead-badge{position:static;width:fit-content;}
+  .lead-page h1{position:static;width:100%;font-size:26px;margin-top:20px;}
+  .lead-page .hint{position:static;width:100%;margin-top:16px;}
+  .lead-field{position:static;width:100%;margin-top:16px;}
+  .lead-submit{position:static;width:100%;margin-top:24px;}
+  .lead-legal{position:static;width:100%;margin-top:20px;}
+  .lead-card{position:static;width:100%;height:auto;margin-top:32px;padding-bottom:24px;}
+  .lead-card-cap,.lead-card-title{position:static;width:auto;margin:0 24px;}
+  .lead-card-cap{padding-top:24px;}
+  .lead-photos{position:static;height:220px;margin-top:20px;}
+  .lead-card-hint{position:static;width:calc(100% - 48px);margin:16px 24px 0;}
+
+  /* ---------- Модалка «Оставить отзыв» ---------- */
+  .review-modal{padding:36px 24px;}
+}

@@ -571,20 +571,30 @@
 
     repRow.innerHTML = repShows.map(cardHTML).join('');
     repCards = repRow.querySelectorAll('.rep-card');
-    repRenderFrame();
-    // Уточняем высоту заголовка активной карточки по факту рендера (шрифты
-    // разные у каждого спектакля могут на пару px отличаться по высоте
-    // строки) и пересчитываем высоту фото, чтобы отступ до кнопки был
-    // ровно 40px, а не «примерно».
-    var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
-    if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
-      REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
-      REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
+
+    // На мобильных экранах coverflow-математика (расчёт под канву 1920px)
+    // не подходит — вместо неё показываем карточки простой горизонтальной
+    // лентой со скроллом (см. .rep-row-mobile в styles.css) и не запускаем
+    // rAF-цикл вовсе.
+    var repIsMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    if (repIsMobile){
+      repRow.classList.add('rep-row-mobile');
+    } else {
       repRenderFrame();
-    }
-    if (REP_AUTOPLAY){
-      repDwellAcc = 0;
-      repEnsureRunning();
+      // Уточняем высоту заголовка активной карточки по факту рендера (шрифты
+      // разные у каждого спектакля могут на пару px отличаться по высоте
+      // строки) и пересчитываем высоту фото, чтобы отступ до кнопки был
+      // ровно 40px, а не «примерно».
+      var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
+      if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
+        REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
+        REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
+        repRenderFrame();
+      }
+      if (REP_AUTOPLAY){
+        repDwellAcc = 0;
+        repEnsureRunning();
+      }
     }
     var repArrowPrev = repSection.querySelector('[data-rep-prev]'); // левая стрелка
     var repArrowNext = repSection.querySelector('[data-rep-next]'); // правая стрелка
