@@ -463,6 +463,7 @@
       {title:'КОЛОБОК', font:'rep-font-kolobok', sub:'по&nbsp;мотивам русской народной<br>сказки «Колобок»', img:'frames/9c670e1e-eb0f-42a7-a597-39ec2c7de1a1_c409b13a-e003-4b60-b7ec-a4bc60844353.png', link:'афиша.html'}
     ];
     var repRow = repSection.querySelector('[data-rep-row]');
+    var repIsMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
     // --- размеры из Figma-скринов: боковые фото 800×600 (как есть, выходят
     // за пределы фрейма), главное фото шире на 20pt с каждой стороны (+40 к
     // ширине) и такой высоты, чтобы до кнопки оставалось ровно 40px. ---
@@ -485,6 +486,21 @@
     // Высота заголовка активной карточки (однострочный, 48px) измеряется
     // один раз после первого рендера — см. repMeasureTitle().
     var REP_ACTIVE_TITLE_H = 64; // запасное значение, уточняется после рендера
+
+    // На мобильных та же coverflow-анимация, что на десктопе, но в масштабе
+    // узкого экрана — канва 1920px не подходит, поэтому все размеры и отступы
+    // переопределяем на компактные, а привязку к кнопке «купить билет»
+    // (которая на мобильном просто идёт в потоке ниже) убираем вовсе.
+    if (repIsMobile){
+      REP_REST_W = 130;
+      REP_REST_IMG_H = 98;
+      REP_ACTIVE_W = 172;
+      REP_GAP = 10;
+      REP_TITLE_GAP = 10;
+      REP_ROW_TOP = 0;
+      REP_IMG_BOTTOM_Y = 200;
+      REP_ACTIVE_TITLE_H = 46;
+    }
     var REP_C1 = REP_ACTIVE_W / 2 + REP_GAP + REP_REST_W / 2;
     var REP_PITCH = REP_REST_W + REP_GAP;
     var repCount = repShows.length;
@@ -604,30 +620,25 @@
 
     repRow.innerHTML = repShows.map(cardHTML).join('');
     repCards = repRow.querySelectorAll('.rep-card');
+    if (repIsMobile) repRow.classList.add('rep-row-mobile');
 
-    // На мобильных экранах coverflow-математика (расчёт под канву 1920px)
-    // не подходит — вместо неё показываем карточки простой горизонтальной
-    // лентой со скроллом (см. .rep-row-mobile в styles.css) и не запускаем
-    // rAF-цикл вовсе.
-    var repIsMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
-    if (repIsMobile){
-      repRow.classList.add('rep-row-mobile');
-    } else {
+    // Та же coverflow-анимация на десктопе и на мобильном (константы REP_*
+    // выше уже подобраны под каждый канвас) — просто рендерим и запускаем
+    // автоплей в обоих случаях.
+    repRenderFrame();
+    // Уточняем высоту заголовка активной карточки по факту рендера (шрифты
+    // разные у каждого спектакля могут на пару px отличаться по высоте
+    // строки) и пересчитываем высоту фото, чтобы отступ до низа был точным,
+    // а не «примерно».
+    var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
+    if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
+      REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
+      REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
       repRenderFrame();
-      // Уточняем высоту заголовка активной карточки по факту рендера (шрифты
-      // разные у каждого спектакля могут на пару px отличаться по высоте
-      // строки) и пересчитываем высоту фото, чтобы отступ до кнопки был
-      // ровно 40px, а не «примерно».
-      var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
-      if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
-        REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
-        REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
-        repRenderFrame();
-      }
-      if (REP_AUTOPLAY){
-        repDwellAcc = 0;
-        repEnsureRunning();
-      }
+    }
+    if (REP_AUTOPLAY){
+      repDwellAcc = 0;
+      repEnsureRunning();
     }
     var repArrowPrev = repSection.querySelector('[data-rep-prev]'); // левая стрелка
     var repArrowNext = repSection.querySelector('[data-rep-next]'); // правая стрелка

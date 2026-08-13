@@ -959,18 +959,22 @@ p{margin:0;}
   .reviews-social{position:static;transform:none;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 20px;margin-top:32px;}
   .reviews-social .label{font-size:16px;white-space:normal;}
 
-  /* ---------- Репертуар (coverflow → простая горизонтальная лента) ---------- */
+  /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
+     просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
   .repertoire-section{height:auto;padding:56px 0 64px;}
-  .repertoire-heading{position:static;transform:none;font-size:26px;text-align:center;padding:0 20px;margin-bottom:32px;white-space:normal;}
+  .repertoire-heading{position:static;transform:none;font-size:26px;text-align:left;padding:0 20px;margin-bottom:32px;white-space:normal;}
   .rep-btn-buy{position:static;transform:none;width:346px;max-width:calc(100% - 40px);height:80px;margin:32px auto 0;}
   .repertoire-row{position:static;width:100%;height:auto;}
-  .repertoire-row.rep-row-mobile{display:flex;overflow-x:auto;gap:16px;padding:0 20px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
-  .rep-row-mobile .rep-card{position:static;flex:0 0 78vw;max-width:340px;scroll-snap-align:center;pointer-events:auto;}
-  .rep-row-mobile .rep-image{position:static;width:100%;height:auto;aspect-ratio:4/3;border-radius:16px;}
-  .rep-row-mobile .rep-title-row{position:static;flex-direction:column;gap:6px;margin:14px 0 20px;}
-  .rep-row-mobile .rep-title-row h3{font-size:22px;white-space:normal;text-align:center;letter-spacing:normal;}
-  .rep-row-mobile .rep-subtitle{font-size:13px;white-space:normal;}
-  .rep-row-mobile .rep-card .rep-image img{opacity:1;}
+  .repertoire-row.rep-row-mobile{position:relative;height:210px;overflow:visible;}
+  .rep-row-mobile .rep-image{border-radius:12px;}
+  .rep-row-mobile .rep-title-row,
+  .rep-row-mobile .rep-card:not(.current) .rep-title-row{flex-direction:column;gap:4px;}
+  .rep-row-mobile .rep-title-row h3{white-space:normal;text-align:center;letter-spacing:normal;}
+  .rep-row-mobile .rep-card.current .rep-title-row h3{font-size:22px;}
+  .rep-row-mobile .rep-card:not(.current) .rep-title-row h3{font-size:14px;}
+  .rep-row-mobile .rep-subtitle{white-space:normal;}
+  .rep-row-mobile .rep-card.current .rep-subtitle{font-size:12px;}
+  .rep-row-mobile .rep-card:not(.current) .rep-subtitle{font-size:10px;}
 
   /* ---------- О театре ---------- */
   .about-section{height:auto;padding:56px 20px;}
