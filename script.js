@@ -36,12 +36,15 @@
   var whyMain = document.querySelector('.why-photo-main');
   if (whyMain){
     var whyFill = whyMain.querySelector('.why-timer-fill');
-    var whySlots = [
-      whyMain.querySelector('video'),
-      document.querySelector('.why-photo-1 video'),
-      document.querySelector('.why-photo-2 video'),
-      document.querySelector('.why-photo-3 video')
-    ];
+    // У каждого слота два наложенных <video> (двойная буферизация): пока
+    // виден активный слой со старым кадром, в тени грузится новый ролик
+    // во второй слой, и только когда он готов — оба плавно кроссфейдятся.
+    // Так картинка никогда не пропадает и не мелькает чёрным между сменами.
+    var whySlots = [whyMain, document.querySelector('.why-photo-1'), document.querySelector('.why-photo-2'), document.querySelector('.why-photo-3')]
+      .map(function(el){
+        if (!el) return null;
+        return {a: el.querySelector('.why-v-a'), b: el.querySelector('.why-v-b'), activeIsA: true};
+      });
     var whyPhotos = [
       {src:'анимация/гуси-лебеди-анимация.mp4', alt:'Сцена спектакля «Гуси-лебеди»'},
       {src:'анимация/колобок-анимация.mp4', alt:'Сцена «Колобок»'},
@@ -61,45 +64,57 @@
     // проиграется — иначе картинка просто пустая (чёрная/прозрачная).
     // Главному видео даём играть и дальше, боковым — один кадр и сразу пауза,
     // чтобы они стояли неподвижно, но не пропадали.
-    function whyShowFrame(video, slot){
+    function whyShowFrame(video, isMain){
       var p = video.play();
       if (p && p.then){
-        p.then(function(){ if (slot !== 0) video.pause(); }).catch(function(){});
-      } else if (slot !== 0){
+        p.then(function(){ if (!isMain) video.pause(); }).catch(function(){});
+      } else if (!isMain){
         video.pause();
       }
     }
+    function whySwap(slot, slotIndex, isMain){
+      var incoming = slot.activeIsA ? slot.b : slot.a;
+      var outgoing = slot.activeIsA ? slot.a : slot.b;
+      var p = whyPhotos[(whyIndex + slotIndex) % whyPhotos.length];
+      var source = incoming.querySelector('source');
+      if (!source){
+        source = document.createElement('source');
+        source.type = 'video/mp4';
+        incoming.appendChild(source);
+      }
+      source.src = p.src;
+      incoming.setAttribute('aria-label', p.alt);
+      incoming.load();
+      var revealed = false;
+      function reveal(){
+        if (revealed) return;
+        revealed = true;
+        whyShowFrame(incoming, isMain);
+        incoming.classList.add('active');
+        outgoing.classList.remove('active');
+        slot.activeIsA = !slot.activeIsA;
+      }
+      // Кроссфейд стартуем только когда новый кадр реально готов —
+      // старый слой остаётся видимым (activeIsA не менялось) всё это время.
+      incoming.addEventListener('loadeddata', reveal, {once:true});
+      setTimeout(reveal, 600); // подстраховка, если событие не пришло
+    }
     function whyNext(){
       whyIndex = (whyIndex + 1) % whyPhotos.length;
-      whySlots.forEach(function(video, slot){
-        if (!video) return;
-        var p = whyPhotos[(whyIndex + slot) % whyPhotos.length];
-        video.style.opacity = '0';
-        setTimeout(function(){
-          video.querySelector('source').src = p.src;
-          video.setAttribute('aria-label', p.alt);
-          video.load();
-          // Показываем новое видео только когда реально готов первый кадр —
-          // иначе между load() и декодированием кадра мелькает чёрный экран.
-          var revealed = false;
-          function reveal(){
-            if (revealed) return;
-            revealed = true;
-            whyShowFrame(video, slot);
-            video.style.opacity = '1';
-          }
-          video.addEventListener('loadeddata', reveal, {once:true});
-          setTimeout(reveal, 600); // подстраховка, если событие не пришло
-        }, 300);
+      whySlots.forEach(function(slot, slotIndex){
+        if (!slot) return;
+        whySwap(slot, slotIndex, slotIndex === 0);
       });
       whyStartTimer();
     }
     // Показываем кадр во всех четырёх слотах сразу при загрузке страницы —
     // без этого боковые видео остаются пустыми до первой смены.
-    whySlots.forEach(function(video, slot){
-      if (!video) return;
-      if (video.readyState >= 2) whyShowFrame(video, slot);
-      else video.addEventListener('loadeddata', function(){ whyShowFrame(video, slot); }, {once:true});
+    whySlots.forEach(function(slot, slotIndex){
+      if (!slot) return;
+      var video = slot.a, isMain = slotIndex === 0;
+      function show(){ whyShowFrame(video, isMain); video.classList.add('active'); }
+      if (video.readyState >= 2) show();
+      else video.addEventListener('loadeddata', show, {once:true});
     });
     whyStartTimer();
     setInterval(whyNext, WHY_INTERVAL);

@@ -370,7 +370,8 @@ p{margin:0;}
 .why-heading{position:absolute;left:1229px;top:127px;width:606px;height:121px;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;margin:0;}
 
 .why-photo{position:absolute;border-radius:20px;overflow:hidden;}
-.why-photo video{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s ease;}
+.why-photo .why-v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .5s ease;}
+.why-photo .why-v.active{opacity:1;z-index:1;}
 .why-photo-main{left:60px;top:125px;width:727px;height:830px;}
 .why-photo-1{left:798px;top:125px;width:359px;height:268px;}
 .why-photo-2{left:798px;top:407px;width:358px;height:266px;}
@@ -983,8 +984,9 @@ p{margin:0;}
   /* ---------- Почему стоит к нам прийти ---------- */
   .why-section{height:auto;padding:56px 20px;}
   .why-heading{position:static;width:100%;height:auto;font-size:28px;margin-bottom:24px;}
-  .why-photo-main{position:static;width:100%;height:60vw;max-height:360px;margin-bottom:16px;}
+  .why-photo-main{position:relative;left:auto;top:auto;width:100%;height:60vw;max-height:360px;margin-bottom:16px;}
   .why-photo-1,.why-photo-2,.why-photo-3{display:none;}
+  .why-timer{left:12px;right:12px;bottom:12px;height:2px;}
   .why-item{position:static;width:100%;font-size:17px;margin:18px 0;}
   .why-divider{display:none;}
   .why-btn{position:static;width:100%;margin-top:24px;}
