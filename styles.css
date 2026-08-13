@@ -859,7 +859,7 @@ p{margin:0;}
   .play-hero{height:100vh;min-height:580px;}
   /* на мобильном — фон с избушкой на курьих ножках вместо десктопного леса */
   .play-hero .hero-media-desktop{display:none;}
-  .play-hero .hero-media-mobile{display:block;object-position:center top;}
+  .play-hero .hero-media-mobile{display:block;object-position:20% top;}
   .play-title-card{width:200px;top:96px;}
   .play-title-text{font-size:40px;top:100px;white-space:normal;width:90%;left:5%;transform:none;text-align:center;}
   .play-hero .witch{width:280px;height:280px;bottom:-14px;}
