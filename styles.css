@@ -170,6 +170,8 @@ p{margin:0;}
    ===================================================== */
 .play-hero{position:relative;width:100%;height:1080px;background:#171208;overflow:hidden;}
 .play-hero .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+/* мобильный фон hero — виден только на ≤767px, см. @media ниже */
+.play-hero .hero-media-mobile{display:none;}
 .play-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.1) 30%,rgba(0,0,0,.55));pointer-events:none;}
 .play-hero .mushroom{position:absolute;z-index:2;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4));}
 .play-hero .mushroom.left{left:40px;width:398px;height:398px;bottom:-39px;}
@@ -855,12 +857,16 @@ p{margin:0;}
 
   /* ---------- HERO (play-hero) ---------- */
   .play-hero{height:100vh;min-height:580px;}
+  /* на мобильном — фон с избушкой на курьих ножках вместо десктопного леса */
+  .play-hero .hero-media-desktop{display:none;}
+  .play-hero .hero-media-mobile{display:block;object-position:center top;}
   .play-title-card{width:200px;top:96px;}
   .play-title-text{font-size:40px;top:100px;white-space:normal;width:90%;left:5%;transform:none;text-align:center;}
   .play-hero .witch{width:280px;height:280px;bottom:-14px;}
   .play-hero .branch{width:180px;height:180px;top:70px;}
-  .play-hero .mushroom.left{width:140px;height:140px;left:8px;bottom:-14px;}
-  .play-hero .mushroom.right{width:150px;height:150px;right:8px;bottom:-15px;}
+  .play-hero .branch.left{display:none;}
+  .play-hero .mushroom.left{width:140px;height:140px;left:20px;bottom:-14px;}
+  .play-hero .mushroom.right{width:150px;height:150px;right:20px;bottom:-15px;}
 
   /* ---------- Промо: семейный день / викторина ---------- */
   .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
