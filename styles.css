@@ -314,6 +314,9 @@ p{margin:0;}
 .about-text .about-divider-1{top:203px;}
 .about-text .about-divider-2{top:369px;}
 .about-text .btn-repertoire{position:absolute;left:0;top:601px;}
+/* короткая версия текста и мобильная кнопка — только для мобильной вёрстки, см. @media ниже */
+.about-text .block-short{display:none;}
+.about-btn-mobile.btn-repertoire{display:none;}
 
 .about-photos-col{position:absolute;left:1254px;top:126px;width:496px;height:816px;}
 .about-photos-col .thumb{position:absolute;left:0;border-radius:20px;overflow:hidden;background:#8f2c22;}
@@ -918,16 +921,22 @@ p{margin:0;}
   /* ---------- О театре ---------- */
   .about-section{height:auto;padding:56px 20px;}
   .about-grid{display:flex;flex-direction:column;gap:32px;}
-  .about-photo{position:relative;left:auto;top:auto;width:100%;height:60vw;max-height:360px;}
+  .about-photo{position:relative;left:auto;top:auto;width:100%;height:90vw;max-height:400px;}
+  .about-photo img,.about-photo .cover-img{object-position:top;}
   .about-text{position:static;width:100%;height:auto;}
   .about-text h2{position:static;width:100%;font-size:28px;white-space:normal;margin-bottom:20px;}
   .about-text .block{position:static;width:100%;margin-bottom:20px;}
+  .about-text .block-full{display:none;}
+  .about-text .block-short{display:block;}
   .about-text .about-divider{display:none;}
-  .about-text .btn-repertoire{position:static;width:346px;max-width:100%;height:80px;margin:0 auto;}
+  /* кнопка «репертуар» на мобильном переезжает под нижние фотографии —
+     см. .about-btn-mobile ниже; исходную (внутри about-text) прячем. */
+  .about-text .btn-repertoire{display:none;}
   .about-photos-col{position:static;width:100%;height:auto;display:flex;gap:12px;}
   .about-photos-col .thumb,
   .about-photos-col .thumb:nth-child(1),
   .about-photos-col .thumb:nth-child(2){position:relative;top:auto;left:auto;width:50%;height:160px;}
+  .about-btn-mobile.btn-repertoire{display:flex;width:346px;max-width:100%;height:80px;margin:24px auto 0;}
 
   /* ---------- Почему стоит к нам прийти ---------- */
   .why-section{height:auto;padding:56px 20px;}
