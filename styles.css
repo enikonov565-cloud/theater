@@ -170,8 +170,11 @@ p{margin:0;}
    ===================================================== */
 .play-hero{position:relative;width:100%;height:1080px;background:#171208;overflow:hidden;}
 .play-hero .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
-/* мобильный фон hero — виден только на ≤767px, см. @media ниже */
-.play-hero .hero-media-mobile{display:none;}
+/* мобильные hero-элементы (фон, полосы, карточка с лебедями) —
+   видны только на ≤767px, см. @media ниже */
+.play-hero .hero-media-mobile-wrap,
+.play-hero .hero-stripe,
+.play-hero .hero-title-mobile{display:none;}
 .play-hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.1) 30%,rgba(0,0,0,.55));pointer-events:none;}
 .play-hero .mushroom{position:absolute;z-index:2;filter:drop-shadow(0 20px 30px rgba(0,0,0,.4));}
 .play-hero .mushroom.left{left:40px;width:398px;height:398px;bottom:-39px;}
@@ -855,18 +858,49 @@ p{margin:0;}
   .footer-actions{position:static;flex-direction:column;gap:14px;margin-top:32px;width:100%;}
   .footer-actions .btn-nearest,.footer-actions .btn-buy-ticket{width:100%;height:56px;font-size:13px;}
 
-  /* ---------- HERO (play-hero) ---------- */
-  .play-hero{height:100vh;min-height:580px;}
-  /* на мобильном — фон с избушкой на курьих ножках вместо десктопного леса */
+  /* ---------- HERO (play-hero) — точно по Figma, узел 1527:2,
+     референс-канвас 430×932, все позиции переведены в % от секции ---------- */
+  .play-hero{height:100vh;min-height:580px;background:linear-gradient(205.18deg,#264a2b 1.24%,#162520 92.86%);}
   .play-hero .hero-media-desktop{display:none;}
-  .play-hero .hero-media-mobile{display:block;object-position:20% top;}
-  .play-title-card{width:200px;top:96px;}
+  .play-hero .hero-media-mobile-wrap{display:block;position:absolute;inset:0;overflow:hidden;}
+  .play-hero .hero-media-mobile-wrap img{position:absolute;left:-0.02%;top:-9.83%;width:238.14%;height:109.87%;max-width:none;}
+  .play-hero .hero-stripe{display:block;position:absolute;left:0;top:0;width:100%;height:18.45%;pointer-events:none;}
+  .play-hero .hero-stripe-1{background:linear-gradient(178.47deg,#272820 6.432%,rgba(0,0,0,0) 90.99%);}
+  .play-hero .hero-stripe-2{background:linear-gradient(178.47deg,#1b2900 6.432%,rgba(0,0,0,0) 90.99%);}
+
+  .play-title-card{display:none;}
   .play-title-text{font-size:40px;top:100px;white-space:normal;width:90%;left:5%;transform:none;text-align:center;}
-  .play-hero .witch{width:280px;height:280px;bottom:-14px;}
-  .play-hero .branch{width:180px;height:180px;top:70px;}
-  .play-hero .branch.left{display:none;}
-  .play-hero .mushroom.left{width:140px;height:140px;left:20px;bottom:-14px;}
-  .play-hero .mushroom.right{width:150px;height:150px;right:20px;bottom:-15px;}
+  .play-hero .branch{display:none;}
+  .play-hero .mushroom.left{display:none;}
+  .play-hero .mushroom.right{
+    position:absolute;left:43.49%;top:73.39%;right:auto;bottom:auto;
+    width:62.09%;height:27.79%;transform:none;
+  }
+  .play-hero .witch{
+    position:absolute;left:-15.58%;top:55.15%;bottom:auto;
+    width:99.77%;height:46.03%;transform:none;
+  }
+
+  .play-hero .hero-title-mobile{
+    display:flex;position:absolute;left:4.65%;top:12.45%;width:53.26%;height:25.54%;
+    flex-direction:column;align-items:center;justify-content:center;gap:4px;
+    box-sizing:border-box;padding:24px 16px;border:1px solid #fff;border-radius:60px;
+    background:linear-gradient(to bottom,rgba(52,60,41,.17) 0%,rgba(52,60,41,.85) 39.348%);
+    overflow:hidden;
+  }
+  .hero-swans{display:flex;flex-direction:column;align-items:center;width:100%;}
+  .hero-swans-top{display:flex;justify-content:center;width:100%;margin-bottom:-14%;}
+  .hero-swans-bottom{display:flex;align-items:flex-end;width:100%;justify-content:center;}
+  .hero-swans-bottom .hero-swan{width:44%;margin-right:-3%;}
+  .hero-swan{
+    width:44%;height:auto;aspect-ratio:104/80;object-fit:cover;display:block;
+    filter:drop-shadow(0px 4px 5px rgba(0,0,0,.25));
+  }
+  .hero-swan.mirror{transform:scaleX(-1);}
+  .hero-title-mobile-text{
+    margin:0;font-size:28px;line-height:1.22;color:#fff;text-align:center;
+    text-shadow:0px 4px 7px rgba(0,0,0,.25);white-space:nowrap;
+  }
 
   /* ---------- Промо: семейный день / викторина ---------- */
   .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
