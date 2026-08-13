@@ -968,7 +968,7 @@ p{margin:0;}
   .rep-row-mobile .rep-card{position:static;flex:0 0 78vw;max-width:340px;scroll-snap-align:center;pointer-events:auto;}
   .rep-row-mobile .rep-image{position:static;width:100%;height:auto;aspect-ratio:4/3;border-radius:16px;}
   .rep-row-mobile .rep-title-row{position:static;flex-direction:column;gap:6px;margin:14px 0 20px;}
-  .rep-row-mobile .rep-title-row h3{font-size:22px;white-space:normal;text-align:center;}
+  .rep-row-mobile .rep-title-row h3{font-size:22px;white-space:normal;text-align:center;letter-spacing:normal;}
   .rep-row-mobile .rep-subtitle{font-size:13px;white-space:normal;}
   .rep-row-mobile .rep-card .rep-image img{opacity:1;}
 
