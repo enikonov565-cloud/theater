@@ -491,15 +491,22 @@
     // узкого экрана — канва 1920px не подходит, поэтому все размеры и отступы
     // переопределяем на компактные, а привязку к кнопке «купить билет»
     // (которая на мобильном просто идёт в потоке ниже) убираем вовсе.
+    var REP_ACTIVE_IMG_H_MOBILE = 260; // высота картинки на мобильном — фиксированная (x2)
     if (repIsMobile){
       REP_REST_W = 130;
-      REP_REST_IMG_H = 98;
+      REP_REST_IMG_H = 196;
       REP_ACTIVE_W = 172;
       REP_GAP = 10;
       REP_TITLE_GAP = 10;
       REP_ROW_TOP = 0;
-      REP_IMG_BOTTOM_Y = 200;
-      REP_ACTIVE_TITLE_H = 46;
+      // Заголовки разных спектаклей на узкой карточке переносятся на разное
+      // число строк («Кошкин дом» короче, «Гуси-лебеди»/«Колобок» длиннее) —
+      // если высоту картинки выводить из измеренного заголовка ОДНОЙ карточки
+      // (как на десктопе), при переключении на более длинный заголовок расчёт
+      // уходит в минус и картинку сплющивает. Поэтому на мобильном высота
+      // картинки фиксирована, а под заголовок просто отведён запас с запасом.
+      REP_IMG_BOTTOM_Y = 90 + REP_TITLE_GAP + REP_ACTIVE_IMG_H_MOBILE;
+      REP_ACTIVE_TITLE_H = 90;
     }
     var REP_C1 = REP_ACTIVE_W / 2 + REP_GAP + REP_REST_W / 2;
     var REP_PITCH = REP_REST_W + REP_GAP;
@@ -537,10 +544,11 @@
     // 0 в центре (полный активный размер) → 1 через один слот (размер «пластинки»).
     function repBlend(rel){ return Math.min(Math.abs(rel), 1); }
 
-    // Высота главного фото — производная величина: нижний край картинки
-    // зафиксирован (REP_IMG_BOTTOM_Y), поэтому высота = расстояние от низа
-    // до верхней точки, где кончается заголовок + отступ до него.
-    var REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
+    // Высота главного фото на десктопе — производная величина: нижний край
+    // картинки зафиксирован (REP_IMG_BOTTOM_Y), высота = расстояние от низа
+    // до верхней точки, где кончается заголовок + отступ до него. На мобильном
+    // высота картинки фиксированная константа (см. REP_ACTIVE_IMG_H_MOBILE).
+    var REP_ACTIVE_IMG_H = repIsMobile ? REP_ACTIVE_IMG_H_MOBILE : (REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H);
 
     var repCards = null;
     function repRenderFrame(){
@@ -630,11 +638,35 @@
     // разные у каждого спектакля могут на пару px отличаться по высоте
     // строки) и пересчитываем высоту фото, чтобы отступ до низа был точным,
     // а не «примерно».
-    var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
-    if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
-      REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
-      REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
-      repRenderFrame();
+    // На мобильном высота картинки фиксирована (см. выше) — уточнять
+    // из заголовка нечего, у каждого спектакля заголовок сам подстраивает
+    // свою позицию под фактическую высоту (см. repRenderFrame).
+    if (!repIsMobile){
+      var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
+      if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
+        REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
+        REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
+        repRenderFrame();
+      }
+    }
+    if (repIsMobile){
+      repRow.style.height = (REP_IMG_BOTTOM_Y + 20) + 'px';
+      // Карточки внутри ряда абсолютно спозиционированы (у самого ряда
+      // нет обычного содержимого в потоке) — на практике отступ до
+      // соседних элементов после/перед таким блоком не всегда равен
+      // заданному margin в CSS, поэтому измеряем фактический зазор и
+      // подправляем его явно нужным значением.
+      function repFixGap(el, desiredGap, before){
+        if (!el) return;
+        var rowRect = repRow.getBoundingClientRect();
+        var elRect = el.getBoundingClientRect();
+        var currentGap = before ? (rowRect.top - elRect.bottom) : (elRect.top - rowRect.bottom);
+        var prop = before ? 'marginBottom' : 'marginTop';
+        var curMargin = parseFloat(getComputedStyle(el)[prop]) || 0;
+        el.style[prop] = (curMargin + (desiredGap - currentGap)) + 'px';
+      }
+      repFixGap(repSection.querySelector('.repertoire-heading'), 16, true);
+      repFixGap(repSection.querySelector('.rep-btn-buy'), 32, false);
     }
     if (REP_AUTOPLAY){
       repDwellAcc = 0;
