@@ -606,9 +606,8 @@ p{margin:0;}
 .faq-q .icon::before{width:14px;height:1.5px;}
 .faq-q .icon::after{width:1.5px;height:14px;transition:transform .2s ease;}
 .faq-item.open .faq-q .icon::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
-/* max-height выставляется явно в JS (по scrollHeight) — здесь только
-   стартовое закрытое состояние и анимация перехода. */
 .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-item.open .faq-a{max-height:600px;}
 .faq-a-inner{
   padding:0 4px 34px;font-size:18px;font-weight:300;line-height:1.7;letter-spacing:.1px;
   opacity:.95;max-width:820px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;

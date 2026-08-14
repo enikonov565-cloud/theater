@@ -164,40 +164,14 @@
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAllMenus(); });
 
   /* ---------- FAQ аккордеон ---------- */
-  // max-height у ответа раньше был захардкожен (600px) — при более длинном
-  // ответе или увеличенном шрифте текст обрезался. Меряем реальную высоту
-  // через scrollHeight и выставляем её явно.
-  // Плюс: если вернуться на страницу кнопкой «назад» браузера, страница
-  // может восстановиться из bfcache с тем состоянием аккордеона, в котором
-  // её покинули (открыт другой вопрос или ничего) — тогда вид страницы не
-  // совпадает с тем, что видно при обычном заходе. На каждый показ страницы
-  // (обычная загрузка и восстановление из bfcache — событие pageshow)
-  // принудительно возвращаем аккордеон к исходному состоянию из разметки.
-  document.querySelectorAll('.faq-list').forEach(function(list){
-    var items = Array.prototype.slice.call(list.querySelectorAll('.faq-item'));
-    var defaultOpen = items.map(function(item){ return item.classList.contains('open'); });
-
-    function setItemOpen(item, isOpen){
-      item.classList.toggle('open', isOpen);
-      var a = item.querySelector('.faq-a');
-      if (a) a.style.maxHeight = isOpen ? (a.scrollHeight + 'px') : '0px';
-    }
-
-    items.forEach(function(item, i){
-      var q = item.querySelector('.faq-q');
-      if (!q) return;
-      q.addEventListener('click', function(){
-        var wasOpen = item.classList.contains('open');
-        items.forEach(function(o){ setItemOpen(o, false); });
-        if (!wasOpen) setItemOpen(item, true);
-      });
+  document.querySelectorAll('.faq-item').forEach(function(item){
+    var q = item.querySelector('.faq-q');
+    if (!q) return;
+    q.addEventListener('click', function(){
+      var wasOpen = item.classList.contains('open');
+      item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(function(o){ o.classList.remove('open'); });
+      if (!wasOpen) item.classList.add('open');
     });
-
-    function resetToDefault(){
-      items.forEach(function(item, i){ setItemOpen(item, defaultOpen[i]); });
-    }
-    resetToDefault();
-    window.addEventListener('pageshow', resetToDefault);
   });
 
   /* ---------- Табы бронирования (афиша.html) ---------- */
