@@ -686,7 +686,7 @@ p{margin:0;}
 .seat[data-price="1300"]{background:var(--seat-1300);}
 .seat[data-price="1100"]{background:var(--seat-1100);}
 .seat.off{background:var(--seat-off);cursor:not-allowed;}
-.seat.selected{outline:3px solid var(--ink);outline-offset:1px;}
+.seat.selected{background:var(--seat-off);outline:3px solid var(--ink);outline-offset:1px;}
 .seat-legend{position:absolute;left:60px;top:1592px;width:1805px;display:flex;gap:15px;}
 .seat-legend span{width:440px;height:75px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Inter';font-weight:500;font-size:42px;line-height:1.22;}
 .seat-legend span:nth-child(1){background:var(--seat-1700);}

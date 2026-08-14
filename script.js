@@ -176,6 +176,13 @@
   var seatRoot = document.getElementById('seat-rows');
   if (seatRoot){
     var offSeats = {'1-13':1,'1-14':1,'2-10':1,'2-11':1,'2-12':1,'3-14':1,'3-15':1,'6r-1':1,'6r-2':1};
+    // Проход между левым и правым блоком задан в px под десктопный масштаб
+    // кресла (50px + gap 10px = 60px «слот»). На мобильном кресло меньше
+    // (22px + gap 4px = 26px «слот») — без пересчёта проход в 421/308/198px
+    // становится непропорционально огромным и уводит правый блок далеко
+    // за экран («съезжает» вся правая сторона схемы).
+    var seatIsMobile = window.matchMedia && window.matchMedia('(max-width: 767px)').matches;
+    var seatGapScale = seatIsMobile ? (22 + 4) / (50 + 10) : 1;
     var config = [
       {rows:[1,2,3,4,5], price:1700, split:false, perSide:29},
       {rows:[6,7,8,9], price:1500, split:true, perSide:10, gap:421},
@@ -199,7 +206,7 @@
             rowEl.appendChild(makeSeat(r, nl, group.price, offSeats[r + 'l-' + nl]));
           }
           var gap = document.createElement('span');
-          gap.style.width = group.gap + 'px';
+          gap.style.width = Math.round(group.gap * seatGapScale) + 'px';
           gap.style.display = 'inline-block';
           rowEl.appendChild(gap);
           for (var nr = 1; nr <= group.perSide; nr++){
