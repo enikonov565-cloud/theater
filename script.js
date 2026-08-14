@@ -164,6 +164,7 @@
     tabButtons.forEach(function(b){ b.classList.toggle('active', b.dataset.tab === name); });
     panels.forEach(function(p){ p.classList.toggle('active', p.dataset.panel === name); });
     window.scrollTo({top:0, behavior:'smooth'});
+    if (name === 'seats') syncSeatRowsWidth();
   }
   tabButtons.forEach(function(btn){
     btn.addEventListener('click', function(){ showPanel(btn.dataset.tab); });
@@ -216,6 +217,27 @@
         seatRoot.appendChild(rowEl);
       });
     });
+  }
+  // На мобильном #seat-rows шире экрана и скроллится внутри .seat-map —
+  // при align-items:center и авто-ширине контейнера браузер не даёт
+  // проскроллить влево к той части самого широкого ряда, что «вылезла»
+  // за левый край (скроллится только вправо), из-за чего ряды выглядят
+  // обрезанными слева и несимметричными. Фиксируем ширину #seat-rows по
+  // самому широкому ряду — тогда все ряды центрируются друг относительно
+  // друга внутри этой ширины, а прокрутка обычная (0..max). Меряем ряды
+  // только когда панель реально показана — пока она display:none (вкладка
+  // «выбор мест» не активна), scrollWidth у всех рядов равен 0.
+  var seatRowsWidthSynced = false;
+  function syncSeatRowsWidth(){
+    if (seatRowsWidthSynced || !seatRoot || !seatIsMobile) return;
+    var maxRowW = 0;
+    seatRoot.querySelectorAll('.seat-row').forEach(function(row){
+      if (row.scrollWidth > maxRowW) maxRowW = row.scrollWidth;
+    });
+    if (maxRowW){
+      seatRoot.style.width = maxRowW + 'px';
+      seatRowsWidthSynced = true;
+    }
   }
   function makeSeat(row, num, price, isOff){
     var s = document.createElement('span');

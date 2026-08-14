@@ -1078,6 +1078,12 @@ p{margin:0;}
   }
 
   /* ---------- Афиша: схема зала ---------- */
+  /* На десктопе у панели [data-panel="seats"] поля обнулены (padding:0) —
+     вся раскладка там на абсолютном позиционировании со своими отступами.
+     На мобильном раскладка идёт обычным потоком и полагается на поля
+     родителя, а [data-panel="seats"] специфичнее общего мобильного
+     .booking-panel{padding:...} и перебивает его — возвращаем поля явно. */
+  .booking-panel[data-panel="seats"]{padding:24px 20px 0;}
   .seat-canvas{width:100%;height:auto;padding-bottom:40px;}
   .seat-canvas .show-nav{position:static;flex-wrap:wrap;justify-content:center;gap:16px;margin:0 0 24px;}
   .seat-canvas .show-nav h2,.seat-canvas .show-nav .age,.seat-canvas .show-nav .dt{font-size:24px;}
@@ -1085,10 +1091,17 @@ p{margin:0;}
   .seat-canvas .show-nav .arrow-btn img{width:14px;height:28px;}
   .stage{position:static;width:100%;height:44px;font-size:16px;margin-bottom:20px;}
   .seat-map{position:static;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;}
-  #seat-rows{align-items:flex-start;}
+  #seat-rows{align-items:center;}
   .seat{width:22px;height:22px;}
   .seat-row{gap:4px;}
-  .seat-row .row-num{width:18px;font-size:11px;margin-right:2px;}
+  /* Номер ряда закрепляем слева от прокрутки (sticky) — иначе при
+     центрировании широкие ряды уводят подпись за левый край экрана
+     в недоступную (нескроллируемую) зону, и цифра просто не видна. */
+  .seat-row .row-num{
+    width:18px;font-size:11px;margin-right:2px;
+    position:sticky;left:0;z-index:1;background:#fff;
+    -webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;
+  }
   .seat-legend{position:static;width:100%;flex-wrap:wrap;gap:8px;margin-top:20px;}
   .seat-legend span{width:calc(50% - 4px);height:48px;font-size:20px;}
   .seat-checkout{position:static;margin-top:24px;}
