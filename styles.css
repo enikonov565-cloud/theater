@@ -1158,7 +1158,7 @@ p{margin:0;}
   .lead-field-phone .flag{margin-left:16px;}
   .lead-field-phone .code{margin-left:10px;}
   .lead-field-phone .divider{margin:0 12px 0 14px;}
-  .lead-submit{position:static;width:100%;height:auto;min-height:74px;gap:16px;justify-content:space-between;margin-top:24px;}
+  .lead-submit{position:static;width:100%;height:auto;min-height:74px;gap:16px;justify-content:space-between;margin-top:24px;padding:14px 20px;}
   .lead-submit span{white-space:normal;text-align:left;}
   .lead-legal{position:static;width:100%;margin-top:20px;}
   .lead-card{position:static;width:100%;height:auto;margin-top:32px;padding-bottom:24px;}
