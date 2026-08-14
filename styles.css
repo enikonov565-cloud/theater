@@ -1054,10 +1054,15 @@ p{margin:0;}
   .curtain-page .btn-repertoire{width:346px;max-width:100%;height:80px;}
 
   /* ---------- Афиша: топбар и табы бронирования ---------- */
-  .booking-topbar{width:100%;height:auto;padding:16px 20px;box-sizing:border-box;}
-  .booking-topbar .logo{position:static;width:70px;height:25px;}
-  .booking-tabs{position:static;gap:16px;flex-wrap:wrap;margin-top:14px;}
-  .booking-tabs button{font-size:14px;}
+  .booking-topbar{width:100%;height:auto;padding:16px 0;box-sizing:border-box;}
+  .booking-topbar .logo{position:static;width:70px;height:25px;margin:0 20px;}
+  .booking-tabs{
+    position:static;gap:12px;flex-wrap:nowrap;margin-top:14px;
+    padding:0 20px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;-ms-overflow-style:none;
+  }
+  .booking-tabs::-webkit-scrollbar{display:none;}
+  .booking-tabs button{font-size:12px;flex:none;}
   .booking-close{position:absolute;right:16px;top:16px;left:auto;width:36px;height:36px;}
   .booking-panel{padding:24px 20px 0;}
 
