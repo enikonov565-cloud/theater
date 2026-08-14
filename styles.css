@@ -98,6 +98,13 @@ p{margin:0;}
 }
 /* на страницах без hero-картинки под хедером контент нужно сдвинуть вниз на его высоту */
 .site-header + section{margin-top:98px;}
+/* заливка зоны под фиксированной шапкой цветом следующей секции — иначе в
+   этом промежутке виден серый градиент шапки поверх пустого фона страницы,
+   а не цвет секции (актуально для страниц, где секция сама не в потоке
+   и её нельзя просто сдвинуть padding'ом, напр. .promo-banner с overflow:hidden
+   и абсолютно спозиционированными детьми) */
+.header-fill{height:98px;}
+.header-fill--gold{background:#F8C762;}
 
 .header-left{display:flex;align-items:center;gap:60px;}
 .site-header .logo{display:flex;align-items:center;gap:12px;color:var(--cream);}
@@ -865,6 +872,7 @@ p{margin:0;}
   .site-header .header-actions .btn-outline{display:none;}
   .site-header .header-actions .btn{padding:8px 16px;font-size:12px;}
   .site-header + section{margin-top:64px;}
+  .header-fill{height:64px;}
   .menu-panel{left:16px;right:16px;min-width:0;padding:24px;}
 
   /* ---------- Футер ---------- */
