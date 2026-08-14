@@ -1057,12 +1057,10 @@ p{margin:0;}
   .booking-topbar{width:100%;height:auto;padding:16px 0;box-sizing:border-box;}
   .booking-topbar .logo{position:static;width:70px;height:25px;margin:0 20px;}
   .booking-tabs{
-    position:static;gap:12px;flex-wrap:nowrap;margin-top:14px;
-    padding:0 20px;overflow-x:auto;-webkit-overflow-scrolling:touch;
-    scrollbar-width:none;-ms-overflow-style:none;
+    position:static;gap:0;flex-wrap:nowrap;justify-content:space-between;margin-top:14px;
+    padding:0 20px;width:100%;box-sizing:border-box;
   }
-  .booking-tabs::-webkit-scrollbar{display:none;}
-  .booking-tabs button{font-size:12px;flex:none;}
+  .booking-tabs button{font-size:9.5px;flex:none;}
   .booking-close{position:absolute;right:16px;top:16px;left:auto;width:36px;height:36px;}
   .booking-panel{padding:24px 20px 0;}
 
