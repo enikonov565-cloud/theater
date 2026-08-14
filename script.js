@@ -5,11 +5,28 @@
     return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' руб.';
   }
 
-  /* ---------- Hero-декорации (ведьма, грибы, ветки): на некоторых мобильных
-     браузерах атрибут autoplay не срабатывает надёжно (особенно когда на
-     экране сразу несколько видео) — тогда видео так и остаётся чёрным
-     прямоугольником, ни разу не нарисовав кадр. Подстраховываемся явным
-     вызовом .play() — если autoplay уже сработал, это просто no-op. */
+  /* ---------- Hero-декорации (ведьма, грибы): ролики — WebM/VP9 с альфа-
+     каналом. Safari/WebKit (в т.ч. на iOS — и в браузере самой Safari, и во
+     всех «обёртках» вроде почтовых/мессенджер-приложений, которые обязаны
+     использовать WebKit) вообще не умеет декодировать WebM — вместо
+     прозрачного видео получается сплошной чёрный прямоугольник. Если
+     браузер не может проиграть webm, подменяем <video> на статичный кадр
+     с тем же альфа-каналом (PNG), заранее вырезанный из ролика. */
+  document.querySelectorAll('video[data-fallback-img]').forEach(function(video){
+    var canPlayWebm = video.canPlayType && video.canPlayType('video/webm; codecs="vp9"');
+    if (canPlayWebm) return;
+    var img = document.createElement('img');
+    img.className = video.className;
+    img.src = video.dataset.fallbackImg;
+    img.alt = '';
+    video.replaceWith(img);
+  });
+
+  /* ---------- Hero-декорации: на некоторых мобильных браузерах атрибут
+     autoplay не срабатывает надёжно (особенно когда на экране сразу
+     несколько видео) — тогда видео так и остаётся чёрным прямоугольником,
+     ни разу не нарисовав кадр. Подстраховываемся явным вызовом .play() —
+     если autoplay уже сработал, это просто no-op. */
   document.querySelectorAll('.play-hero video').forEach(function(video){
     var tryPlay = function(){ video.play().catch(function(){}); };
     tryPlay();
