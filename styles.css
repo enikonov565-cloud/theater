@@ -1063,8 +1063,16 @@ p{margin:0;}
 
   /* ---------- Афиша: список сеансов ---------- */
   .playbill-notice{position:static;text-align:left;max-width:100%;margin:0 0 24px;}
-  .playbill-row{grid-template-columns:1fr;gap:8px;padding:16px 0;text-align:left;}
-  .playbill-row .btn,.playbill-row .btn-buy-ticket{width:100%;}
+  .playbill-row{
+    display:grid;grid-template-columns:1fr auto;
+    grid-template-areas:"dt btn" "title btn";
+    align-items:center;gap:2px 12px;padding:16px 0;text-align:left;
+  }
+  .playbill-row .dt{grid-area:dt;font-size:14px;}
+  .playbill-row .title{grid-area:title;font-size:17px;}
+  .playbill-row .btn,.playbill-row .btn-buy-ticket{
+    grid-area:btn;width:auto;height:44px;padding:0 20px;font-size:12px;border-radius:12px;
+  }
 
   /* ---------- Афиша: схема зала ---------- */
   .seat-canvas{width:100%;height:auto;padding-bottom:40px;}
