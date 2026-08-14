@@ -952,7 +952,14 @@ p{margin:0;}
   .show-card .btn-buy-ticket{width:100%;}
 
   .reviews-track{position:static;width:100%;height:auto;display:flex;overflow-x:auto;gap:16px;padding:0 20px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
-  .review-card{width:80vw;max-width:340px;height:auto;padding-bottom:20px;scroll-snap-align:center;}
+  /* border-radius+overflow:hidden у карточки внутри scroll-snap контейнера
+     на WebKit/iOS иногда клипует непредсказуемо (у одних карточек углы
+     скруглены, у других — нет, в зависимости от положения скролла).
+     Принудительная GPU-композиция (translateZ) чинит клиппинг стабильно. */
+  .review-card{
+    width:80vw;max-width:340px;height:auto;padding-bottom:20px;scroll-snap-align:center;
+    -webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform;
+  }
   .review-card .photo{position:relative;height:200px;}
   .review-card .body{position:static;height:auto;padding:36px 22px 20px;margin-top:-20px;}
   .review-card .cta{position:static;width:calc(100% - 40px);margin:16px 20px 0;}
