@@ -1109,7 +1109,8 @@ p{margin:0;}
   .buyer-form .grid2{grid-template-columns:1fr;}
   .buyer-form input,.buyer-form select{min-width:0;}
   .order-summary{padding:20px;min-width:0;}
-  .pay-icons{flex-wrap:wrap;}
+  .pay-icons{flex-wrap:nowrap;gap:8px;}
+  .pay-icons img{flex:1 1 0;width:0;height:36px;padding:6px 8px;}
 
   /* ---------- Викторина ---------- */
   .quiz-page{padding:88px 20px 56px;}
