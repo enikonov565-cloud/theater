@@ -494,6 +494,10 @@ p{margin:0;}
 }
 .review-open-btn:hover{filter:brightness(1.1);}
 
+/* ---------- Ссылка на «Вопросы и ответы» после отзывов (только мобильная —
+   на десктопе страница доступна через меню и футер) ---------- */
+.faq-teaser{display:none;}
+
 /* ---------- Модалка «Оставить отзыв» ---------- */
 .review-modal-overlay{
   display:none;position:fixed;inset:0;z-index:1000;
@@ -1001,6 +1005,13 @@ p{margin:0;}
   .reviews-social{position:static;transform:none;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 20px;margin-top:32px;}
   .reviews-social .label{font-size:16px;white-space:normal;}
 
+  .faq-teaser{
+    display:flex;flex-direction:column;align-items:center;gap:20px;
+    background:var(--olive);padding:48px 20px;text-align:center;
+  }
+  .faq-teaser-text{margin:0;font-family:'Montserrat',var(--font-sans);font-size:20px;color:#fff;}
+  .faq-teaser .btn-repertoire{width:100%;max-width:346px;height:80px;}
+
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
      просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
   .repertoire-section{height:auto;padding:56px 0 64px;}
@@ -1075,7 +1086,8 @@ p{margin:0;}
   .faq-hero{padding:128px 20px 48px;}
   .faq-hero .section-title,.faq-modal-title{font-size:26px;margin-bottom:28px;}
   .faq-list{max-width:100%;}
-  .faq-row{padding:20px 0;font-size:15px;gap:12px;}
+  .faq-row{padding:20px 0;font-size:15px;line-height:1.5;gap:12px;}
+  .faq-divider .dot{display:none;}
   .faq-row .icon{width:32px;height:32px;}
   .faq-row .icon::before{width:12px;}
   .faq-row .icon::after{height:12px;}
