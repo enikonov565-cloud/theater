@@ -120,15 +120,23 @@ p{margin:0;}
 /* всплывающее меню разделов */
 .menu-panel{
   position:absolute;top:calc(100% + 14px);left:60px;
-  display:none;flex-direction:column;gap:22px;align-items:flex-start;min-width:260px;
+  display:none;flex-direction:column;gap:32px;align-items:flex-start;min-width:260px;
   background:var(--dark);border-radius:20px;padding:32px 40px;
   box-shadow:0 24px 60px rgba(0,0,0,.35);
   opacity:0;transform:translateY(-6px);
   transition:opacity .15s ease, transform .15s ease;
 }
 .menu-panel.open{display:flex;opacity:1;transform:translateY(0);}
-.menu-panel a{font-size:16px;color:var(--cream);opacity:.9;white-space:nowrap;}
-.menu-panel a:hover{opacity:1;text-decoration:underline;}
+.menu-panel a{
+  position:relative;font-size:22px;line-height:1.5;color:var(--cream);opacity:.9;
+  white-space:nowrap;text-decoration:none;padding-bottom:4px;
+}
+.menu-panel a::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--gold);transition:width .35s ease;
+}
+.menu-panel a:hover{opacity:1;}
+.menu-panel a:active::after{width:100%;}
 
 .site-header .header-actions{display:flex;align-items:center;gap:60px;}
 .site-header .header-actions .btn{height:auto;padding:10px 30px;border-radius:10px;white-space:nowrap;}
