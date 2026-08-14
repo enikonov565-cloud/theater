@@ -163,17 +163,6 @@
   });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAllMenus(); });
 
-  /* ---------- FAQ аккордеон ---------- */
-  document.querySelectorAll('.faq-item').forEach(function(item){
-    var q = item.querySelector('.faq-q');
-    if (!q) return;
-    q.addEventListener('click', function(){
-      var wasOpen = item.classList.contains('open');
-      item.closest('.faq-list').querySelectorAll('.faq-item.open').forEach(function(o){ o.classList.remove('open'); });
-      if (!wasOpen) item.classList.add('open');
-    });
-  });
-
   /* ---------- Табы бронирования (афиша.html) ---------- */
   var tabButtons = document.querySelectorAll('.booking-tabs button');
   var panels = document.querySelectorAll('.booking-panel');
