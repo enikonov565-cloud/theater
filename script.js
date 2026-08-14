@@ -467,9 +467,10 @@
     // --- размеры из Figma-скринов: боковые фото 800×600 (как есть, выходят
     // за пределы фрейма), главное фото шире на 20pt с каждой стороны (+40 к
     // ширине) и такой высоты, чтобы до кнопки оставалось ровно 40px. ---
-    var REP_REST_W = 550;            // боковые карточки — уменьшены (было 800)
-    var REP_REST_IMG_H = 413;        // сохраняем те же пропорции 4:3 (было 600)
-    var REP_ACTIVE_W = REP_REST_W + 40; // главное фото шире на 20pt слева и справа
+    var REP_REST_W = 750;            // боковые карточки — выходят за края фрейма
+    var REP_REST_IMG_H = 550;
+    var REP_ACTIVE_W = 800;          // центральная картинка
+    var REP_ACTIVE_IMG_H_DESKTOP = 600;
     var REP_GAP = 14;
     var REP_RADIUS = 2;              // radius (шкала 0..20, как в референсе)
     var REP_AUTOPLAY = true;         // autoplay
@@ -483,9 +484,6 @@
     // Нижний край картинки — общий для всех карточек (не только активной),
     // чтобы отступ до кнопки был ровно 40px именно когда карточка в центре.
     var REP_IMG_BOTTOM_Y = REP_BTN_TOP_SECTION - REP_BTN_GAP - REP_ROW_TOP;
-    // Высота заголовка активной карточки (однострочный, 48px) измеряется
-    // один раз после первого рендера — см. repMeasureTitle().
-    var REP_ACTIVE_TITLE_H = 64; // запасное значение, уточняется после рендера
 
     // На мобильных та же coverflow-анимация, что на десктопе, но в масштабе
     // узкого экрана — канва 1920px не подходит, поэтому все размеры и отступы
@@ -497,7 +495,7 @@
       REP_REST_IMG_H = 196;
       REP_ACTIVE_W = 320; // центральная картинка расширена
       REP_GAP = 10;
-      REP_TITLE_GAP = 10;
+      REP_TITLE_GAP = 20;
       REP_ROW_TOP = 0;
       // Заголовки разных спектаклей на узкой карточке переносятся на разное
       // число строк («Кошкин дом» короче, «Гуси-лебеди»/«Колобок» длиннее) —
@@ -505,8 +503,7 @@
       // (как на десктопе), при переключении на более длинный заголовок расчёт
       // уходит в минус и картинку сплющивает. Поэтому на мобильном высота
       // картинки фиксирована, а под заголовок просто отведён запас с запасом.
-      REP_IMG_BOTTOM_Y = 90 + REP_TITLE_GAP + REP_ACTIVE_IMG_H_MOBILE;
-      REP_ACTIVE_TITLE_H = 90;
+      REP_IMG_BOTTOM_Y = 100 + REP_TITLE_GAP + REP_ACTIVE_IMG_H_MOBILE;
     }
     var REP_C1 = REP_ACTIVE_W / 2 + REP_GAP + REP_REST_W / 2;
     var REP_PITCH = REP_REST_W + REP_GAP;
@@ -544,11 +541,9 @@
     // 0 в центре (полный активный размер) → 1 через один слот (размер «пластинки»).
     function repBlend(rel){ return Math.min(Math.abs(rel), 1); }
 
-    // Высота главного фото на десктопе — производная величина: нижний край
-    // картинки зафиксирован (REP_IMG_BOTTOM_Y), высота = расстояние от низа
-    // до верхней точки, где кончается заголовок + отступ до него. На мобильном
-    // высота картинки фиксированная константа (см. REP_ACTIVE_IMG_H_MOBILE).
-    var REP_ACTIVE_IMG_H = repIsMobile ? REP_ACTIVE_IMG_H_MOBILE : (REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H);
+    // Высота главного фото — фиксированная константа и на десктопе (800×600),
+    // и на мобильном (см. REP_ACTIVE_IMG_H_MOBILE).
+    var REP_ACTIVE_IMG_H = repIsMobile ? REP_ACTIVE_IMG_H_MOBILE : REP_ACTIVE_IMG_H_DESKTOP;
 
     var repCards = null;
     function repRenderFrame(){
@@ -634,21 +629,6 @@
     // выше уже подобраны под каждый канвас) — просто рендерим и запускаем
     // автоплей в обоих случаях.
     repRenderFrame();
-    // Уточняем высоту заголовка активной карточки по факту рендера (шрифты
-    // разные у каждого спектакля могут на пару px отличаться по высоте
-    // строки) и пересчитываем высоту фото, чтобы отступ до низа был точным,
-    // а не «примерно».
-    // На мобильном высота картинки фиксирована (см. выше) — уточнять
-    // из заголовка нечего, у каждого спектакля заголовок сам подстраивает
-    // свою позицию под фактическую высоту (см. repRenderFrame).
-    if (!repIsMobile){
-      var repActiveTitleEl = repRow.querySelector('.rep-card.current .rep-title-row');
-      if (repActiveTitleEl && repActiveTitleEl.offsetHeight){
-        REP_ACTIVE_TITLE_H = repActiveTitleEl.offsetHeight;
-        REP_ACTIVE_IMG_H = REP_IMG_BOTTOM_Y - REP_TITLE_GAP - REP_ACTIVE_TITLE_H;
-        repRenderFrame();
-      }
-    }
     if (repIsMobile){
       repRow.style.height = (REP_IMG_BOTTOM_Y + 20) + 'px';
       // Карточки внутри ряда абсолютно спозиционированы (у самого ряда
