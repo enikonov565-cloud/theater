@@ -524,34 +524,6 @@ p{margin:0;}
 .review-modal .thanks .big{font-size:48px;margin-bottom:16px;}
 .review-modal-form.hide{display:none;}
 
-/* =====================================================
-   ВОПРОСЫ И ОТВЕТЫ (превью на главной)
-   ===================================================== */
-/* точные координаты из Figma (node 1270:389, «СКАЗКА 8»), канва 1920×1080 */
-#faq-preview.section-dark{width:100%;height:1080px;padding:0;background:#1B2900;overflow:hidden;position:relative;}
-#faq-preview .section-title{
-  position:absolute;left:50%;top:102.5px;transform:translate(-50%,-50%);margin:0;
-  font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;
-  text-transform:uppercase;letter-spacing:0;white-space:nowrap;
-}
-.faq-preview-item{
-  position:absolute;left:278.5px;top:0;transform:translateY(-50%);width:1363px;
-  display:flex;align-items:center;justify-content:space-between;gap:24px;
-  color:#fff;text-decoration:none;
-}
-.faq-preview-item.q1{top:284px;} .faq-preview-item.q2{top:412px;}
-.faq-preview-item.q3{top:540px;} .faq-preview-item.q4{top:668px;}
-.faq-preview-item.q5{top:796px;}
-.faq-preview-item .q{font-family:'Inter';font-weight:400;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;}
-.faq-preview-item .icon{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.6);flex:none;position:relative;transition:background .15s ease;}
-.faq-preview-item .icon::before,.faq-preview-item .icon::after{content:'';position:absolute;background:#fff;top:50%;left:50%;transform:translate(-50%,-50%);}
-.faq-preview-item .icon::before{width:18px;height:1.5px;}
-.faq-preview-item .icon::after{width:1.5px;height:18px;}
-.faq-preview-item:hover .icon{background:rgba(255,255,255,.12);}
-.faq-preview-divider{position:absolute;left:277px;width:1366px;height:1px;background:rgba(255,255,255,.55);}
-.faq-preview-divider.d1{top:348px;} .faq-preview-divider.d2{top:476px;}
-.faq-preview-divider.d3{top:604px;} .faq-preview-divider.d4{top:732px;}
-#faq-preview .btn-repertoire{position:absolute;left:50%;top:915px;transform:translateX(-50%);}
 /* точные координаты из Figma (node 1308:336, «СКАЗКА 2»), канва 1920×667 — проверено по metadata и 1:1 скриншоту */
 .promo-banner{position:relative;width:100%;height:667px;background:#F8C762;overflow:hidden;color:#1f1f1f;}
 .promo-heading{position:absolute;left:109px;top:80px;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;text-transform:uppercase;margin:0;}
@@ -586,31 +558,69 @@ p{margin:0;}
 .promo-photos .ph-c{left:1021px;top:376px;width:281px;height:186px;transform:rotate(-11.49deg);}
 
 /* =====================================================
-   FAQ (страница вопросы-и-ответы)
+   FAQ (страница вопросы-и-ответы) — по Figma
+   (node 1529:1503 список + 1529:1592/732/1613/822 модалки ответов),
+   боковые поля по явному ТЗ: десктоп 60pt, мобильный 20pt
    ===================================================== */
-.faq-hero{background:var(--olive);color:var(--cream);padding:120px 0 100px;}
-.faq-hero .section-title{
+.site-header + .faq-hero{margin-top:0;}
+.faq-hero{background:#1B2900;color:#fff;padding:218px 60px 100px;position:relative;}
+.faq-hero .section-title,.faq-modal-title{
   font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;
-  letter-spacing:0;margin-bottom:56px;
+  letter-spacing:0;text-align:center;margin:0 0 64px;
 }
-.faq-list{width:1200px;margin:0 auto;}
-.faq-item{border-bottom:1px solid rgba(255,255,255,.25);}
-.faq-item:first-child{border-top:1px solid rgba(255,255,255,.25);}
-.faq-q{
-  width:100%;display:flex;align-items:center;justify-content:space-between;
-  padding:34px 4px;font-size:20px;text-align:left;color:var(--cream);
+.faq-list{max-width:1660px;margin:0 auto;}
+.faq-row{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:24px;
+  padding:44px 0;background:none;border:none;color:#fff;text-align:left;cursor:pointer;
+  font-family:'Inter';font-weight:400;font-size:24px;line-height:1.15;letter-spacing:-.24px;
 }
-.faq-q .icon{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.6);flex:none;position:relative;}
-.faq-q .icon::before,.faq-q .icon::after{content:'';position:absolute;background:var(--cream);top:50%;left:50%;transform:translate(-50%,-50%);}
-.faq-q .icon::before{width:14px;height:1.5px;}
-.faq-q .icon::after{width:1.5px;height:14px;transition:transform .2s ease;}
-.faq-item.open .faq-q .icon::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
-.faq-item.open .faq-a{max-height:600px;}
-.faq-a-inner{padding:0 4px 34px;font-size:15px;line-height:1.7;opacity:.9;max-width:820px;}
-.faq-a-inner .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.faq-a-inner h4{font-size:16px;margin:0 0 8px;opacity:1;}
-.faq-cta{text-align:center;margin-top:56px;}
+.faq-row .icon{width:50px;height:50px;border-radius:50%;border:1px solid rgba(255,255,255,.6);flex:none;position:relative;transition:background .15s ease;}
+.faq-row .icon::before,.faq-row .icon::after{content:'';position:absolute;background:#fff;top:50%;left:50%;transform:translate(-50%,-50%);}
+.faq-row .icon::before{width:18px;height:1.5px;}
+.faq-row .icon::after{width:1.5px;height:18px;}
+.faq-row:hover .icon{background:rgba(255,255,255,.12);}
+/* линия-разделитель: тонкая (0.4pt) линия с шариками на концах — как Line 2 в Figma */
+.faq-divider{display:flex;align-items:center;width:100%;height:6px;}
+.faq-divider .dot{width:2px;height:2px;border-radius:50%;background:rgba(255,255,255,.55);flex:none;}
+.faq-divider .bar{flex:1;height:.4px;background:rgba(255,255,255,.55);}
+.faq-cta{text-align:center;margin-top:64px;}
+.faq-hero .faq-cta .btn-repertoire,.faq-modal .faq-cta .btn-repertoire{background:#F8C762;}
+
+/* ---------- Модальные экраны ответов (СКАЗКА 8.1/8.2/8.3/8.4/8.5) ---------- */
+.faq-modal{
+  display:none;position:fixed;inset:0;z-index:1001;overflow-y:auto;
+  background:#1B2900;color:#fff;padding:120px 60px 100px;
+}
+.faq-modal.active{display:block;}
+.faq-modal-close{
+  position:absolute;top:42px;right:60px;width:50px;height:50px;background:none;border:none;cursor:pointer;
+}
+.faq-modal-close::before,.faq-modal-close::after{content:'';position:absolute;top:50%;left:50%;width:29px;height:1.5px;background:#fff;}
+.faq-modal-close::before{transform:translate(-50%,-50%) rotate(45deg);}
+.faq-modal-close::after{transform:translate(-50%,-50%) rotate(-45deg);}
+.faq-modal-body{max-width:1800px;margin:0 auto;}
+/* Q1: один маркированный список, крупный светлый шрифт */
+.faq-modal-list{
+  list-style:disc;padding-left:63px;margin:0;display:flex;flex-direction:column;gap:34px;
+  font-family:'Inter';font-weight:300;font-size:42px;line-height:1.22;
+}
+/* Q3/Q4: один центрированный абзац-ответ */
+.faq-modal-text{
+  font-family:'Inter';font-weight:300;font-size:42px;line-height:1.22;text-align:center;
+  max-width:1800px;margin:0 auto;
+}
+/* Q2/Q5: две колонки, у каждой подзаголовок 42px + тело 18px */
+.faq-modal-cols{display:grid;grid-template-columns:1fr 1fr;gap:120px;}
+.faq-modal-cols .group + .group{margin-top:60px;}
+.faq-modal-cols h2{
+  font-family:'Inter';font-weight:500;font-size:42px;line-height:1.22;margin:0 0 40px;
+}
+.faq-modal-cols ul,.faq-modal-cols p{
+  font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;margin:0;
+}
+.faq-modal-cols ul{display:flex;flex-direction:column;gap:40px;list-style:disc;padding-left:27px;}
+.faq-modal-cols p + p{margin-top:34px;}
+.faq-modal .faq-cta{text-align:center;margin-top:80px;}
 
 /* =====================================================
    404 / ОТМЕНА СПЕКТАКЛЯ — занавес
@@ -1036,22 +1046,27 @@ p{margin:0;}
     position:static;width:346px;max-width:100%;height:80px;margin:20px auto 0;
   }
 
-  /* ---------- FAQ-превью на главной ---------- */
-  #faq-preview.section-dark{height:auto;padding:56px 0 64px;}
-  #faq-preview .section-title{position:static;transform:none;font-size:26px;padding:0 20px;white-space:normal;}
-  .faq-preview-item{position:static;transform:none;width:100%;padding:18px 20px;gap:16px;}
-  .faq-preview-item .q{font-size:16px;}
-  .faq-preview-divider{position:static;width:100%;left:0;}
-  #faq-preview .btn-repertoire{position:static;transform:none;width:calc(100% - 40px);margin:32px 20px 0;}
-
-  /* ---------- Страница «Вопросы и ответы» ---------- */
-  .faq-hero{padding:88px 20px 56px;}
-  .faq-hero .section-title{font-size:28px;margin-bottom:32px;}
-  .faq-list{width:100%;}
-  .faq-q{padding:22px 0;font-size:16px;}
-  .faq-a-inner .cols{grid-template-columns:1fr;gap:20px;}
-  .faq-cta{padding:0 20px;}
-  .faq-cta .btn-repertoire{width:346px;max-width:100%;height:80px;}
+  /* ---------- Страница «Вопросы и ответы» — поля 20pt по ТЗ ---------- */
+  .site-header + .faq-hero{margin-top:0;}
+  .faq-hero{padding:128px 20px 48px;}
+  .faq-hero .section-title,.faq-modal-title{font-size:26px;margin-bottom:28px;}
+  .faq-list{max-width:100%;}
+  .faq-row{padding:20px 0;font-size:15px;gap:12px;}
+  .faq-row .icon{width:32px;height:32px;}
+  .faq-row .icon::before{width:12px;}
+  .faq-row .icon::after{height:12px;}
+  .faq-cta{margin-top:32px;}
+  .faq-cta .btn-repertoire{width:100%;max-width:346px;height:80px;}
+  .faq-modal{padding:64px 20px 48px;}
+  .faq-modal-close{top:20px;right:20px;width:36px;height:36px;}
+  .faq-modal-close::before,.faq-modal-close::after{width:20px;}
+  .faq-modal-list{font-size:18px;line-height:1.4;gap:18px;padding-left:24px;}
+  .faq-modal-text{font-size:18px;line-height:1.4;}
+  .faq-modal-cols{grid-template-columns:1fr;gap:32px;}
+  .faq-modal-cols h2{font-size:20px;margin-bottom:16px;}
+  .faq-modal-cols ul{gap:16px;}
+  .faq-modal-cols p + p{margin-top:16px;}
+  .faq-modal .faq-cta{margin-top:40px;}
 
   /* ---------- 404 / отмена спектакля ---------- */
   .curtain-page{height:auto;min-height:100vh;padding:80px 20px;}
