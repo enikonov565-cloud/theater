@@ -953,7 +953,7 @@ p{margin:0;}
   .reviews-track{position:static;width:100%;height:auto;display:flex;overflow-x:auto;gap:16px;padding:0 20px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;}
   .review-card{width:80vw;max-width:340px;height:auto;padding-bottom:20px;scroll-snap-align:center;}
   .review-card .photo{position:relative;height:200px;}
-  .review-card .body{position:static;height:auto;padding:20px 22px;margin-top:-20px;}
+  .review-card .body{position:static;height:auto;padding:36px 22px 20px;margin-top:-20px;}
   .review-card .cta{position:static;width:calc(100% - 40px);margin:16px 20px 0;}
 
   .reviews-social{position:static;transform:none;flex-wrap:wrap;justify-content:center;text-align:center;padding:0 20px;margin-top:32px;}
