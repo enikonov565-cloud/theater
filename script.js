@@ -158,10 +158,26 @@
   document.querySelectorAll('.menu-panel').forEach(function(p){
     p.addEventListener('click', function(e){ e.stopPropagation(); });
   });
-  document.querySelectorAll('.menu-panel a').forEach(function(a){
-    a.addEventListener('click', function(){ closeAllMenus(); });
-  });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeAllMenus(); });
+
+  /* ---------- Ссылки меню и футера: жёлтая полоса добегает до конца
+     слова, и только потом происходит переход — переход отложен на время
+     анимации полосы (450мс, совпадает с transition в CSS). ---------- */
+  function wireUnderlineNav(selector, onBeforeNavigate){
+    document.querySelectorAll(selector).forEach(function(a){
+      a.addEventListener('click', function(e){
+        if (a.classList.contains('tapped')) return;
+        e.preventDefault();
+        a.classList.add('tapped');
+        setTimeout(function(){
+          if (onBeforeNavigate) onBeforeNavigate();
+          window.location.href = a.href;
+        }, 450);
+      });
+    });
+  }
+  wireUnderlineNav('.menu-panel a', closeAllMenus);
+  wireUnderlineNav('.footer-nav a');
 
   /* ---------- FAQ: клик по вопросу открывает полноэкранный ответ поверх
      списка (как в Figma) — без перехода на другую страницу. ---------- */

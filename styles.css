@@ -133,10 +133,10 @@ p{margin:0;}
 }
 .menu-panel a::after{
   content:'';position:absolute;left:0;bottom:0;height:2px;width:0;
-  background:var(--gold);transition:width .35s ease;
+  background:var(--gold);transition:width .45s ease;
 }
 .menu-panel a:hover{opacity:1;}
-.menu-panel a:active::after{width:100%;}
+.menu-panel a.tapped::after{width:100%;}
 
 .site-header .header-actions{display:flex;align-items:center;gap:60px;}
 .site-header .header-actions .btn{height:auto;padding:10px 30px;border-radius:10px;white-space:nowrap;}
@@ -157,8 +157,16 @@ p{margin:0;}
 .footer-nav{
   display:flex;flex-direction:column;gap:15px;white-space:nowrap;
 }
-.footer-nav a{font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;}
-.footer-nav a:hover{text-decoration:underline;}
+.footer-nav a{
+  position:relative;display:inline-block;width:fit-content;
+  font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;
+  padding-bottom:6px;
+}
+.footer-nav a::after{
+  content:'';position:absolute;left:0;bottom:0;height:2px;width:0;
+  background:var(--gold);transition:width .45s ease;
+}
+.footer-nav a.tapped::after{width:100%;}
 .footer-logo{width:332px;height:135px;flex-shrink:0;}
 .footer-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .footer-contacts{
