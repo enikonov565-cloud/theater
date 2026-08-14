@@ -962,7 +962,7 @@ p{margin:0;}
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
      просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
   .repertoire-section{height:auto;padding:56px 0 64px;}
-  .repertoire-heading{position:static;transform:none;font-size:26px;text-align:left;padding:0 20px;margin-bottom:8px;white-space:normal;}
+  .repertoire-heading{position:static;transform:none;font-size:26px;text-align:center;padding:0 20px;margin-bottom:8px;white-space:normal;}
   .rep-btn-buy{position:static;transform:none;width:346px;max-width:calc(100% - 40px);height:80px;margin:32px auto 0;}
   .repertoire-row{position:static;width:100%;height:auto;}
   .repertoire-row.rep-row-mobile{position:relative;height:420px;overflow:visible;}
