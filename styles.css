@@ -738,7 +738,7 @@ p{margin:0;}
 }
 .buyer-form label.chk{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);}
 .buyer-form label.chk input{width:18px;height:18px;flex:none;}
-.buyer-form .btn{margin-top:10px;}
+.buyer-form .btn{margin-top:10px;width:100%;}
 
 .order-summary{border:1px solid var(--line);border-radius:20px;padding:32px;}
 .order-summary .total{display:flex;align-items:baseline;justify-content:space-between;font-size:22px;font-weight:700;margin-bottom:24px;}
