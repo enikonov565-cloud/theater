@@ -1,6 +1,7 @@
 /* =====================================================
    ШРИФТЫ (локальные файлы из fonts/)
    ===================================================== */
+@font-face{font-family:'Inter';src:url('fonts/inter -основной шрифт/Inter_24pt-Light.ttf') format('truetype');font-weight:300;font-style:normal;font-display:swap;}
 @font-face{font-family:'Inter';src:url('fonts/inter -основной шрифт/Inter_24pt-Regular.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap;}
 @font-face{font-family:'Inter';src:url('fonts/inter -основной шрифт/Inter_24pt-Medium.ttf') format('truetype');font-weight:500;font-style:normal;font-display:swap;}
 @font-face{font-family:'Inter';src:url('fonts/inter -основной шрифт/Inter_24pt-SemiBold.ttf') format('truetype');font-weight:600;font-style:normal;font-display:swap;}
@@ -605,11 +606,15 @@ p{margin:0;}
 .faq-q .icon::before{width:14px;height:1.5px;}
 .faq-q .icon::after{width:1.5px;height:14px;transition:transform .2s ease;}
 .faq-item.open .faq-q .icon::after{transform:translate(-50%,-50%) rotate(90deg) scaleY(0);}
+/* max-height выставляется явно в JS (по scrollHeight) — здесь только
+   стартовое закрытое состояние и анимация перехода. */
 .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
-.faq-item.open .faq-a{max-height:600px;}
-.faq-a-inner{padding:0 4px 34px;font-size:15px;line-height:1.7;opacity:.9;max-width:820px;}
+.faq-a-inner{
+  padding:0 4px 34px;font-size:18px;font-weight:300;line-height:1.7;letter-spacing:.1px;
+  opacity:.95;max-width:820px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
 .faq-a-inner .cols{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
-.faq-a-inner h4{font-size:16px;margin:0 0 8px;opacity:1;}
+.faq-a-inner h4{font-size:19px;margin:0 0 8px;opacity:1;}
 .faq-cta{text-align:center;margin-top:56px;}
 
 /* =====================================================
