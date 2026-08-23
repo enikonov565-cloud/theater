@@ -155,7 +155,7 @@ p{margin:0;}
 /* декоративный элемент в полутонах — увеличенная копия фирменного значка
    (те же три фигурки, что в логотипе), еле заметная, в углу футера */
 .footer-deco{
-  position:absolute;right:-30px;top:-40px;width:260px;height:260px;
+  position:absolute;left:-30px;top:-40px;width:260px;height:260px;
   filter:invert(1);opacity:.05;pointer-events:none;
 }
 .footer-content{
@@ -906,7 +906,7 @@ p{margin:0;}
   /* ---------- Футер ---------- */
   .site-footer-wrap{padding:0;}
   .site-footer{width:100%;height:auto;padding:36px 20px 28px;}
-  .footer-deco{width:150px;height:150px;right:-20px;top:-24px;}
+  .footer-deco{width:150px;height:150px;left:auto;right:-20px;top:-24px;}
   .footer-content{flex-direction:column;gap:32px;align-items:flex-start;}
   .footer-nav{gap:14px;}
   .footer-nav a{font-size:16px;}
