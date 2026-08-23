@@ -155,7 +155,7 @@ p{margin:0;}
 /* декоративный элемент в полутонах — увеличенная копия фирменного значка
    (те же три фигурки, что в логотипе), еле заметная, в углу футера */
 .footer-deco{
-  position:absolute;left:-30px;top:-40px;width:260px;height:260px;
+  position:absolute;left:383px;top:-40px;width:260px;height:260px;
   filter:invert(1);opacity:.05;pointer-events:none;
 }
 .footer-content{
