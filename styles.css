@@ -145,43 +145,51 @@ p{margin:0;}
 /* =====================================================
    ФУТЕР — точные размеры и отступы из Figma (node 1314:358)
    ===================================================== */
-.site-footer-wrap{background:#F8C762;padding:80px 0;}
+.site-footer-wrap{background:#0D0D0D;padding:0;}
 .site-footer{
-  position:relative;width:1800px;height:508px;margin:0 auto;
-  border-radius:20px;background:#1F1F1F;color:#fff;
+  position:relative;width:100%;max-width:1800px;margin:0 auto;
+  background:#0D0D0D;color:#fff;overflow:hidden;
+  padding:52px 100px 40px;
+  box-sizing:border-box;
+}
+/* декоративный элемент в полутонах — увеличенная копия фирменного значка
+   (те же три фигурки, что в логотипе), еле заметная, в углу футера */
+.footer-deco{
+  position:absolute;right:-30px;top:-40px;width:260px;height:260px;
+  filter:invert(1);opacity:.05;pointer-events:none;
 }
 .footer-content{
-  position:absolute;left:200px;top:113px;
-  display:flex;align-items:flex-start;gap:296px;
+  position:relative;z-index:1;
+  display:flex;align-items:flex-start;justify-content:space-between;gap:60px;
 }
 .footer-nav{
-  display:flex;flex-direction:column;gap:15px;white-space:nowrap;
+  display:flex;flex-direction:column;gap:13px;white-space:nowrap;
 }
 .footer-nav a{
   position:relative;display:inline-block;width:fit-content;
-  font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;
-  padding-bottom:6px;
+  font-family:'Inter';font-weight:500;font-size:20px;line-height:1.15;letter-spacing:-.24px;color:#fff;
+  padding-bottom:5px;
 }
 .footer-nav a::after{
   content:'';position:absolute;left:0;bottom:0;height:2px;width:0;
   background:var(--gold);transition:width .45s ease;
 }
 .footer-nav a.tapped::after{width:100%;}
-.footer-logo{width:332px;height:135px;flex-shrink:0;}
+.footer-logo{width:220px;height:90px;flex-shrink:0;}
 .footer-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .footer-contacts{
-  display:flex;flex-direction:column;gap:17px;width:264px;flex-shrink:0;
+  display:flex;flex-direction:column;gap:14px;width:240px;flex-shrink:0;
   text-transform:capitalize;
 }
-.footer-contacts-label{font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;}
-.footer-contact-rows{display:flex;flex-direction:column;gap:25px;}
-.footer-contact-row{font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;white-space:nowrap;}
+.footer-contacts-label{font-family:'Inter';font-weight:500;font-size:20px;line-height:1.15;letter-spacing:-.24px;}
+.footer-contact-rows{display:flex;flex-direction:column;gap:18px;}
+.footer-contact-row{font-family:'Inter';font-weight:500;font-size:18px;line-height:1.3;letter-spacing:-.24px;white-space:nowrap;}
 .footer-contact-row a{color:#fff;text-decoration:underline;}
-.footer-actions{position:absolute;left:391px;top:379px;display:flex;gap:60px;}
+.footer-actions{position:relative;z-index:1;display:flex;gap:32px;margin-top:36px;}
 .footer-actions .btn-nearest,
 .footer-actions .btn-buy-ticket{
-  width:479px;height:71px;border-radius:20px;
-  font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
+  width:380px;height:60px;border-radius:16px;
+  font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:16px;line-height:1.15;
   text-transform:none;letter-spacing:0;
 }
 .footer-actions .btn-nearest{background:#1F1F1F;border:1.5px solid #fff;color:#fff;}
@@ -896,9 +904,10 @@ p{margin:0;}
   .menu-panel{left:16px;right:16px;min-width:0;padding:24px;}
 
   /* ---------- Футер ---------- */
-  .site-footer-wrap{padding:48px 0;}
-  .site-footer{position:relative;width:calc(100% - 32px);height:auto;padding:36px 20px;}
-  .footer-content{position:static;flex-direction:column;gap:32px;align-items:flex-start;}
+  .site-footer-wrap{padding:0;}
+  .site-footer{width:100%;height:auto;padding:36px 20px 28px;}
+  .footer-deco{width:150px;height:150px;right:-20px;top:-24px;}
+  .footer-content{flex-direction:column;gap:32px;align-items:flex-start;}
   .footer-nav{gap:14px;}
   .footer-nav a{font-size:16px;}
   .footer-logo{width:160px;height:65px;}
