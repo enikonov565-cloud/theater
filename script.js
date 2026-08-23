@@ -150,17 +150,49 @@
       });
       whyStartTimer();
     }
-    // Показываем кадр во всех четырёх слотах сразу при загрузке страницы —
-    // без этого боковые видео остаются пустыми до первой смены.
-    whySlots.forEach(function(slot, slotIndex){
-      if (!slot) return;
-      var video = slot.a, isMain = slotIndex === 0;
+    // Секция ниже первого экрана — её 4 ролика (~30МБ) раньше начинали
+    // грузиться сразу вместе с hero-видео и отбирали у них канал, из-за
+    // чего hero подвисал/грузился медленнее. Теперь ставим им реальный
+    // src (из data-src) и запускаем карусель только когда секция
+    // приближается к области просмотра.
+    var whyStarted = false;
+    function whyLoadInitial(slot, isMain){
+      var video = slot.a;
+      var src = video.dataset.src;
+      if (src){
+        var source = document.createElement('source');
+        source.type = 'video/mp4';
+        source.src = src;
+        video.appendChild(source);
+        video.load();
+      }
       function show(){ whyShowFrame(video, isMain); video.classList.add('active'); }
       if (video.readyState >= 2) show();
       else video.addEventListener('loadeddata', show, {once:true});
-    });
-    whyStartTimer();
-    setInterval(whyNext, WHY_INTERVAL);
+    }
+    function whyStart(){
+      if (whyStarted) return;
+      whyStarted = true;
+      whySlots.forEach(function(slot, slotIndex){
+        if (!slot) return;
+        whyLoadInitial(slot, slotIndex === 0);
+      });
+      whyStartTimer();
+      setInterval(whyNext, WHY_INTERVAL);
+    }
+    if ('IntersectionObserver' in window){
+      var whyObserver = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting){
+            whyStart();
+            whyObserver.disconnect();
+          }
+        });
+      }, {rootMargin: '600px 0px'});
+      whyObserver.observe(document.querySelector('.why-section'));
+    } else {
+      whyStart();
+    }
   }
 
   /* ---------- Бургер-меню в хедере ---------- */
