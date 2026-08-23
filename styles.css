@@ -502,9 +502,15 @@ p{margin:0;}
 }
 .review-open-btn:hover{filter:brightness(1.1);}
 
-/* ---------- Ссылка на «Вопросы и ответы» после отзывов (только мобильная —
-   на десктопе страница доступна через меню и футер) ---------- */
-.faq-teaser{display:none;}
+/* ---------- Ссылка на «Вопросы и ответы» после отзывов, перед футером ---------- */
+.faq-teaser{
+  display:flex;flex-direction:column;align-items:center;gap:32px;
+  background:var(--olive);padding:80px 20px;text-align:center;
+}
+.faq-teaser-text{
+  margin:0;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:32px;
+  color:#fff;text-transform:uppercase;letter-spacing:0;
+}
 
 /* ---------- Модалка «Оставить отзыв» ---------- */
 .review-modal-overlay{
@@ -1018,7 +1024,7 @@ p{margin:0;}
     display:flex;flex-direction:column;align-items:center;gap:20px;
     background:var(--olive);padding:48px 20px;text-align:center;
   }
-  .faq-teaser-text{margin:0;font-family:'Montserrat',var(--font-sans);font-size:20px;color:#fff;}
+  .faq-teaser-text{margin:0;font-family:'Montserrat',var(--font-sans);font-size:20px;color:#fff;text-transform:none;}
   .faq-teaser .btn-repertoire{width:100%;max-width:346px;height:80px;}
 
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
