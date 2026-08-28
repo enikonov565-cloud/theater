@@ -983,12 +983,21 @@ p{margin:0;}
   .promo-program li{font-size:16px;}
   .promo-program ul{gap:14px;}
   .promo-quiz-lead{position:static;font-size:18px;order:5;}
-  .promo-quiz-title{position:static;font-size:26px;white-space:normal;order:6;}
-  .promo-quiz-question{position:static;width:100%;font-size:18px;order:7;}
+  /* карточки-приглашения — уменьшенная копия того же «веера» карточек,
+     что и на десктопе (те же пропорции и повороты, просто в масштабе) */
+  .promo-photos{
+    display:block;position:relative;order:6;
+    width:280px;height:210px;margin:0 auto;pointer-events:none;
+  }
+  .promo-photos .ph{border-width:3px;border-radius:9px;box-shadow:0 8px 20px rgba(0,0,0,.25);}
+  .promo-photos .ph-a{left:35px;top:0;width:180px;height:119px;transform:rotate(-5.59deg);}
+  .promo-photos .ph-b{left:100px;top:58px;width:180px;height:119px;transform:rotate(17.11deg);}
+  .promo-photos .ph-c{left:0;top:90px;width:180px;height:119px;transform:rotate(-11.49deg);}
+  .promo-quiz-title{position:static;font-size:26px;white-space:normal;order:7;}
+  .promo-quiz-question{position:static;width:100%;font-size:18px;order:8;}
   .quiz-question-br{display:none;}
-  .promo-hint{position:static;width:100%;box-sizing:border-box;order:8;}
+  .promo-hint{position:static;width:100%;box-sizing:border-box;order:9;}
   .promo-hint p{width:auto;flex:1;}
-  .promo-photos{display:none;}
 
   /* ---------- «Ближайшие представления» / «Отзывы» (карусели) ---------- */
   .section-dark{padding:56px 0 64px;}
