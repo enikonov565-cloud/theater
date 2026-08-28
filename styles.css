@@ -575,9 +575,9 @@ p{margin:0;}
 /* рамка сделана паддингом + сплошным белым фоном (а не border) — border
    вместе с border-radius на дробных device-px даёт тонкий шов ровно
    посередине верхней/нижней грани в мобильных браузерах; заливка без шва */
-.promo-family{position:absolute;left:109px;top:240px;width:452px;height:359px;box-sizing:border-box;padding:5px;background:#fff;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.25);overflow:hidden;}
+.promo-family{position:absolute;left:109px;top:272px;width:452px;height:327px;box-sizing:border-box;padding:5px;background:#fff;border-radius:20px;box-shadow:0 12px 30px rgba(0,0,0,.25);overflow:hidden;}
 .promo-family img,.promo-family video{width:100%;height:100%;object-fit:cover;display:block;border-radius:15px;}
-.promo-date{position:absolute;left:615px;top:240px;font-family:'Montserrat',var(--font-sans);font-weight:700;font-size:32px;line-height:1.22;letter-spacing:.32px;margin:0;}
+.promo-date{position:absolute;left:615px;top:272px;font-family:'Montserrat',var(--font-sans);font-weight:700;font-size:32px;line-height:1.22;letter-spacing:.32px;margin:0;}
 .promo-program{position:absolute;left:645px;top:370px;width:278px;display:flex;flex-direction:column;gap:28px;}
 .promo-program .list-title{font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:26px;text-transform:lowercase;letter-spacing:.32px;margin:0;}
 .promo-program ul{display:flex;flex-direction:column;gap:28px;font-size:0;margin:0;padding:0;list-style:none;}
