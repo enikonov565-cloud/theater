@@ -567,6 +567,16 @@
       if (followBtn){
         var followed = followBtn.classList.toggle('followed');
         followBtn.textContent = followed ? 'Вы подписаны' : 'Подписаться';
+        return;
+      }
+      // Десктоп: кнопка «Узнать подробнее о спектакле» сначала ведёт на
+      // hero страницы спектакля, а не сразу на блок «о спектакле» (якорь
+      // #o-spektakle убираем). На мобильной — оставляем как есть (переход
+      // сразу к #o-spektakle).
+      var cta = e.target.closest('a.cta');
+      if (cta && window.innerWidth > 767){
+        e.preventDefault();
+        location.href = cta.getAttribute('href').split('#')[0];
       }
     });
     otzyvySection.querySelector('.arrow-left').addEventListener('click', function(){ reviewIndex = (reviewIndex - 1 + reviews.length) % reviews.length; renderReviews(); });
