@@ -575,10 +575,10 @@ p{margin:0;}
 .promo-family{position:absolute;left:112px;top:263px;width:452px;height:324px;}
 .promo-family img{width:100%;height:100%;object-fit:contain;display:block;}
 .promo-date{position:absolute;left:615px;top:249px;font-family:'Montserrat',var(--font-sans);font-weight:700;font-size:32px;line-height:1.22;letter-spacing:.32px;margin:0;}
-.promo-program{position:absolute;left:645px;top:313px;width:278px;display:flex;flex-direction:column;gap:32px;}
-.promo-program .list-title{font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:32px;text-transform:lowercase;letter-spacing:.32px;margin:0;}
-.promo-program ul{display:flex;flex-direction:column;gap:32px;font-size:0;margin:0;padding:0;list-style:none;}
-.promo-program li{display:flex;gap:9px;align-items:flex-start;font-family:'Inter';font-size:24px;line-height:1.15;letter-spacing:-.24px;}
+.promo-program{position:absolute;left:645px;top:358px;width:278px;display:flex;flex-direction:column;gap:28px;}
+.promo-program .list-title{font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:26px;text-transform:lowercase;letter-spacing:.32px;margin:0;}
+.promo-program ul{display:flex;flex-direction:column;gap:28px;font-size:0;margin:0;padding:0;list-style:none;}
+.promo-program li{display:flex;gap:9px;align-items:flex-start;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;}
 .promo-program li img{width:24px;height:24px;flex:none;margin-top:2px;}
 .promo-quiz-lead{position:absolute;left:1030px;top:80px;font-family:'Inter';font-size:24px;line-height:1.15;letter-spacing:-.24px;margin:0;}
 .promo-quiz-title{position:absolute;left:1516px;top:80px;font-family:'Inter';font-weight:700;font-size:40px;line-height:1.22;white-space:nowrap;margin:0;}
