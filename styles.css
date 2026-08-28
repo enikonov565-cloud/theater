@@ -572,7 +572,7 @@ p{margin:0;}
 /* точные координаты из Figma (node 1308:336, «СКАЗКА 2»), канва 1920×667 — проверено по metadata и 1:1 скриншоту */
 .promo-banner{position:relative;width:100%;height:667px;background:#F8C762;overflow:hidden;color:#1f1f1f;}
 .promo-heading{position:absolute;left:109px;top:80px;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;text-transform:uppercase;margin:0;}
-.promo-family{position:absolute;left:112px;top:263px;width:452px;height:324px;}
+.promo-family{position:absolute;left:109px;top:240px;width:452px;height:359px;}
 .promo-family img,.promo-family video{width:100%;height:100%;object-fit:contain;display:block;}
 .promo-date{position:absolute;left:615px;top:272px;font-family:'Montserrat',var(--font-sans);font-weight:700;font-size:32px;line-height:1.22;letter-spacing:.32px;margin:0;}
 .promo-program{position:absolute;left:645px;top:370px;width:278px;display:flex;flex-direction:column;gap:28px;}
@@ -975,7 +975,8 @@ p{margin:0;}
   /* ---------- Промо: семейный день / викторина ---------- */
   .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
   .promo-heading{position:static;font-size:30px;order:1;}
-  .promo-family{position:static;width:300px;height:216px;order:2;margin:0 auto;border-radius:20px;overflow:hidden;}
+  .promo-family{position:static;width:100%;height:auto;aspect-ratio:1112/834;order:2;margin:0;border-radius:20px;overflow:hidden;}
+  .promo-family video{object-fit:cover;}
   .promo-date{position:static;font-size:22px;order:3;}
   .promo-program{position:static;width:100%;gap:18px;order:4;}
   .promo-program .list-title{font-size:20px;}
