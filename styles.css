@@ -975,7 +975,7 @@ p{margin:0;}
   /* ---------- Промо: семейный день / викторина ---------- */
   .promo-banner{position:relative;height:auto;padding:48px 20px;display:flex;flex-direction:column;gap:28px;}
   .promo-heading{position:static;font-size:30px;order:1;}
-  .promo-family{position:static;width:220px;height:158px;order:2;margin:0 auto;}
+  .promo-family{position:static;width:300px;height:216px;order:2;margin:0 auto;border-radius:20px;overflow:hidden;}
   .promo-date{position:static;font-size:22px;order:3;}
   .promo-program{position:static;width:100%;gap:18px;order:4;}
   .promo-program .list-title{font-size:20px;}
