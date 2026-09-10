@@ -582,7 +582,7 @@ p{margin:0;}
 .promo-program .list-title{font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:26px;text-transform:lowercase;letter-spacing:.32px;margin:0;}
 .promo-program ul{display:flex;flex-direction:column;gap:28px;margin:0;padding:0;list-style:none;}
 .promo-program li{display:flex;gap:9px;align-items:flex-start;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;}
-.promo-program li img{width:24px;height:24px;flex:none;margin-top:2px;}
+.promo-program li img{width:24px;height:24px;flex:none;margin-top:0;}
 .promo-quiz-lead{position:absolute;left:1030px;top:80px;font-family:'Inter';font-size:24px;line-height:1.15;letter-spacing:-.24px;margin:0;}
 .promo-quiz-title{position:absolute;left:1516px;top:80px;font-family:'Inter';font-weight:700;font-size:40px;line-height:1.22;white-space:nowrap;margin:0;}
 .promo-quiz-question{position:absolute;left:1500px;top:400px;width:340px;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;white-space:nowrap;margin:0;}
