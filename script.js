@@ -115,13 +115,11 @@
         video.pause();
       }
     }
-    // Смена без анимации: новый ролик грузится в скрытый слой слота, и как
-    // только его первый кадр декодирован (loadeddata) — слои мгновенно
-    // меняются местами по opacity/z-index. Старый кадр висит до последнего
-    // момента: нет ни провала, ни мигания, ни наложения двух картинок.
-    function whySwap(slot, vidIndex, isMain){
+    // Готовит подмену ролика в блоке БЕЗ анимации: новый ролик грузится в
+    // скрытый слой; .ready — промис готовности первого кадра (loadeddata или
+    // аварийный таймаут), .commit() мгновенно показывает его вместо старого.
+    function whyPrepare(slot, vidIndex, isMain){
       var incoming = slot.activeIsA ? slot.b : slot.a;
-      var outgoing = slot.activeIsA ? slot.a : slot.b;
       var p = whyPhotos[vidIndex];
       var source = incoming.querySelector('source');
       if (!source){
@@ -132,34 +130,48 @@
       source.src = p.src;
       incoming.setAttribute('aria-label', p.alt);
       incoming.load();
-      var swapped = false;
-      function doSwap(){
-        if (swapped) return;
-        swapped = true;
+      var ready = new Promise(function(resolve){
+        var done = false;
+        function fin(){ if (!done){ done = true; resolve(); } }
+        incoming.addEventListener('loadeddata', fin, {once:true});
+        setTimeout(fin, 4000);
+      });
+      function commit(){
+        var outgoing = slot.activeIsA ? slot.a : slot.b;
         whyShowFrame(incoming, isMain);
         incoming.classList.add('active');
         outgoing.classList.remove('active');
         outgoing.pause();
         slot.activeIsA = !slot.activeIsA;
       }
-      // Таймаут — аварийная подстраховка, если ролик не загрузился:
-      // тогда просто дольше висит прежний кадр.
-      incoming.addEventListener('loadeddata', doSwap, {once:true});
-      setTimeout(doSwap, 4000);
+      return { ready: ready, commit: commit };
     }
-    // Каждый тик меняется РОВНО один блок — по кругу (слот 0 → 1 → 2 → 3 → 0),
-    // чтобы на экране не дёргалось всё сразу. Скрытые блоки (на мобильном
-    // видно только главный) пропускаем.
+    // Роликов всего 4 и окон 4 — если менять по одному, два окна на секунды
+    // показывают одну сцену. Поэтому за тик меняем РОЛИКИ ДВУХ соседних окон
+    // МЕСТАМИ (по кругу): все 4 сцены всегда разные, анимации нет, оба окна
+    // переключаются одновременно — только когда готовы оба ролика.
     function whyTick(){
+      var visible = [];
       for (var i = 0; i < whySlots.length; i++){
-        var idx = whyTurn;
-        whyTurn = (whyTurn + 1) % whySlots.length;
-        var slot = whySlots[idx];
-        if (!slot) continue;
-        if (slot.a.closest('.why-photo').offsetParent === null) continue; // блок скрыт
-        slot.vid = (slot.vid + 1) % whyPhotos.length;
-        whySwap(slot, slot.vid, idx === 0);
-        break;
+        var s = whySlots[i];
+        if (s && s.a.closest('.why-photo').offsetParent !== null) visible.push(i);
+      }
+      if (visible.length >= 2){
+        var a = visible[whyTurn % visible.length];
+        var b = visible[(whyTurn + 1) % visible.length];
+        var slotA = whySlots[a], slotB = whySlots[b];
+        var newA = slotB.vid, newB = slotA.vid;   // меняем ролики местами
+        slotA.vid = newA; slotB.vid = newB;
+        var pa = whyPrepare(slotA, newA, a === 0);
+        var pb = whyPrepare(slotB, newB, b === 0);
+        Promise.all([pa.ready, pb.ready]).then(function(){ pa.commit(); pb.commit(); });
+        whyTurn = (whyTurn + 1) % visible.length;
+      } else if (visible.length === 1){
+        // на мобильном видно только главный блок — просто листаем по кругу
+        var only = whySlots[visible[0]];
+        only.vid = (only.vid + 1) % whyPhotos.length;
+        var pc = whyPrepare(only, only.vid, visible[0] === 0);
+        pc.ready.then(pc.commit);
       }
       whyStartTimer();
     }
