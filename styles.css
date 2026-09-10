@@ -138,7 +138,7 @@ p{margin:0;}
 .menu-panel a:hover{opacity:1;}
 .menu-panel a.tapped::after{width:100%;}
 
-.site-header .header-actions{display:flex;align-items:center;gap:60px;}
+.site-header .header-actions{display:flex;align-items:center;gap:20px;}
 .site-header .header-actions .btn{height:auto;padding:10px 30px;border-radius:10px;white-space:nowrap;}
 .site-header .btn-outline{border-color:var(--cream);color:var(--cream);}
 
