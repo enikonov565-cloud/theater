@@ -693,7 +693,7 @@ p{margin:0;}
 .show-nav h2.rep-font-aibolit,.show-nav .age.rep-font-aibolit{font-family:'Serati',serif;}
 .show-nav h2.rep-font-kolobok,.show-nav .age.rep-font-kolobok{font-family:'RubikMoonrocks',serif;}
 .seat-canvas .show-nav .dt{font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;color:#1f1f1f;}
-.seat-canvas .show-nav .arrow-btn{position:absolute;top:75px;width:100px;height:100px;border:none;background:none;display:flex;align-items:center;justify-content:center;}
+.seat-canvas .show-nav .arrow-btn{position:absolute;top:-7px;width:100px;height:100px;border:none;background:none;display:flex;align-items:center;justify-content:center;}
 .seat-canvas .show-nav .arrow-btn img{width:25px;height:50px;display:block;}
 .seat-canvas .show-nav .arrow-btn[data-show-prev]{left:-374px;}
 .seat-canvas .show-nav .arrow-btn[data-show-next]{left:1326px;}
