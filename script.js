@@ -81,13 +81,14 @@
     var whyFill = whyMain.querySelector('.why-timer-fill');
     // У каждого слота два наложенных <video> (двойная буферизация): пока
     // виден активный слой со старым кадром, в тени грузится новый ролик
-    // во второй слой, и только когда он готов — оба плавно кроссфейдятся.
-    // Так картинка никогда не пропадает и не мелькает чёрным между сменами.
+    // во второй слой, и только когда он готов — слои мгновенно меняются
+    // местами. Без анимации: ни наездов, ни прозрачности, ни мигания.
     var whySlots = [whyMain, document.querySelector('.why-photo-1'), document.querySelector('.why-photo-2'), document.querySelector('.why-photo-3')]
-      .map(function(el){
+      .map(function(el, idx){
         if (!el) return null;
-        return {a: el.querySelector('.why-v-a'), b: el.querySelector('.why-v-b'), activeIsA: true};
+        return {a: el.querySelector('.why-v-a'), b: el.querySelector('.why-v-b'), activeIsA: true, vid: idx};
       });
+    var whyTurn = 0; // какой слот меняется следующим — по кругу
     var whyPhotos = [
       {src:'анимация/гуси-лебеди-анимация.mp4', alt:'Сцена спектакля «Гуси-лебеди»'},
       {src:'анимация/колобок-анимация.mp4', alt:'Сцена «Колобок»'},
@@ -95,7 +96,6 @@
       {src:'анимация/кошкин-дом-анимация.mp4', alt:'Сцена «Кошкин дом»'}
     ];
     var WHY_INTERVAL = 5000;
-    var whyIndex = 0;
     function whyStartTimer(){
       whyFill.style.transition = 'none';
       whyFill.style.width = '0%';
@@ -115,10 +115,14 @@
         video.pause();
       }
     }
-    function whySwap(slot, slotIndex, isMain){
+    // Смена без анимации: новый ролик грузится в скрытый слой слота, и как
+    // только его первый кадр декодирован (loadeddata) — слои мгновенно
+    // меняются местами по opacity/z-index. Старый кадр висит до последнего
+    // момента: нет ни провала, ни мигания, ни наложения двух картинок.
+    function whySwap(slot, vidIndex, isMain){
       var incoming = slot.activeIsA ? slot.b : slot.a;
       var outgoing = slot.activeIsA ? slot.a : slot.b;
-      var p = whyPhotos[(whyIndex + slotIndex) % whyPhotos.length];
+      var p = whyPhotos[vidIndex];
       var source = incoming.querySelector('source');
       if (!source){
         source = document.createElement('source');
@@ -128,45 +132,35 @@
       source.src = p.src;
       incoming.setAttribute('aria-label', p.alt);
       incoming.load();
-      var revealed = false;
-      function reveal(){
-        if (revealed) return;
-        revealed = true;
+      var swapped = false;
+      function doSwap(){
+        if (swapped) return;
+        swapped = true;
         whyShowFrame(incoming, isMain);
-        // Новый ролик НЕ проявляем прозрачностью (иначе в середине видны сразу
-        // два кадра — раздвоение), а «выезжает» поверх старого сбоку. Каждая
-        // точка окна показывает ровно один ролик: где новый уже наехал — новый,
-        // где ещё нет — старый (он лежит снизу, непрозрачный). Ни просвета фона,
-        // ни наложения двух картинок.
-        incoming.style.zIndex = '2';
-        outgoing.style.zIndex = '1';
-        incoming.style.transition = 'none';
-        incoming.style.transform = 'translateX(100%)';
-        incoming.classList.add('active');   // opacity:1 мгновенно, но за кадром справа
-        void incoming.offsetWidth;          // применяем стартовое положение до анимации
-        incoming.style.transition = '';     // вернуть CSS-переход transform .8s
-        incoming.style.transform = 'translateX(0)';
+        incoming.classList.add('active');
+        outgoing.classList.remove('active');
+        outgoing.pause();
         slot.activeIsA = !slot.activeIsA;
-        setTimeout(function(){
-          outgoing.classList.remove('active');
-          outgoing.style.zIndex = '';
-          incoming.style.zIndex = '';
-          incoming.style.transform = '';
-        }, 850); // = длительность CSS-перехода transform + запас
       }
-      // Кроссфейд стартуем ТОЛЬКО когда новый кадр реально декодирован
-      // (loadeddata) — иначе на долю секунды показывается пустой слой и
-      // получается мигание. Таймаут — лишь аварийная подстраховка на случай,
-      // если ролик вообще не загрузился; тогда просто дольше висит прежний кадр.
-      incoming.addEventListener('loadeddata', reveal, {once:true});
-      setTimeout(reveal, 4000);
+      // Таймаут — аварийная подстраховка, если ролик не загрузился:
+      // тогда просто дольше висит прежний кадр.
+      incoming.addEventListener('loadeddata', doSwap, {once:true});
+      setTimeout(doSwap, 4000);
     }
-    function whyNext(){
-      whyIndex = (whyIndex + 1) % whyPhotos.length;
-      whySlots.forEach(function(slot, slotIndex){
-        if (!slot) return;
-        whySwap(slot, slotIndex, slotIndex === 0);
-      });
+    // Каждый тик меняется РОВНО один блок — по кругу (слот 0 → 1 → 2 → 3 → 0),
+    // чтобы на экране не дёргалось всё сразу. Скрытые блоки (на мобильном
+    // видно только главный) пропускаем.
+    function whyTick(){
+      for (var i = 0; i < whySlots.length; i++){
+        var idx = whyTurn;
+        whyTurn = (whyTurn + 1) % whySlots.length;
+        var slot = whySlots[idx];
+        if (!slot) continue;
+        if (slot.a.closest('.why-photo').offsetParent === null) continue; // блок скрыт
+        slot.vid = (slot.vid + 1) % whyPhotos.length;
+        whySwap(slot, slot.vid, idx === 0);
+        break;
+      }
       whyStartTimer();
     }
     // Секция ниже первого экрана — её 4 ролика (~30МБ) раньше начинали
@@ -197,7 +191,7 @@
         whyLoadInitial(slot, slotIndex === 0);
       });
       whyStartTimer();
-      setInterval(whyNext, WHY_INTERVAL);
+      setInterval(whyTick, WHY_INTERVAL);
     }
     if ('IntersectionObserver' in window){
       var whyObserver = new IntersectionObserver(function(entries){
