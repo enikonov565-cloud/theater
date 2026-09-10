@@ -157,11 +157,9 @@
     }
     function whyNext(){
       whyIndex = (whyIndex + 1) % whyPhotos.length;
-      // Слоты переключаем со сдвигом, чтобы новый и старый ролик грузились
-      // не сразу во всех четырёх окнах — так пик одновременных декодеров ниже.
       whySlots.forEach(function(slot, slotIndex){
         if (!slot) return;
-        setTimeout(function(){ whySwap(slot, slotIndex, slotIndex === 0); }, slotIndex * 140);
+        whySwap(slot, slotIndex, slotIndex === 0);
       });
       whyStartTimer();
     }
