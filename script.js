@@ -256,28 +256,6 @@
   wireUnderlineNav('.menu-panel a', closeAllMenus);
   wireUnderlineNav('.footer-nav a');
 
-  /* ---------- FAQ: клик по вопросу открывает полноэкранный ответ поверх
-     списка (как в Figma) — без перехода на другую страницу. ---------- */
-  var faqModals = document.querySelectorAll('[data-faq-modal]');
-  if (faqModals.length){
-    function closeFaqModals(){
-      faqModals.forEach(function(m){ m.classList.remove('active'); });
-    }
-    document.querySelectorAll('[data-faq-open]').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        var modal = document.getElementById(btn.dataset.faqOpen);
-        if (modal){ modal.classList.add('active'); window.scrollTo({top:0}); }
-      });
-    });
-    document.querySelectorAll('[data-faq-close]').forEach(function(btn){
-      btn.addEventListener('click', function(){
-        closeFaqModals();
-        window.scrollTo({top:0});
-      });
-    });
-    document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeFaqModals(); });
-  }
-
   /* ---------- Аккордеон «Вопросы и ответы» на главной ---------- */
   var faqAcc = document.querySelector('[data-faq-acc]');
   if (faqAcc){
