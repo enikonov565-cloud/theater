@@ -61,6 +61,52 @@
     });
   });
 
+  /* ---------- Hero-декорации: плавный цикл + чуть медленнее движения.
+     Ролики webm без промежуточных ключевых кадров нельзя перематывать,
+     поэтому бесшовный boomerang не сделать. Вместо этого:
+       • playbackRate < 1 — движение спокойнее, и любой стык менее резкий;
+       • у стыка (последние кадры + первые после повтора) коротко уводим
+         opacity в 0 через CSS-переход, так скачок между концом и началом
+         проходит незаметно. */
+  (function(){
+    var heroVids = [].slice.call(document.querySelectorAll('.play-hero video'));
+    if (!heroVids.length) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var RATE = 0.7;                 // ~30% медленнее
+    var TAIL = 0.34;                // сколько секунд ролика прячем в конце
+    var HEAD = 0.16;                // и в начале после повтора
+
+    heroVids.forEach(function(v){
+      v.style.transition = 'opacity .28s ease';
+      var setRate = function(){ try { if (Math.abs(v.playbackRate - RATE) > 0.01) v.playbackRate = RATE; } catch(e){} };
+      setRate();
+      v.addEventListener('play', setRate);
+      v.addEventListener('ratechange', setRate);
+    });
+
+    var raf = null;
+    function tick(){
+      raf = null;
+      for (var i = 0; i < heroVids.length; i++){
+        var v = heroVids[i];
+        var d = v.duration;
+        if (!d || v.paused || v.readyState < 2) continue;
+        var t = v.currentTime;
+        var atSeam = (t >= d - TAIL) || (t <= HEAD);
+        var want = atSeam ? '0' : '';
+        if (v.style.opacity !== want) v.style.opacity = want;
+      }
+      if (!document.hidden) raf = requestAnimationFrame(tick);
+    }
+    function start(){ if (raf == null && !document.hidden) raf = requestAnimationFrame(tick); }
+    document.addEventListener('visibilitychange', function(){
+      if (document.hidden){ if (raf != null){ cancelAnimationFrame(raf); raf = null; } }
+      else { heroVids.forEach(function(v){ v.style.opacity = ''; }); start(); }
+    });
+    start();
+  })();
+
   /* ---------- Сдвиг фазы зацикленного видео: чтобы одинаковые ролики слева и
      справа не двигались синхронно, стартуем один из них с середины клипа. */
   document.querySelectorAll('video[data-phase-offset]').forEach(function(video){
