@@ -120,7 +120,7 @@ p{margin:0;}
 /* всплывающее меню разделов */
 .menu-panel{
   position:absolute;top:calc(100% + 14px);left:60px;
-  display:none;flex-direction:column;gap:32px;align-items:flex-start;min-width:260px;
+  display:none;flex-direction:column;gap:22px;align-items:flex-start;min-width:260px;
   background:var(--dark);border-radius:20px;padding:32px 40px;
   box-shadow:0 24px 60px rgba(0,0,0,.35);
   opacity:0;transform:translateY(-6px);
@@ -128,7 +128,7 @@ p{margin:0;}
 }
 .menu-panel.open{display:flex;opacity:1;transform:translateY(0);}
 .menu-panel a{
-  position:relative;font-size:22px;line-height:1.5;color:var(--cream);opacity:.9;
+  position:relative;font-size:19px;line-height:1.3;color:var(--cream);opacity:.9;
   white-space:nowrap;text-decoration:none;padding-bottom:4px;
 }
 .menu-panel a::after{

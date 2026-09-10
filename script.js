@@ -218,7 +218,11 @@
   var menuToggles = document.querySelectorAll('[data-menu-toggle]');
   function closeAllMenus(except){
     document.querySelectorAll('.menu-panel.open').forEach(function(p){
-      if (p !== except) p.classList.remove('open');
+      if (p !== except){
+        p.classList.remove('open');
+        // сбрасываем жёлтую полосу под пунктом — при следующем открытии меню чистое
+        p.querySelectorAll('a.tapped').forEach(function(a){ a.classList.remove('tapped'); });
+      }
     });
   }
   menuToggles.forEach(function(btn){
