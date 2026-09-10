@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Театр кукол — афиша и&nbsp;бронирование билетов</title>
-<link rel="stylesheet" href="styles.css?v=174">
+<link rel="stylesheet" href="styles.css?v=175">
 </head>
 <body>
 
@@ -71,14 +71,15 @@
     </div>
 
     <div class="order-layout">
-      <div>
+      <div class="order-form-head">
         <p style="font-size:18px;font-weight:600;margin-bottom:20px;">Оформление билетов:</p>
         <div id="ticket-rows">
           <p style="color:var(--ink-soft);font-size:14px;">Места ещё не&nbsp;выбраны — вернитесь на&nbsp;шаг «выбор мест».</p>
         </div>
 
         <p style="font-size:18px;font-weight:600;margin:36px 0 20px;">Данные покупателя:</p>
-        <form class="buyer-form" id="buyer-form">
+      </div>
+      <form class="buyer-form" id="buyer-form">
           <div class="grid2">
             <input type="text" placeholder="Фамилия" required>
             <select required><option value="">Тип документа *</option><option>Паспорт РФ</option><option>Свидетельство о&nbsp;рождении</option></select>
@@ -92,7 +93,6 @@
           </div>
           <button type="submit" class="btn btn-red">перейти к&nbsp;оплате</button>
         </form>
-      </div>
 
       <div class="order-summary">
         <div class="total">ИТОГО: <b id="order-total">0 руб.</b></div>
@@ -130,7 +130,7 @@
 
 </div>
 
-<script src="script.js?v=64"></script>
+<script src="script.js?v=65"></script>
 <script>
   var shows = Array.from(document.querySelectorAll('[data-show]')).map(function(btn){
     return {show: btn.dataset.show, age: btn.dataset.age, dt: btn.dataset.dt};
