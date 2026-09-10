@@ -136,24 +136,13 @@
         incoming.classList.add('active');
         outgoing.classList.remove('active');
         slot.activeIsA = !slot.activeIsA;
-        // После кроссфейда освобождаем декодер ушедшего слоя. Иначе в секции
-        // одновременно живёт 8 видеодекодеров (4 слота × A/B) плюс hero-видео,
-        // и на слабых ПК часть роликов упирается в лимит одновременных
-        // декодеров и просто не рисует кадр. Так в покое остаётся 4 декодера.
-        setTimeout(function(){
-          try {
-            outgoing.pause();
-            var os = outgoing.querySelector('source');
-            if (os) os.removeAttribute('src');
-            outgoing.removeAttribute('src');
-            outgoing.load();
-          } catch (e) {}
-        }, 700);
       }
-      // Кроссфейд стартуем только когда новый кадр реально готов —
-      // старый слой остаётся видимым (activeIsA не менялось) всё это время.
+      // Кроссфейд стартуем ТОЛЬКО когда новый кадр реально декодирован
+      // (loadeddata) — иначе на долю секунды показывается пустой слой и
+      // получается мигание. Таймаут — лишь аварийная подстраховка на случай,
+      // если ролик вообще не загрузился; тогда просто дольше висит прежний кадр.
       incoming.addEventListener('loadeddata', reveal, {once:true});
-      setTimeout(reveal, 900); // подстраховка, если событие не пришло
+      setTimeout(reveal, 4000);
     }
     function whyNext(){
       whyIndex = (whyIndex + 1) % whyPhotos.length;
