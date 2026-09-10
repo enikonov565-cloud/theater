@@ -278,6 +278,35 @@
     document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeFaqModals(); });
   }
 
+  /* ---------- Аккордеон «Вопросы и ответы» на главной ---------- */
+  var faqAcc = document.querySelector('[data-faq-acc]');
+  if (faqAcc){
+    var faqAccQs = faqAcc.querySelectorAll('.faq-acc-q');
+    function faqAccSet(q, open){
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+      var panel = q.nextElementSibling;
+      panel.style.maxHeight = open ? (panel.scrollHeight + 'px') : null;
+    }
+    faqAccQs.forEach(function(q){
+      q.addEventListener('click', function(){
+        var willOpen = q.getAttribute('aria-expanded') !== 'true';
+        faqAccQs.forEach(function(o){ if (o !== q) faqAccSet(o, false); });
+        faqAccSet(q, willOpen);
+      });
+    });
+    // при ресайзе пересчитываем высоту открытого ответа
+    window.addEventListener('resize', function(){
+      faqAccQs.forEach(function(q){
+        if (q.getAttribute('aria-expanded') === 'true'){
+          var panel = q.nextElementSibling;
+          panel.style.maxHeight = 'none';
+          var h = panel.scrollHeight;
+          panel.style.maxHeight = h + 'px';
+        }
+      });
+    });
+  }
+
   /* ---------- Табы бронирования (афиша.html) ---------- */
   var tabButtons = document.querySelectorAll('.booking-tabs button');
   var panels = document.querySelectorAll('.booking-panel');
