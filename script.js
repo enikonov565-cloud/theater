@@ -145,7 +145,7 @@
           outgoing.classList.remove('active');
           outgoing.style.zIndex = '';
           incoming.style.zIndex = '';
-        }, 860); // = длительность CSS-перехода opacity + запас
+        }, 1500); // = длительность CSS-перехода opacity + запас
       }
       // Кроссфейд стартуем ТОЛЬКО когда новый кадр реально декодирован
       // (loadeddata) — иначе на долю секунды показывается пустой слой и
