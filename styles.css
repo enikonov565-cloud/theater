@@ -481,7 +481,7 @@ p{margin:0;}
 .review-card .follow:hover{background:var(--ink);color:var(--cream);}
 .review-card .follow.followed{background:var(--ink);color:var(--cream);border-color:var(--ink);}
 .review-card .stars{color:var(--gold-dark);font-size:13px;margin-bottom:10px;}
-.review-card .text{font-size:14px;line-height:1.5;color:var(--ink-soft);overflow:hidden;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;}
+.review-card .text{font-size:15.5px;line-height:1.5;color:var(--ink-soft);overflow:hidden;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;}
 .review-card .cta{
   position:absolute;left:116px;top:636px;width:376px;height:56.324px;box-sizing:border-box;
   border-radius:20px;border:0.761px solid #fff;background:#E24221;color:#fff;
