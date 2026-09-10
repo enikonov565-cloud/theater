@@ -295,12 +295,17 @@ p{margin:0;}
 .rep-card:not(.current) .rep-title-row h3,
 .rep-card:not(.current) .rep-subtitle{color:#C2C1C1;}
 .rep-card:not(.current) .rep-image img{opacity:.5;}
-/* стрелки для ручного листания убраны — карусель едет только автоплеем */
-.rep-arrow{display:none;}
-.rep-arrow:hover{transform:scale(1.08);}
-.rep-arrow.left{left:80px;transform:rotate(180deg) scaleY(-1);}
-.rep-arrow.left:hover{transform:rotate(180deg) scaleY(-1) scale(1.08);}
-.rep-arrow.right{right:80px;}
+/* стрелки ручного листания карусели — по краям секции, поверх карточек */
+.rep-arrow{
+  position:absolute;top:551px;width:72px;height:72px;z-index:1100;cursor:pointer;
+  opacity:.9;transition:opacity .15s ease, transform .15s ease;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;
+}
+.rep-arrow:hover{opacity:1;}
+.rep-arrow.left{left:32px;transform:rotate(180deg) scaleY(-1);}
+.rep-arrow.left:hover{transform:rotate(180deg) scaleY(-1) scale(1.1);}
+.rep-arrow.right{right:32px;}
+.rep-arrow.right:hover{transform:scale(1.1);}
 .rep-btn-buy{
   position:absolute;left:50%;top:927px;transform:translateX(-50%);margin:0;
   width:400px;height:78px;border-radius:20px;background:#DE1010;color:#fff;
@@ -1013,6 +1018,7 @@ p{margin:0;}
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
      просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
   .repertoire-section{height:auto;padding:56px 0 64px;}
+  .rep-arrow{display:none;}   /* на мобильном листаем свайпом, стрелки не нужны */
   .repertoire-heading{position:static;transform:none;font-size:26px;text-align:center;padding:0 20px;margin-bottom:8px;white-space:normal;}
   .rep-btn-buy{position:static;transform:none;width:346px;max-width:calc(100% - 40px);height:80px;margin:32px auto 0;}
   .repertoire-row{position:static;width:100%;height:auto;}
