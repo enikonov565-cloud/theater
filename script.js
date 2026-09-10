@@ -61,22 +61,6 @@
     });
   });
 
-  /* ---------- Hero-декорации: чуть замедляем движение (playbackRate < 1).
-     Сами ролики webm пересобраны в бесшовный цикл (хвост растворён в начале
-     через ffmpeg), поэтому нативного loop достаточно — никаких копий и
-     манипуляций прозрачностью, только замедление. */
-  (function(){
-    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var RATE = 0.6;
-    document.querySelectorAll('.play-hero video').forEach(function(v){
-      var setRate = function(){ try { if (Math.abs(v.playbackRate - RATE) > 0.01) v.playbackRate = RATE; } catch(e){} };
-      setRate();
-      v.addEventListener('play', setRate);
-      v.addEventListener('ratechange', setRate);
-      v.addEventListener('loadeddata', setRate, { once: true });
-    });
-  })();
-
   /* ---------- Сдвиг фазы зацикленного видео: чтобы одинаковые ролики слева и
      справа не двигались синхронно, стартуем один из них с середины клипа. */
   document.querySelectorAll('video[data-phase-offset]').forEach(function(video){
