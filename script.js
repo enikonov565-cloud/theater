@@ -88,7 +88,7 @@
         if (!el) return null;
         return {a: el.querySelector('.why-v-a'), b: el.querySelector('.why-v-b'), activeIsA: true, vid: idx};
       });
-    var whyTurn = 0; // какой слот меняется следующим — по кругу
+    var whyIndex = 0; // сдвиг карусели: сцена i-го окна = (i - whyIndex) по кругу
     var whyPhotos = [
       {src:'анимация/гуси-лебеди-анимация.mp4', alt:'Сцена спектакля «Гуси-лебеди»'},
       {src:'анимация/колобок-анимация.mp4', alt:'Сцена «Колобок»'},
@@ -146,32 +146,26 @@
       }
       return { ready: ready, commit: commit };
     }
-    // Роликов всего 4 и окон 4 — если менять по одному, два окна на секунды
-    // показывают одну сцену. Поэтому за тик меняем РОЛИКИ ДВУХ соседних окон
-    // МЕСТАМИ (по кругу): все 4 сцены всегда разные, анимации нет, оба окна
-    // переключаются одновременно — только когда готовы оба ролика.
+    // Карусель: раз в интервал все окна разом сдвигают свою сцену на одну
+    // позицию по кругу (большое → малое1 → малое2 → малое3 → большое).
+    // Анимации нет. Новые ролики грузятся в теневые слои, и переключение
+    // ВСЕХ окон происходит одновременно и только когда готовы все кадры —
+    // поэтому картинка нигде не пропадает, не мигает и не замирает.
+    var whyN = whyPhotos.length;
     function whyTick(){
-      var visible = [];
-      for (var i = 0; i < whySlots.length; i++){
-        var s = whySlots[i];
-        if (s && s.a.closest('.why-photo').offsetParent !== null) visible.push(i);
-      }
-      if (visible.length >= 2){
-        var a = visible[whyTurn % visible.length];
-        var b = visible[(whyTurn + 1) % visible.length];
-        var slotA = whySlots[a], slotB = whySlots[b];
-        var newA = slotB.vid, newB = slotA.vid;   // меняем ролики местами
-        slotA.vid = newA; slotB.vid = newB;
-        var pa = whyPrepare(slotA, newA, a === 0);
-        var pb = whyPrepare(slotB, newB, b === 0);
-        Promise.all([pa.ready, pb.ready]).then(function(){ pa.commit(); pb.commit(); });
-        whyTurn = (whyTurn + 1) % visible.length;
-      } else if (visible.length === 1){
-        // на мобильном видно только главный блок — просто листаем по кругу
-        var only = whySlots[visible[0]];
-        only.vid = (only.vid + 1) % whyPhotos.length;
-        var pc = whyPrepare(only, only.vid, visible[0] === 0);
-        pc.ready.then(pc.commit);
+      whyIndex = (whyIndex + 1) % whyN;
+      var preps = [];
+      whySlots.forEach(function(slot, slotIndex){
+        if (!slot) return;
+        var newVid = ((slotIndex - whyIndex) % whyN + whyN) % whyN;
+        slot.vid = newVid;
+        if (slot.a.closest('.why-photo').offsetParent === null) return; // блок скрыт (мобильный)
+        preps.push(whyPrepare(slot, newVid, slotIndex === 0));
+      });
+      if (preps.length){
+        Promise.all(preps.map(function(p){ return p.ready; })).then(function(){
+          preps.forEach(function(p){ p.commit(); });
+        });
       }
       whyStartTimer();
     }
