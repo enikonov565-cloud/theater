@@ -729,7 +729,7 @@ p{margin:0;}
 .playbill-row .title{font-size:26px;font-weight:700;}
 .playbill-row .btn{width:100%;}
 
-.order-layout{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:start;}
+.order-layout{display:grid;grid-template-columns:1fr 420px;gap:40px;align-items:stretch;}
 .order-note h1{color:var(--red);font-size:26px;margin:0 0 12px;}
 .order-note p{font-size:14px;color:var(--ink-soft);line-height:1.6;}
 .ticket-row{display:flex;align-items:center;justify-content:space-between;border:1px solid var(--line);border-radius:14px;padding:22px 26px;margin-bottom:16px;font-size:22px;}
@@ -748,13 +748,13 @@ p{margin:0;}
 .buyer-form label.chk input{width:18px;height:18px;flex:none;}
 .buyer-form .btn{margin-top:10px;width:100%;}
 
-.order-summary{border:1px solid var(--line);border-radius:20px;padding:32px;}
+.order-summary{border:1px solid var(--line);border-radius:20px;padding:32px;display:flex;flex-direction:column;}
 .order-summary .total{display:flex;align-items:baseline;justify-content:space-between;font-size:22px;font-weight:700;margin-bottom:24px;}
 .order-summary .total b{font-size:30px;}
 .order-summary label.chk{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink-soft);margin-bottom:16px;}
 .order-summary label.chk input{width:18px;height:18px;flex:none;margin-top:2px;}
 .order-summary .btn{width:100%;margin:10px 0 22px;}
-.order-summary .pay-note{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;}
+.order-summary .pay-note{font-size:12px;color:var(--ink-soft);line-height:1.6;margin-bottom:14px;margin-top:auto;}
 .pay-icons{display:flex;gap:12px;}
 .pay-icons img{height:40px;border:1px solid var(--line);border-radius:8px;padding:8px 14px;object-fit:contain;background:#fff;}
 
