@@ -61,48 +61,89 @@
     });
   });
 
-  /* ---------- Hero-декорации: плавный цикл + чуть медленнее движения.
-     Ролики webm без промежуточных ключевых кадров нельзя перематывать,
-     поэтому бесшовный boomerang не сделать. Вместо этого:
-       • playbackRate < 1 — движение спокойнее, и любой стык менее резкий;
-       • у стыка (последние кадры + первые после повтора) коротко уводим
-         opacity в 0 через CSS-переход, так скачок между концом и началом
-         проходит незаметно. */
+  /* ---------- Hero-декорации: бесшовный цикл через две копии в противофазе.
+     Эти webm без промежуточных ключевых кадров нельзя перематывать, поэтому
+     boomerang невозможен. Вместо этого поверх каждого ролика кладём его же
+     копию, запускаем её со сдвигом на полклипа и постоянно перекрёстно
+     смешиваем прозрачность: всегда видна та копия, что дальше от своего
+     стыка. Пользователь никогда не видит склейку и картинка не пропадает.
+     Плюс playbackRate < 1 — движение спокойнее. */
   (function(){
-    var heroVids = [].slice.call(document.querySelectorAll('.play-hero video'));
-    if (!heroVids.length) return;
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var originals = [].slice.call(document.querySelectorAll('.play-hero video'));
+    if (!originals.length) return;
 
-    var RATE = 0.7;                 // ~30% медленнее
-    var TAIL = 0.34;                // сколько секунд ролика прячем в конце
-    var HEAD = 0.16;                // и в начале после повтора
+    var RATE = 0.7;
+    var pairs = [];
 
-    heroVids.forEach(function(v){
-      v.style.transition = 'opacity .28s ease';
-      var setRate = function(){ try { if (Math.abs(v.playbackRate - RATE) > 0.01) v.playbackRate = RATE; } catch(e){} };
-      setRate();
-      v.addEventListener('play', setRate);
-      v.addEventListener('ratechange', setRate);
+    originals.forEach(function(a){
+      if (getComputedStyle(a).display === 'none') return;   // скрытые на этом брейкпоинте не трогаем
+      var b = a.cloneNode(true);
+      b.classList.add('is-loop-clone');
+      b.removeAttribute('autoplay');           // копию запускаем вручную со сдвигом
+      b.muted = true;
+      b.style.opacity = '0';
+      b.style.pointerEvents = 'none';
+      a.parentNode.insertBefore(b, a.nextSibling);
+      a.style.willChange = b.style.willChange = 'opacity';
+      pairs.push({ a: a, b: b, started: false });
+    });
+    if (!pairs.length) return;
+
+    function setRate(v){ try { if (Math.abs(v.playbackRate - RATE) > 0.01) v.playbackRate = RATE; } catch(e){} }
+    function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+
+    pairs.forEach(function(pr){
+      [pr.a, pr.b].forEach(function(v){
+        setRate(v);
+        v.addEventListener('play', function(){ setRate(v); });
+        v.addEventListener('ratechange', function(){ setRate(v); });
+      });
+      play(pr.a);
+      function kickClone(){
+        if (pr.started) return;
+        var d = pr.a.duration || 5;
+        pr.started = true;
+        setTimeout(function(){ setRate(pr.b); play(pr.b); }, (d / 2) * 1000);
+      }
+      if (pr.a.readyState >= 1) kickClone();
+      else pr.a.addEventListener('loadedmetadata', kickClone, { once: true });
     });
 
+    var BAND = 0.9;   // ширина зоны кроссфейда, сек
     var raf = null;
+    function seamDist(v){
+      var d = v.duration;
+      if (!d) return 99;
+      var t = v.currentTime;
+      return Math.min(t, d - t);
+    }
     function tick(){
       raf = null;
-      for (var i = 0; i < heroVids.length; i++){
-        var v = heroVids[i];
-        var d = v.duration;
-        if (!d || v.paused || v.readyState < 2) continue;
-        var t = v.currentTime;
-        var atSeam = (t >= d - TAIL) || (t <= HEAD);
-        var want = atSeam ? '0' : '';
-        if (v.style.opacity !== want) v.style.opacity = want;
+      for (var i = 0; i < pairs.length; i++){
+        var pr = pairs[i];
+        if (pr.a.readyState < 2) continue;
+        var bReady = pr.b.readyState >= 2 && !pr.b.paused && pr.b.currentTime > 0.01;
+        var k;
+        if (!bReady){
+          k = 1;                                  // копия ещё не в игре — показываем оригинал целиком
+        } else {
+          // k: 1 => видно A, 0 => видно B; плавный переход в полосе BAND
+          k = (seamDist(pr.a) - seamDist(pr.b)) / BAND * 0.5 + 0.5;
+          k = k < 0 ? 0 : (k > 1 ? 1 : k);
+        }
+        pr.a.style.opacity = k.toFixed(3);
+        pr.b.style.opacity = (1 - k).toFixed(3);
       }
       if (!document.hidden) raf = requestAnimationFrame(tick);
     }
     function start(){ if (raf == null && !document.hidden) raf = requestAnimationFrame(tick); }
     document.addEventListener('visibilitychange', function(){
       if (document.hidden){ if (raf != null){ cancelAnimationFrame(raf); raf = null; } }
-      else { heroVids.forEach(function(v){ v.style.opacity = ''; }); start(); }
+      else {
+        pairs.forEach(function(pr){ if (pr.a.paused) play(pr.a); if (pr.started && pr.b.paused) play(pr.b); });
+        start();
+      }
     });
     start();
   })();
