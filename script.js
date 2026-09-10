@@ -133,19 +133,26 @@
         if (revealed) return;
         revealed = true;
         whyShowFrame(incoming, isMain);
-        // Новый ролик проявляем ПОВЕРХ старого, а старый убираем только
-        // после того как новый полностью проявился. Так при одновременном
-        // фейде нет момента, когда оба полупрозрачны и сквозь них видно фон —
-        // изображение в окне не пропадает.
+        // Новый ролик НЕ проявляем прозрачностью (иначе в середине видны сразу
+        // два кадра — раздвоение), а «выезжает» поверх старого сбоку. Каждая
+        // точка окна показывает ровно один ролик: где новый уже наехал — новый,
+        // где ещё нет — старый (он лежит снизу, непрозрачный). Ни просвета фона,
+        // ни наложения двух картинок.
         incoming.style.zIndex = '2';
         outgoing.style.zIndex = '1';
-        incoming.classList.add('active');
+        incoming.style.transition = 'none';
+        incoming.style.transform = 'translateX(100%)';
+        incoming.classList.add('active');   // opacity:1 мгновенно, но за кадром справа
+        void incoming.offsetWidth;          // применяем стартовое положение до анимации
+        incoming.style.transition = '';     // вернуть CSS-переход transform .8s
+        incoming.style.transform = 'translateX(0)';
         slot.activeIsA = !slot.activeIsA;
         setTimeout(function(){
           outgoing.classList.remove('active');
           outgoing.style.zIndex = '';
           incoming.style.zIndex = '';
-        }, 1500); // = длительность CSS-перехода opacity + запас
+          incoming.style.transform = '';
+        }, 850); // = длительность CSS-перехода transform + запас
       }
       // Кроссфейд стартуем ТОЛЬКО когда новый кадр реально декодирован
       // (loadeddata) — иначе на долю секунды показывается пустой слой и
