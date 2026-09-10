@@ -585,7 +585,7 @@ p{margin:0;}
 .promo-program li img{width:24px;height:24px;flex:none;margin-top:2px;}
 .promo-quiz-lead{position:absolute;left:1030px;top:80px;font-family:'Inter';font-size:24px;line-height:1.15;letter-spacing:-.24px;margin:0;}
 .promo-quiz-title{position:absolute;left:1516px;top:80px;font-family:'Inter';font-weight:700;font-size:40px;line-height:1.22;white-space:nowrap;margin:0;}
-.promo-quiz-question{position:absolute;left:1390px;top:400px;width:420px;font-family:'Inter';font-size:24px;line-height:1.25;letter-spacing:-.24px;white-space:nowrap;margin:0;}
+.promo-quiz-question{position:absolute;left:1390px;top:400px;width:420px;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;white-space:nowrap;margin:0;}
 .promo-hint{
   position:absolute;left:1390px;bottom:80px;
   display:flex;align-items:center;gap:20px;
