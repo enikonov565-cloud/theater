@@ -570,7 +570,7 @@ p{margin:0;}
 .review-modal-form.hide{display:none;}
 
 /* точные координаты из Figma (node 1308:336, «СКАЗКА 2»), канва 1920×667 — проверено по metadata и 1:1 скриншоту */
-.promo-banner{position:relative;width:100%;height:667px;background:#F8C762;overflow:hidden;color:#1f1f1f;}
+.promo-banner{position:relative;width:100%;height:720px;background:#F8C762;overflow:hidden;color:#1f1f1f;}
 .promo-heading{position:absolute;left:80px;top:80px;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:64px;line-height:1.25;text-transform:uppercase;margin:0;}
 /* рамка сделана паддингом + сплошным белым фоном (а не border) — border
    вместе с border-radius на дробных device-px даёт тонкий шов ровно
