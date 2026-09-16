@@ -551,6 +551,20 @@ p{margin:0;}
 .reviews-social{position:absolute;left:50%;top:928px;transform:translateX(-50%);display:flex;align-items:center;gap:20px;margin:0;}
 .reviews-social .label{font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;text-transform:uppercase;white-space:nowrap;}
 .reviews-social .icons{display:flex;align-items:center;gap:20px;}
+/* По референсу Dotted Offset Button (как кружки-«+» в «Вопросы и ответы»),
+   но подложка совсем тонкая — под маленькие значки соцсетей. */
+.reviews-social .icons a{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid transparent;box-sizing:border-box;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1),border-color .15s ease,
+    box-shadow .3s cubic-bezier(.34,1.56,.64,1);
+}
+.reviews-social .icons a:hover{
+  border-style:dashed;border-color:#fff;
+  transform:translate(-1.5px,-1.5px);
+  box-shadow:1.5px 1.5px 0 0 var(--gold);
+}
 .reviews-social .icons img{display:block;height:40px;width:auto;}
 /* По референсу Tactile Button — белая «подложка» под кнопкой, кнопка
    при клике проседает вниз к ней (pointerdown/up), пружинка — CSS transition. */
