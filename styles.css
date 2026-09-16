@@ -83,7 +83,7 @@ p{margin:0;}
 .btn-red:hover{background:var(--red-dark);}
 .btn-gold{background:var(--gold);color:var(--ink);}
 .btn-gold:hover{background:var(--gold-dark);}
-.btn-outline{background:transparent;border:1px solid var(--cream);color:var(--cream);position:relative;overflow:hidden;}
+.btn-outline{background:#1F1F1F;border:1px solid var(--cream);color:var(--cream);position:relative;overflow:hidden;}
 .btn-dark{background:var(--olive);color:var(--cream);}
 .btn-dark:hover{background:var(--olive-dark);}
 
