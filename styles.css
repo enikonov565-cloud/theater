@@ -810,13 +810,13 @@ p{margin:0;}
 /* По референсу Tactile Button — тёмно-серая подложка под кнопкой (тот же
    приём, что и у «Написать отзыв», но цвет подложки — тёмно-серый).
    Общий враппер для всех кнопок бронирования (выбор мест / оплата / печать). */
-.checkout-btn-wrap{position:relative;display:inline-block;padding-bottom:6px;}
+.checkout-btn-wrap{position:relative;display:inline-block;padding-bottom:3px;}
 .checkout-btn-base{
-  position:absolute;inset:0;transform:translateY(6px);
+  position:absolute;inset:0;transform:translateY(3px);
   border-radius:20px;background:#3A3A3A;box-sizing:border-box;pointer-events:none;
 }
 .checkout-btn-wrap .btn{position:relative;transition:filter .15s ease,transform .18s cubic-bezier(.34,1.56,.64,1);}
-.checkout-btn-wrap .btn:active{transform:translateY(6px);transition:transform .05s ease-out;}
+.checkout-btn-wrap .btn:active{transform:translateY(3px);transition:transform .05s ease-out;}
 
 .playbill-notice{font-size:14px;line-height:1.7;color:var(--ink-soft);text-align:right;max-width:1600px;margin:-90px auto 40px;}
 
