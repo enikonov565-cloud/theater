@@ -551,13 +551,22 @@ p{margin:0;}
 .reviews-social .label{font-family:'Inter';font-weight:500;font-size:24px;line-height:1.15;letter-spacing:-.24px;color:#fff;text-transform:uppercase;white-space:nowrap;}
 .reviews-social .icons{display:flex;align-items:center;gap:20px;}
 .reviews-social .icons img{display:block;height:40px;width:auto;}
+/* По референсу Tactile Button — белая «подложка» под кнопкой, кнопка
+   при клике проседает вниз к ней (pointerdown/up), пружинка — CSS transition. */
+.review-open-wrap{position:relative;display:inline-flex;padding-bottom:6px;}
+.review-open-base{
+  position:absolute;inset:0;transform:translateY(6px);
+  border-radius:20px;background:#fff;box-sizing:border-box;pointer-events:none;
+}
 .review-open-btn{
   position:relative;
   font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:16px;
   background:#DE1010;color:#fff;border:none;border-radius:20px;
-  padding:11px 26px;cursor:pointer;transition:filter .15s ease;white-space:nowrap;
+  padding:11px 26px;cursor:pointer;white-space:nowrap;
+  transition:filter .15s ease,transform .18s cubic-bezier(.34,1.56,.64,1);
 }
 .review-open-btn:hover{filter:brightness(1.1);}
+.review-open-btn:active{transform:translateY(6px);transition:transform .05s ease-out;}
 
 /* ---------- Раздел «Вопросы и ответы» (аккордеон) после отзывов, перед футером ---------- */
 .faq-section{background:#F8C762;color:#1f1f1f;padding:96px 80px 100px;}
