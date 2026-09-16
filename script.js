@@ -796,7 +796,10 @@
         card.style.transform = 'translateX(' + repXForRel(rel) + 'px) translateX(-50%)';
         card.style.width = w + 'px';
         card.style.opacity = String(opacity);
-        card.style.zIndex = String(Math.round(1000 - ar * 100));
+        // ограничено 500, а не 1000 — чтобы центральная карточка никогда
+        // не сравнялась с z-index:1000 у фиксированной шапки сайта и не
+        // перекрывала её при движении карусели
+        card.style.zIndex = String(Math.round(500 - ar * 100));
         card.style.pointerEvents = 'none'; // autoplay:true → карточки некликабельны, как в референсе
         card.classList.toggle('current', isActive);
         var imageEl = card.querySelector('.rep-image');

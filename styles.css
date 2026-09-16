@@ -316,9 +316,12 @@ p{margin:0;}
 .rep-card:not(.current) .rep-title-row h3,
 .rep-card:not(.current) .rep-subtitle{color:#C2C1C1;}
 .rep-card:not(.current) .rep-image img{opacity:.5;}
-/* стрелки ручного листания карусели — по краям секции, поверх карточек */
+/* стрелки ручного листания карусели — по краям секции, поверх карточек.
+   z-index держим ниже 1000 (z-index шапки сайта) — .repertoire-section не
+   создаёт свой стековый контекст, так что z-index здесь конкурирует
+   напрямую с шапкой; иначе при скролле стрелка перекрывала бы её. */
 .rep-arrow{
-  position:absolute;top:551px;width:72px;height:72px;z-index:1100;cursor:pointer;
+  position:absolute;top:551px;width:72px;height:72px;z-index:600;cursor:pointer;
   opacity:.9;transition:opacity .15s ease, transform .15s ease;
   -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;
 }
