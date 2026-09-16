@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Театр кукол — викторина «Семейный день в&nbsp;музее»</title>
-<link rel="stylesheet" href="styles.css?v=218">
+<link rel="stylesheet" href="styles.css?v=225">
 </head>
 <body>
 
@@ -167,7 +167,7 @@
     <div class="quiz-footer">
       <div class="quiz-score-pill">Правильных ответов: — из 8</div>
       <div class="quiz-result-pill">Результат: —</div>
-      <button type="button" class="quiz-submit"><span>Получить пригласительный билет</span><span class="quiz-submit-icon"><span class="quiz-submit-badge" aria-hidden="true"></span><svg class="quiz-submit-arrow" aria-hidden="true" viewBox="0 0 59.2021 59.2021" fill="none"><path d="M13.288 29.2881L45.9163 29.5731M37.0004 38.0813L45.9163 29.5731L35.3139 21.5649" stroke="currentColor"/></svg></span></button>
+      <button type="button" class="quiz-submit"><span class="quiz-submit-fill" aria-hidden="true"></span><span class="quiz-submit-label">Получить пригласительный билет</span><span class="quiz-submit-icon"><span class="quiz-submit-badge" aria-hidden="true"></span><svg class="quiz-submit-arrow" aria-hidden="true" viewBox="0 0 59.2021 59.2021" fill="none"><path d="M13.288 29.2881L45.9163 29.5731M37.0004 38.0813L45.9163 29.5731L35.3139 21.5649" stroke="currentColor"/></svg></span></button>
     </div>
   </section>
 
@@ -178,7 +178,7 @@
     <form id="lead-form">
       <div class="lead-field lead-field-name"><img src="icons/lead-user.svg" alt=""><input type="text" placeholder="Имя:" required></div>
       <div class="lead-field lead-field-phone"><img class="flag" src="icons/lead-flag-ru.png" alt="RU"><span class="code">+7</span><span class="divider"></span><input type="tel" placeholder="Введите ваш телефон" required></div>
-      <button type="submit" class="lead-submit"><span>Получить пригласительный билет</span><span class="lead-submit-icon"><span class="lead-submit-badge" aria-hidden="true"></span><svg class="lead-submit-arrow" aria-hidden="true" viewBox="0 0 59.2021 59.2021" fill="none"><path d="M13.288 29.2881L45.9163 29.5731M37.0004 38.0813L45.9163 29.5731L35.3139 21.5649" stroke="currentColor"/></svg></span></button>
+      <button type="submit" class="lead-submit"><span class="lead-submit-fill" aria-hidden="true"></span><span class="lead-submit-label">Получить пригласительный билет</span><span class="lead-submit-icon"><span class="lead-submit-badge" aria-hidden="true"></span><svg class="lead-submit-arrow" aria-hidden="true" viewBox="0 0 59.2021 59.2021" fill="none"><path d="M13.288 29.2881L45.9163 29.5731M37.0004 38.0813L45.9163 29.5731L35.3139 21.5649" stroke="currentColor"/></svg></span></button>
     </form>
     <p class="lead-legal">Обработка персональных данных осуществляется в&nbsp;соответствии с&nbsp;<a href="#">Политикой конфиденциальности</a> Театра Кукол</p>
 
@@ -191,7 +191,19 @@
         <img class="lp-c" src="frames/Screenshot_19.png" alt="Пригласительный билет">
       </div>
       <img class="lead-photos-mobile" src="frames/пригласительные.png" alt="Пригласительные билеты">
-      <a href="#quiz-start" class="lead-card-hint"><span class="hint-icon"><img src="icons/lead-hint-person.svg" alt=""></span><p>Ответь на&nbsp;все вопросы, чтобы получить подарки</p></a>
+      <a href="#quiz-start" class="lead-card-hint">
+        <span class="hint-badge" aria-hidden="true"></span>
+        <svg class="hint-glyph" aria-hidden="true" viewBox="0 0 64 64" fill="none">
+          <g stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M26 34V20a3 3 0 0 1 6 0v10"/>
+            <path d="M32 30v-3a3 3 0 0 1 6 0v5"/>
+            <path d="M38 32v-1a3 3 0 0 1 6 0v6c0 6.5-4.5 13-12 13h-2.5c-4.5 0-7-1.8-9.5-5.8l-3.6-5.8c-1-1.7-.5-3.6 1.1-4.5 1.5-.9 3.3-.4 4.3 1.1l2.7 4"/>
+          </g>
+          <path d="M44 18c2.2 2.3 3.3 5 3.3 8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M48.5 14c3.3 3.3 5 7.6 5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>Ответь на&nbsp;все вопросы, чтобы получить подарки</p>
+      </a>
     </div>
   </section>
 
@@ -226,6 +238,6 @@
 
 </div>
 
-<script src="script.js?v=101"></script>
+<script src="script.js?v=108"></script>
 </body>
 </html>
