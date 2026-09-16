@@ -438,10 +438,16 @@ p{margin:0;}
   background:var(--gold);color:#1f1f1f;
   font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
   text-transform:uppercase;letter-spacing:0;text-align:center;
-  transition:filter .15s ease, transform .15s ease;
+  border:2px dashed currentColor;box-shadow:0 0 0 var(--red);
+  transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s cubic-bezier(.34,1.56,.64,1);
 }
-.btn-repertoire:hover{filter:brightness(1.05);}
-.btn-repertoire:active{transform:scale(.98);}
+/* «отрывной билет»: пунктирная рамка + уход кнопки по диагонали на hover/active,
+   из-под неё выступает плашка-тень — эффект из референса Dotted Offset Button */
+.btn-repertoire:hover,.btn-repertoire:focus-visible,.btn-repertoire:active{
+  transform:translate(-9px,-9px);
+  box-shadow:9px 9px 0 var(--red);
+}
+.btn-repertoire:active{transform:translate(-9px,-9px) scale(.97);}
 
 /* единая кнопка «ближайшее представление» — W400 H78 радиус20, Montserrat 18/1.15 капс */
 .btn-nearest{
