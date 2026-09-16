@@ -553,9 +553,9 @@ p{margin:0;}
 .reviews-social .icons img{display:block;height:40px;width:auto;}
 /* По референсу Tactile Button — белая «подложка» под кнопкой, кнопка
    при клике проседает вниз к ней (pointerdown/up), пружинка — CSS transition. */
-.review-open-wrap{position:relative;display:inline-flex;padding-bottom:6px;}
+.review-open-wrap{position:relative;display:inline-flex;padding-bottom:3px;}
 .review-open-base{
-  position:absolute;inset:0;transform:translateY(6px);
+  position:absolute;inset:0;transform:translateY(3px);
   border-radius:20px;background:#fff;box-sizing:border-box;pointer-events:none;
 }
 .review-open-btn{
@@ -566,7 +566,7 @@ p{margin:0;}
   transition:filter .15s ease,transform .18s cubic-bezier(.34,1.56,.64,1);
 }
 .review-open-btn:hover{filter:brightness(1.1);}
-.review-open-btn:active{transform:translateY(6px);transition:transform .05s ease-out;}
+.review-open-btn:active{transform:translateY(3px);transition:transform .05s ease-out;}
 
 /* ---------- Раздел «Вопросы и ответы» (аккордеон) после отзывов, перед футером ---------- */
 .faq-section{background:#F8C762;color:#1f1f1f;padding:96px 80px 100px;}
