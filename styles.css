@@ -83,9 +83,28 @@ p{margin:0;}
 .btn-red:hover{background:var(--red-dark);}
 .btn-gold{background:var(--gold);color:var(--ink);}
 .btn-gold:hover{background:var(--gold-dark);}
-.btn-outline{background:transparent;border:1px solid var(--cream);color:var(--cream);}
+.btn-outline{background:transparent;border:1px solid var(--cream);color:var(--cream);position:relative;overflow:hidden;}
 .btn-dark{background:var(--olive);color:var(--cream);}
 .btn-dark:hover{background:var(--olive-dark);}
+
+/* Radial Reveal — круговая заливка, расходящаяся от точки входа курсора,
+   на кнопках «ближайшее представление» и «купить билет(ы)» (JS в
+   applyRadialReveal оборачивает исходный текст в .radial-face и добавляет
+   поверх .radial-overlay с тем же текстом внутри clip-path круга).
+   Цвета — инверсия: «ближайшее представление» чёрно-белая → бело-чёрная,
+   «купить билет» красно-белая → бело-красная. */
+.radial-face{position:relative;display:inline-flex;align-items:center;justify-content:center;}
+.radial-overlay{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;border-radius:inherit;
+  clip-path:circle(0% at 50% 50%);-webkit-clip-path:circle(0% at 50% 50%);
+  transition:clip-path .45s ease-in-out,-webkit-clip-path .45s ease-in-out;
+}
+.btn-outline .radial-overlay,.btn-nearest .radial-overlay{background:#fff;color:#1f1f1f;}
+.site-header .header-actions .btn-red .radial-overlay,
+.btn-buy-ticket .radial-overlay,
+.rep-btn-buy .radial-overlay{background:#fff;color:var(--red);}
+.site-header .header-actions .btn-red{position:relative;overflow:hidden;}
 
 /* =====================================================
    ХЕДЕР — единый на всех страницах, зафиксирован сверху
@@ -311,7 +330,7 @@ p{margin:0;}
 .rep-btn-buy{
   position:absolute;left:50%;top:927px;transform:translateX(-50%);margin:0;
   width:400px;height:78px;border-radius:20px;background:#DE1010;color:#fff;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;align-items:center;justify-content:center;overflow:hidden;
   font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
   text-transform:uppercase;letter-spacing:0;z-index:20;
 }
@@ -321,7 +340,7 @@ p{margin:0;}
 .btn-buy-ticket{
   display:inline-flex;flex:none;align-items:center;justify-content:center;
   width:400px;height:78px;border-radius:20px;
-  background:#DE1010;color:#fff;
+  background:#DE1010;color:#fff;position:relative;overflow:hidden;
   font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
   text-transform:uppercase;letter-spacing:0;text-align:center;
   transition:filter .15s ease, transform .15s ease;
@@ -457,6 +476,7 @@ p{margin:0;}
   display:inline-flex;flex:none;align-items:center;justify-content:center;
   width:400px;height:78px;border-radius:20px;
   background:transparent;border:1px solid var(--cream);color:var(--cream);
+  position:relative;overflow:hidden;
   font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
   text-transform:uppercase;letter-spacing:0;text-align:center;
   transition:filter .15s ease, transform .15s ease;

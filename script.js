@@ -260,6 +260,63 @@
   wireUnderlineNav('.menu-panel a', closeAllMenus);
   wireUnderlineNav('.footer-nav a');
 
+  /* ---------- Radial Reveal: круговая заливка от курсора — кнопки
+     «ближайшее представление» и «купить билет(ы)» везде на сайте.
+     applyRadialReveal вызывается один раз для всей страницы (статичная
+     разметка хедера/футера/репертуара) и повторно для карточек секции
+     «Ближайшие представления» — та рендерится через JS (renderBliz) и
+     перерисовывается заново при каждом клике по стрелкам, так что без
+     повторного вызова новые кнопки оставались бы без эффекта. */
+  var RADIAL_SELECTOR =
+    '.site-header .header-actions .btn-outline, .btn-nearest,' +
+    '.site-header .header-actions .btn-red, .btn-buy-ticket, .rep-btn-buy';
+  function applyRadialReveal(root){
+    var targets = (root || document).querySelectorAll(RADIAL_SELECTOR);
+    targets.forEach(function(btn){
+      if (btn.dataset.radialDone) return;
+      btn.dataset.radialDone = '1';
+      var face = document.createElement('span');
+      face.className = 'radial-face';
+      while (btn.firstChild) face.appendChild(btn.firstChild);
+      var overlay = document.createElement('span');
+      overlay.className = 'radial-overlay';
+      overlay.setAttribute('aria-hidden', 'true');
+      overlay.innerHTML = face.innerHTML;
+      btn.appendChild(face);
+      btn.appendChild(overlay);
+
+      var originX = 50, originY = 50;
+      function setClip(radius){
+        var v = 'circle(' + radius + '% at ' + originX + '% ' + originY + '%)';
+        overlay.style.clipPath = v;
+        overlay.style.webkitClipPath = v;
+      }
+      // радиус, при котором круг из точки входа курсора гарантированно
+      // накрывает самый дальний угол кнопки (та же формула, что в референсе)
+      function anchorAndGrow(e){
+        var r = btn.getBoundingClientRect();
+        if (!r.width || !r.height) return;
+        var px = e.clientX - r.left, py = e.clientY - r.top;
+        var unit = Math.hypot(r.width, r.height) / Math.SQRT2;
+        var far = Math.max(
+          Math.hypot(px, py), Math.hypot(r.width - px, py),
+          Math.hypot(px, r.height - py), Math.hypot(r.width - px, r.height - py)
+        );
+        originX = (px / r.width) * 100;
+        originY = (py / r.height) * 100;
+        var maxR = (far / unit) * 100 + 2;
+        overlay.style.transition = 'none';
+        setClip(0);
+        void overlay.offsetWidth; // форсируем reflow перед новой анимацией
+        overlay.style.transition = '';
+        setClip(maxR);
+      }
+      btn.addEventListener('pointerenter', anchorAndGrow);
+      btn.addEventListener('pointerleave', function(){ setClip(0); });
+    });
+  }
+  applyRadialReveal();
+
   /* ---------- Аккордеон «Вопросы и ответы» на главной ---------- */
   var faqAcc = document.querySelector('[data-faq-acc]');
   if (faqAcc){
@@ -502,6 +559,7 @@
         html += '<div class="show-card"><div class="thumb"><img class="cover-img" src="' + s.img + '" alt="' + s.title + '"></div><h3 class="' + s.font + '">' + s.title + '</h3><p class="dates">' + s.dates + '</p><a href="афиша.html" class="btn-buy-ticket">купить билет</a></div>';
       }
       blizTrack.innerHTML = html;
+      applyRadialReveal(blizTrack);
     }
     blizSection.querySelector('.arrow-left').addEventListener('click', function(){ blizIndex = (blizIndex - 1 + blizShows.length) % blizShows.length; renderBliz(); });
     blizSection.querySelector('.arrow-right').addEventListener('click', function(){ blizIndex = (blizIndex + 1) % blizShows.length; renderBliz(); });
