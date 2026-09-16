@@ -615,7 +615,7 @@ p{margin:0;}
 .faq-acc-a-inner p{margin:0;}
 .faq-acc-a-inner p + p,.faq-acc-a-inner ul + h3,.faq-acc-a-inner p + h3{margin-top:16px;}
 .faq-section .faq-cta{text-align:center;margin-top:56px;}
-.faq-section .faq-cta .btn-repertoire{background:#1B2900;color:#fff;}
+.faq-section .faq-cta .btn-repertoire{background:var(--gold);color:#1f1f1f;border-color:var(--green);}
 
 /* ---------- Модалка «Оставить отзыв» ---------- */
 .review-modal-overlay{
@@ -1085,7 +1085,7 @@ p{margin:0;}
   .faq-acc-a-inner h3{font-size:16px;margin:18px 0 10px;}
   .faq-acc-a-inner ul{gap:10px;padding-left:22px;}
   .faq-section .faq-cta{margin-top:36px;}
-  .faq-section .faq-cta .btn-repertoire{width:100%;max-width:346px;height:80px;background:#1B2900;color:#fff;}
+  .faq-section .faq-cta .btn-repertoire{width:100%;max-width:346px;height:80px;background:var(--gold);color:#1f1f1f;border-color:var(--green);}
 
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
      просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
