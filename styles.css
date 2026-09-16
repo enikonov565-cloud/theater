@@ -558,26 +558,6 @@ p{margin:0;}
   padding:11px 26px;cursor:pointer;transition:filter .15s ease;white-space:nowrap;
 }
 .review-open-btn:hover{filter:brightness(1.1);}
-/* По референсу Starfield Button — бегущая белая полоса по контуру кнопки
-   (только «световой бегунок», без звёздного пиксельного фона и подсветки
-   из референса). Кольцо получено маской «content-box исключить border-box»
-   (как BAND_MASK в референсе), по нему бежит конус-градиент с белой
-   кометой-хвостом, вращение — бесконечная CSS-анимация, идёт постоянно,
-   не только при наведении. */
-.review-open-btn::before{
-  content:'';position:absolute;inset:-3px;border-radius:23px;padding:3px;
-  box-sizing:border-box;pointer-events:none;
-  background:conic-gradient(from 0deg,
-    #fff 0deg, rgba(255,255,255,.6) 16deg, rgba(255,255,255,0) 46deg, rgba(255,255,255,0) 360deg);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask-composite:exclude;
-  animation:review-btn-chase 2.6s linear infinite;
-}
-@keyframes review-btn-chase{ to{ transform:rotate(360deg); } }
-@media (prefers-reduced-motion: reduce){
-  .review-open-btn::before{animation:none;}
-}
 
 /* ---------- Раздел «Вопросы и ответы» (аккордеон) после отзывов, перед футером ---------- */
 .faq-section{background:#F8C762;color:#1f1f1f;padding:96px 80px 100px;}
