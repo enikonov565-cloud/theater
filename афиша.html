@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Театр кукол — афиша и&nbsp;бронирование билетов</title>
-<link rel="stylesheet" href="styles.css?v=205">
+<link rel="stylesheet" href="styles.css?v=207">
 </head>
 <body>
 
@@ -53,7 +53,10 @@
         <span>1700</span><span>1500</span><span>1300</span><span>1100</span>
       </div>
       <div class="seat-checkout">
-        <button class="btn btn-red" id="to-order-step" data-goto="order">оформить заказ (<span data-seat-count>0</span> мест)</button>
+        <span class="checkout-btn-wrap">
+          <span class="checkout-btn-base" aria-hidden="true"></span>
+          <button class="btn btn-red" id="to-order-step" data-goto="order">оформить заказ (<span data-seat-count>0</span> мест)</button>
+        </span>
       </div>
     </div>
   </section>
@@ -115,7 +118,10 @@
     <div class="placeholder-panel">
       <p style="font-size:22px;color:var(--ink);margin-bottom:14px;">Переход на&nbsp;защищённую страницу оплаты ВТБ (ПАО)</p>
       <p>Здесь будет встроена форма банковского эквайринга.</p>
-      <button class="btn btn-red" style="margin-top:30px;" data-goto="print">оплатить (демо)</button>
+      <span class="checkout-btn-wrap" style="margin-top:30px;">
+        <span class="checkout-btn-base" aria-hidden="true"></span>
+        <button class="btn btn-red" data-goto="print">оплатить (демо)</button>
+      </span>
     </div>
   </section>
 
@@ -124,13 +130,16 @@
     <div class="placeholder-panel">
       <p style="font-size:22px;color:var(--ink);margin-bottom:14px;">Оплата прошла успешно</p>
       <p>Билеты отправлены на&nbsp;указанный E-mail. Вы можете распечатать их или&nbsp;показать QR-код на&nbsp;входе.</p>
-      <a href="index.html" class="btn btn-gold" style="margin-top:30px;">на&nbsp;главную</a>
+      <span class="checkout-btn-wrap" style="margin-top:30px;">
+        <span class="checkout-btn-base" aria-hidden="true"></span>
+        <a href="index.html" class="btn btn-gold">на&nbsp;главную</a>
+      </span>
     </div>
   </section>
 
 </div>
 
-<script src="script.js?v=93"></script>
+<script src="script.js?v=95"></script>
 <script>
   var shows = Array.from(document.querySelectorAll('[data-show]')).map(function(btn){
     return {show: btn.dataset.show, age: btn.dataset.age, dt: btn.dataset.dt};
