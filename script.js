@@ -575,7 +575,6 @@
         var r = reviews[(reviewIndex + i) % reviews.length];
         var isMid = (i === 1);
         var midClass = isMid ? ' mid' : '';
-        var ctaIcon = isMid ? 'icons/review-link-gold.svg' : 'icons/review-link-red.svg';
         html +=
           '<div class="review-card' + midClass + '">' +
             '<div class="photo"><img class="cover-img" src="' + r.photo + '" alt="' + r.photoAlt + '"></div>' +
@@ -587,7 +586,10 @@
               '<div class="stars">' + r.stars + '</div>' +
               '<p class="text">' + r.text + '</p>' +
             '</div>' +
-            '<a class="cta" href="' + r.ctaHref + '"><span class="label">' + r.ctaLabel + '</span><img src="' + ctaIcon + '" alt=""></a>' +
+            '<a class="cta" href="' + r.ctaHref + '"><span class="label">' + r.ctaLabel + '</span>' +
+              '<span class="cta-badge" aria-hidden="true"></span>' +
+              '<svg class="cta-arrow" aria-hidden="true" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+            '</a>' +
           '</div>';
       }
       reviewsTrack.innerHTML = html;
