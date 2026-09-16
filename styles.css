@@ -22,6 +22,7 @@
   --gold-dark: #E8B04A;
   --red:       #E5352B;   /* кнопки "купить билет", акцент 404 */
   --red-dark:  #C42920;
+  --green:     #1B2900;   /* фирменный тёмно-зелёный — репертуар, отзывы, FAQ, футер */
   --dark:      #1B1B16;   /* фон 404, занавес, тёмный хедер */
   --olive:     #2E3413;   /* фон секций "ближайшие представления", "отзывы", FAQ */
   --olive-dark:#1E2310;
@@ -438,14 +439,15 @@ p{margin:0;}
   background:var(--gold);color:#1f1f1f;
   font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:18px;line-height:1.15;
   text-transform:uppercase;letter-spacing:0;text-align:center;
-  border:2px dashed currentColor;box-shadow:0 0 0 var(--red);
+  border:2px dashed currentColor;box-shadow:0 0 0 var(--green);
   transition:transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s cubic-bezier(.34,1.56,.64,1);
 }
 /* «отрывной билет»: пунктирная рамка + уход кнопки по диагонали на hover/active,
-   из-под неё выступает плашка-тень — эффект из референса Dotted Offset Button */
+   из-под неё выступает плашка-тень фирменного зелёного — эффект из референса
+   Dotted Offset Button */
 .btn-repertoire:hover,.btn-repertoire:focus-visible,.btn-repertoire:active{
   transform:translate(-9px,-9px);
-  box-shadow:9px 9px 0 var(--red);
+  box-shadow:9px 9px 0 var(--green);
 }
 .btn-repertoire:active{transform:translate(-9px,-9px) scale(.97);}
 
