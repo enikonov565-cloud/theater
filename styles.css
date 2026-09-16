@@ -673,8 +673,6 @@ p{margin:0;}
 .promo-program ul{display:flex;flex-direction:column;gap:49px;margin:0;padding:0;list-style:none;}
 .promo-program li{display:flex;gap:9px;align-items:flex-start;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;}
 .promo-program li img{width:24px;height:24px;flex:none;margin-top:0;}
-.promo-quiz-lead{position:absolute;left:1030px;top:80px;font-family:'Inter';font-size:24px;line-height:1.15;letter-spacing:-.24px;margin:0;}
-.promo-quiz-title{position:absolute;left:1516px;top:80px;font-family:'Inter';font-weight:700;font-size:40px;line-height:1.22;white-space:nowrap;margin:0;}
 .promo-quiz-question{position:absolute;left:1500px;top:490px;width:340px;font-family:'Inter';font-size:19px;line-height:1.15;letter-spacing:-.24px;white-space:nowrap;margin:0;}
 .promo-hint{
   position:absolute;left:1500px;bottom:80px;
@@ -1073,7 +1071,6 @@ p{margin:0;}
   .promo-program .list-title{font-size:20px;}
   .promo-program li{font-size:16px;}
   .promo-program ul{gap:14px;}
-  .promo-quiz-lead{position:static;font-size:18px;order:5;}
   /* карточки-приглашения — уменьшенная копия того же «веера» карточек,
      что и на десктопе (те же пропорции и повороты, просто в масштабе) */
   .promo-photos{
@@ -1084,7 +1081,6 @@ p{margin:0;}
   .promo-photos .ph-a{left:35px;top:0;width:180px;height:119px;transform:rotate(-5.59deg);}
   .promo-photos .ph-b{left:100px;top:58px;width:180px;height:119px;transform:rotate(17.11deg);}
   .promo-photos .ph-c{left:0;top:90px;width:180px;height:119px;transform:rotate(-11.49deg);}
-  .promo-quiz-title{position:static;font-size:26px;white-space:normal;order:7;}
   .promo-quiz-question{position:static;width:100%;font-size:18px;white-space:normal;order:8;}
   .quiz-question-br{display:none;}
   .promo-hint{position:relative;left:auto;bottom:auto;width:100%;box-sizing:border-box;order:9;}
