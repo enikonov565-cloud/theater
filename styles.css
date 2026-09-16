@@ -615,7 +615,7 @@ p{margin:0;}
 .faq-acc-a-inner p{margin:0;}
 .faq-acc-a-inner p + p,.faq-acc-a-inner ul + h3,.faq-acc-a-inner p + h3{margin-top:16px;}
 .faq-section .faq-cta{text-align:center;margin-top:56px;}
-.faq-section .faq-cta .btn-repertoire{background:var(--gold);color:#1f1f1f;border-color:var(--green);}
+.faq-section .faq-cta .btn-repertoire{background:#E9B657;color:#1f1f1f;border-color:var(--green);}
 
 /* ---------- Модалка «Оставить отзыв» ---------- */
 .review-modal-overlay{
@@ -694,11 +694,30 @@ p{margin:0;}
   border:1px solid rgba(125,125,125,.7);
   border-radius:10px;
   background:none;color:inherit;text-align:left;text-decoration:none;cursor:pointer;
-  transition:background .15s ease;
+  overflow:hidden;
 }
-.promo-hint:hover{background:rgba(31,31,31,.06);}
-.promo-hint img{width:64px;height:64px;flex:none;}
-.promo-hint p{font-family:'Montserrat',var(--font-sans);font-size:16px;line-height:1.15;width:215px;margin:0;letter-spacing:.32px;}
+.promo-hint p{
+  font-family:'Montserrat',var(--font-sans);font-size:16px;line-height:1.15;
+  width:215px;margin:0 0 0 84px;letter-spacing:.32px;
+  position:relative;z-index:2;color:#1f1f1f;transition:color .35s ease;
+}
+/* По референсу Arrow Reveal Button (как у «Узнать подробнее о спектакле») —
+   кружок с иконкой на hover разрастается и закрашивает всю подсказку
+   акцентным цветом; текст остаётся поверх и меняет цвет для контраста. */
+.hint-badge{
+  position:absolute;left:10px;top:50%;width:64px;height:64px;border-radius:50%;
+  transform:translateY(-50%) scale(1);transform-origin:center;z-index:1;
+  background:#fff;box-shadow:inset 0 0 0 1px rgba(31,31,31,.1);
+  transition:transform .5s cubic-bezier(.44,0,.56,1),background-color .35s ease;
+}
+.hint-glyph{
+  position:absolute;left:10px;top:50%;width:64px;height:64px;z-index:2;
+  transform:translateY(-50%);color:#1f1f1f;pointer-events:none;
+  transition:color .35s ease;
+}
+.promo-hint:hover .hint-badge{transform:translateY(-50%) scale(9);background:var(--orange);}
+.promo-hint:hover .hint-glyph{color:#fff;}
+.promo-hint:hover p{color:#fff;}
 
 .promo-photos{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;}
 .promo-photos .ph{position:absolute;border-radius:13.778px;border:5px solid #fff;box-shadow:0 12px 30px rgba(0,0,0,.25);object-fit:cover;}
@@ -1037,7 +1056,7 @@ p{margin:0;}
   .promo-quiz-title{position:static;font-size:26px;white-space:normal;order:7;}
   .promo-quiz-question{position:static;width:100%;font-size:18px;white-space:normal;order:8;}
   .quiz-question-br{display:none;}
-  .promo-hint{position:static;width:100%;box-sizing:border-box;order:9;}
+  .promo-hint{position:relative;left:auto;bottom:auto;width:100%;box-sizing:border-box;order:9;}
   .promo-hint p{width:auto;flex:1;}
 
   /* ---------- «Ближайшие представления» / «Отзывы» (карусели) ---------- */
@@ -1085,7 +1104,7 @@ p{margin:0;}
   .faq-acc-a-inner h3{font-size:16px;margin:18px 0 10px;}
   .faq-acc-a-inner ul{gap:10px;padding-left:22px;}
   .faq-section .faq-cta{margin-top:36px;}
-  .faq-section .faq-cta .btn-repertoire{width:100%;max-width:346px;height:80px;background:var(--gold);color:#1f1f1f;border-color:var(--green);}
+  .faq-section .faq-cta .btn-repertoire{width:100%;max-width:346px;height:80px;background:#E9B657;color:#1f1f1f;border-color:var(--green);}
 
   /* ---------- Репертуар (та же coverflow-анимация, что на десктопе,
      просто в масштабе мобильного экрана — константы REP_* в script.js) ---------- */
