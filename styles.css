@@ -682,9 +682,10 @@ p{margin:0;}
   border:none;cursor:pointer;transition:filter .15s ease;margin-top:6px;
 }
 .review-modal button[type="submit"]:hover{filter:brightness(1.08);}
-.review-modal .thanks{display:none;text-align:center;padding:16px 0;}
+.review-modal .thanks{display:none;text-align:center;padding:16px 0;position:relative;}
 .review-modal .thanks.show{display:block;}
-.review-modal .thanks .big{font-size:48px;margin-bottom:16px;}
+.review-modal .thanks-puppet{display:block;position:absolute;top:-8px;right:0;width:92px;height:auto;pointer-events:none;}
+.review-modal .thanks h3{margin-top:86px;}
 .review-modal-form.hide{display:none;}
 
 /* точные координаты из Figma (node 1308:336, «СКАЗКА 2»), канва 1920×667 — проверено по metadata и 1:1 скриншоту */
