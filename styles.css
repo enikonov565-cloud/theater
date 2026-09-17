@@ -684,13 +684,13 @@ p{margin:0;}
 .review-modal button[type="submit"]:hover{filter:brightness(1.08);}
 .review-modal .thanks{display:none;text-align:center;padding:16px 230px 16px 16px;}
 .review-modal .thanks.show{display:block;}
-/* Картинка прижата к правому НИЖНЕМУ краю карточки, высота — по
-   пропорциям (height:auto), без object-fit/растягивания в фикс-бокс —
-   иначе при несовпадении пропорций box'а и картинки снизу оставалась
-   пустая белая полоса. Позиционируется относительно .review-modal
-   (а не .thanks), крупная — главный визуальный акцент окна. */
+/* Картинка — на всю высоту карточки (top:0 + height:100%), ширина
+   auto — браузер сам считает её из пропорций картинки под заданную
+   высоту, поэтому она ровно совпадает с высотой карточки без пустых
+   полос (сверху/снизу) и без обрезки object-fit'ом (нос/руки целы).
+   Позиционируется относительно .review-modal (а не .thanks). */
 .review-modal .thanks-puppet{
-  display:block;position:absolute;right:0;bottom:0;width:230px;height:auto;
+  display:block;position:absolute;top:0;right:0;height:100%;width:auto;
   pointer-events:none;
 }
 .review-modal-form.hide{display:none;}
@@ -1390,8 +1390,12 @@ p{margin:0;}
 
   /* ---------- Модалка «Оставить отзыв» ---------- */
   .review-modal{padding:36px 24px;}
-  .review-modal .thanks{padding:8px 130px 0 0;}
+  .review-modal .thanks{padding:8px 165px 0 0;}
   .review-modal .thanks h3{font-size:24px;}
   .review-modal .thanks p.sub{font-size:13px;line-height:1.3;}
-  .review-modal .thanks-puppet{width:160px;}
+  /* на мобильной ширина картинки капается — иначе высота карточки
+     (от текста) и ширина картинки (от высоты) раскручивают друг друга
+     по кругу и рука наезжает на текст; max-width + contain останавливают
+     рост, не обрезая куклу */
+  .review-modal .thanks-puppet{max-width:150px;object-fit:contain;}
 }
