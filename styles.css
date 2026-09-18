@@ -1418,11 +1418,12 @@ p{margin:0;}
 .btn-buy-ticket,.rep-btn-buy{background:#fff;color:#DE1010;border:3px solid #DE1010;}
 .btn-buy-ticket{height:68px;}
 .btn-buy-ticket:hover{border-color:#DE1010;}
-.btn-buy-ticket .radial-overlay,.rep-btn-buy .radial-overlay{color:#DE1010;}
+/* кнопка теперь белая с красным текстом — заливка при наведении инвертируется в красную с белым текстом */
+.btn-buy-ticket .radial-overlay,.rep-btn-buy .radial-overlay{background:#DE1010;color:#fff;}
 /* футер остаётся как был */
 .footer-actions .btn-buy-ticket{color:#fff;border:1px solid transparent;}
 .footer-actions .btn-buy-ticket:hover{border-color:var(--red);}
-.footer-actions .btn-buy-ticket .radial-overlay{color:var(--red);}
+.footer-actions .btn-buy-ticket .radial-overlay{background:#fff;color:var(--red);}
 
 @media (min-width: 768px){
   .rep-btn-buy{top:932px;height:68px;}
