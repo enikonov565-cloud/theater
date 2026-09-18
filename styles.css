@@ -1518,3 +1518,9 @@ p{margin:0;}
   }
   .spektakle-content .age[class]{text-align:left;}
 }
+
+/* Описание спектакля: ширина ровно по надписи «О СПЕКТАКЛЕ:» (461px, центр общий),
+   выровнено по обоим краям */
+@media (min-width: 768px){
+  .spektakle-content .desc{left:224.4px;width:461.2px;text-align:justify;text-align-last:center;hyphens:manual;-webkit-hyphens:manual;}
+}
