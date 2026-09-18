@@ -1401,3 +1401,55 @@ p{margin:0;}
      рост, не обрезая куклу */
   .review-modal .thanks-puppet{max-width:150px;object-fit:contain;}
 }
+
+/* =====================================================
+   Кнопки сайта (кроме шапки и футера): уже на 5px сверху и снизу
+   (высота −10px). У абсолютно позиционированных top сдвинут на +5px —
+   визуально кнопка остаётся на месте, сжимаясь к центру.
+   «Купить билет»: белая кнопка, красный текст и обводка 3px
+   (hover — Radial Reveal без изменений).
+   ===================================================== */
+.btn{height:54px;}
+.btn-repertoire{height:68px;}
+.review-open-btn{padding:6px 26px;}
+.review-card .cta{height:46.324px;}
+.review-modal button[type="submit"]{height:48px;}
+
+.btn-buy-ticket,.rep-btn-buy{background:#fff;color:#DE1010;border:3px solid #DE1010;}
+.btn-buy-ticket{height:68px;}
+.btn-buy-ticket:hover{border-color:#DE1010;}
+.btn-buy-ticket .radial-overlay,.rep-btn-buy .radial-overlay{color:#DE1010;}
+/* футер остаётся как был */
+.footer-actions .btn-buy-ticket{color:#fff;border:1px solid transparent;}
+.footer-actions .btn-buy-ticket:hover{border-color:var(--red);}
+.footer-actions .btn-buy-ticket .radial-overlay{color:var(--red);}
+
+@media (min-width: 768px){
+  .rep-btn-buy{top:932px;height:68px;}
+  .about-text .btn-repertoire{top:606px;}
+  .why-btn{top:870px;}
+  .curtain-page .btn-repertoire{height:83px;}
+  .btn-aibolit{top:432px;}
+  .btn-kolobok,.btn-koshkin,.btn-gusi{top:446px;}
+  .review-card .cta{top:641px;}
+  .quiz-submit{height:61px;}
+  .lead-submit{height:64px;top:786px;}
+}
+
+@media (max-width: 767px){
+  .rep-btn-buy{height:70px;}
+  .faq-section .faq-cta .btn-repertoire{height:70px;}
+  .about-btn-mobile.btn-repertoire{height:70px;}
+  .curtain-page .btn-repertoire{height:70px;}
+  .spektakle-content .btn-buy-ticket,.btn-aibolit,.btn-kolobok,.btn-koshkin,.btn-gusi{height:70px;}
+  .playbill-row .btn,.playbill-row .btn-buy-ticket{height:34px;}
+  .quiz-submit{min-height:54px;padding:9px 20px;}
+  .lead-submit{min-height:64px;padding:9px 20px;}
+}
+
+/* Мобильный hero: позиции всех элементов заданы в % от макета 430×932.
+   Если окно шире телефона (сжатый десктоп, планшет), высота 100vh
+   растягивала фон и обрезала карточку с лебедями — держим пропорции макета. */
+@media (max-width: 767px) and (min-aspect-ratio: 1/2){
+  .play-hero:not(.play-hero--detail){height:auto;min-height:0;aspect-ratio:430/932;}
+}
