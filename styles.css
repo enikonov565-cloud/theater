@@ -1453,3 +1453,10 @@ p{margin:0;}
 @media (max-width: 767px) and (min-aspect-ratio: 1/2){
   .play-hero:not(.play-hero--detail){height:auto;min-height:0;aspect-ratio:430/932;}
 }
+
+/* Планшетная ширина (мобильная вёрстка, но окно широкое): тексты промо-блока по центру */
+@media (min-width: 600px) and (max-width: 767px){
+  .promo-date,.promo-program .list-title,.promo-quiz-question{text-align:center;}
+  .promo-program{align-items:center;}
+  .promo-program ul{align-items:flex-start;width:max-content;max-width:100%;}
+}
