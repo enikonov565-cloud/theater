@@ -789,7 +789,7 @@ p{margin:0;}
 .booking-panel.active{display:block;}
 .booking-panel[data-panel="seats"]{padding:0;}
 
-.seat-canvas{position:relative;width:1920px;max-width:100%;margin:0 auto;height:1747px;}
+.seat-canvas{position:relative;width:1920px;max-width:100%;margin:0 auto;height:1847px;}
 
 .show-nav{display:flex;align-items:center;justify-content:center;gap:40px;margin-bottom:48px;}
 .show-nav h2{font-family:var(--font-display);font-size:36px;}
@@ -832,6 +832,8 @@ p{margin:0;}
 .seat-legend span:nth-child(4){background:var(--seat-1100);}
 .seat-checkout{position:absolute;left:0;right:0;top:1707px;text-align:center;}
 .seat-checkout [data-seat-count]{margin-right:.35em;}
+.seat-total{margin-top:20px;font-family:'Montserrat',var(--font-sans);font-weight:500;font-size:22px;line-height:1.2;color:#1f1f1f;text-transform:uppercase;}
+.seat-total b{font-weight:700;font-size:30px;margin-left:.3em;}
 /* По референсу Tactile Button — тёмно-серая подложка под кнопкой (тот же
    приём, что и у «Написать отзыв», но цвет подложки — тёмно-серый).
    Общий враппер для всех кнопок бронирования (выбор мест / оплата / печать). */

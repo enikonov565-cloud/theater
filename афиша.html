@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Театр кукол — афиша и&nbsp;бронирование билетов</title>
-<link rel="stylesheet" href="styles.css?v=224">
+<link rel="stylesheet" href="styles.css?v=226">
 </head>
 <body>
 
@@ -57,6 +57,7 @@
           <span class="checkout-btn-base" aria-hidden="true"></span>
           <button class="btn btn-red" id="to-order-step" data-goto="order">оформить заказ (<span data-seat-count>0</span> мест)</button>
         </span>
+        <div class="seat-total">ИТОГО: <b data-seat-total>0 руб.</b></div>
       </div>
     </div>
   </section>
@@ -139,7 +140,7 @@
 
 </div>
 
-<script src="script.js?v=112"></script>
+<script src="script.js?v=113"></script>
 <script>
   var shows = Array.from(document.querySelectorAll('[data-show]')).map(function(btn){
     return {show: btn.dataset.show, age: btn.dataset.age, dt: btn.dataset.dt};

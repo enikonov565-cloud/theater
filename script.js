@@ -458,6 +458,7 @@
         rowsBox.appendChild(row);
       });
       if (totalBox) totalBox.textContent = formatPrice(total);
+      document.querySelectorAll('[data-seat-total]').forEach(function(el){ el.textContent = formatPrice(total); });
       document.querySelectorAll('[data-seat-count]').forEach(function(el){ el.textContent = selected.length; });
     }
 
