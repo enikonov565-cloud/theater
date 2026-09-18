@@ -1186,7 +1186,7 @@ p{margin:0;}
   .repertoire-section{height:auto;padding:56px 0 64px;}
   .rep-arrow{display:none;}   /* на мобильном листаем свайпом, стрелки не нужны */
   .repertoire-heading{position:static;transform:none;font-size:26px;text-align:center;padding:0 20px;margin-bottom:8px;white-space:normal;}
-  .rep-btn-buy{position:static;transform:none;width:346px;max-width:calc(100% - 40px);height:80px;margin:32px auto 0;}
+  .rep-btn-buy{position:relative;top:auto;left:auto;transform:none;width:346px;max-width:calc(100% - 40px);height:80px;margin:32px auto 0;}
   .repertoire-row{position:static;width:100%;height:auto;}
   .repertoire-row.rep-row-mobile{position:relative;height:420px;overflow:visible;}
   .rep-row-mobile .rep-image{border-radius:12px;}
@@ -1415,13 +1415,14 @@ p{margin:0;}
 .review-card .cta{height:46.324px;}
 .review-modal button[type="submit"]{height:48px;}
 
-.btn-buy-ticket,.rep-btn-buy{background:#fff;color:#DE1010;border:3px solid #DE1010;}
+/* обводка 3px — внутренняя тень, а не border: так заливка при наведении (.radial-overlay)
+   занимает ровно ту же область, что и кнопка, и совпадает с ней по скруглению и центру */
+.btn-buy-ticket,.rep-btn-buy{background:#fff;color:#DE1010;border:0;box-shadow:inset 0 0 0 3px #DE1010;}
 .btn-buy-ticket{height:68px;}
-.btn-buy-ticket:hover{border-color:#DE1010;}
 /* кнопка теперь белая с красным текстом — заливка при наведении инвертируется в красную с белым текстом */
 .btn-buy-ticket .radial-overlay,.rep-btn-buy .radial-overlay{background:#DE1010;color:#fff;}
 /* футер остаётся как был */
-.footer-actions .btn-buy-ticket{color:#fff;border:1px solid transparent;}
+.footer-actions .btn-buy-ticket{color:#fff;border:1px solid transparent;box-shadow:none;}
 .footer-actions .btn-buy-ticket:hover{border-color:var(--red);}
 .footer-actions .btn-buy-ticket .radial-overlay{background:#fff;color:var(--red);}
 
