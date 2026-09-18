@@ -1462,3 +1462,9 @@ p{margin:0;}
   .promo-program{align-items:center;}
   .promo-program ul{align-items:flex-start;width:max-content;max-width:100%;}
 }
+
+/* Планшетная ширина: подсказка «Ответь на все вопросы…» — короткая кнопка по центру */
+@media (min-width: 600px) and (max-width: 767px){
+  .promo-hint{width:auto;align-self:center;}
+  .promo-hint p{width:max-content;flex:none;}
+}
