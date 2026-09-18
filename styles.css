@@ -1090,9 +1090,9 @@ p{margin:0;}
   }
 
   .play-hero .hero-title-mobile{
-    display:flex;position:absolute;left:4.65%;top:12.45%;width:53.26%;height:25.54%;
+    display:flex;position:absolute;left:4.65%;top:12.45%;width:53.26%;height:auto;
     flex-direction:column;align-items:center;justify-content:center;gap:4px;
-    box-sizing:border-box;padding:24px 16px;border:1px solid #fff;border-radius:60px;
+    box-sizing:border-box;padding:3.2vw 4vw 5.2vw;border:1px solid #fff;border-radius:60px;
     background:linear-gradient(to bottom,rgba(52,60,41,.17) 0%,rgba(52,60,41,.85) 39.348%);
     overflow:hidden;
   }
@@ -1106,7 +1106,7 @@ p{margin:0;}
   }
   .hero-swan.mirror{transform:scaleX(-1);}
   .hero-title-mobile-text{
-    margin:0;font-size:28px;line-height:1.22;color:#fff;text-align:center;
+    margin:0;font-size:7.3vw;line-height:1.15;color:#fff;text-align:center;
     text-shadow:0px 4px 7px rgba(0,0,0,.25);white-space:nowrap;
   }
 
