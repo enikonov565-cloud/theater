@@ -506,31 +506,42 @@
     var submitBtn = document.querySelector('.quiz-submit');
     var scorePill = document.querySelector('.quiz-score-pill');
     var resultPill = document.querySelector('.quiz-result-pill');
-    submitBtn && submitBtn.addEventListener('click', function(){
-      var leadSection = document.getElementById('lead-section');
-      // пересчитываем результат при каждом нажатии — иначе счёт застревал
-      // на значении первого (возможно, ещё не полного) прохождения теста.
-      // первый клик — только проверяем ответы и показываем результат, не уводя
-      // пользователя со страницы: вопросы остаются на экране, чтобы можно было
-      // прокрутить обратно и посмотреть, где отмечено правильно/неправильно
-      var wasGraded = quiz.classList.contains('graded');
-      quiz.classList.add('graded');
+    // счёт обновляется сразу при выборе ответа — не дожидаясь кнопки
+    // «Получить пригласительный билет»
+    function updateScore(){
       var items = quiz.querySelectorAll('.quiz-item');
       var correct = 0;
       items.forEach(function(item){
         var checked = item.querySelector('input:checked');
         if (checked && checked.dataset.correct === '1') correct++;
-        item.querySelectorAll('.quiz-opt').forEach(function(opt){
-          var inp = opt.querySelector('input');
-          var dot = opt.querySelector('.dot');
-          dot.classList.remove('correct', 'wrong');
-          if (inp.dataset.correct === '1') dot.classList.add('correct');
-          else if (inp.checked) dot.classList.add('wrong');
-        });
       });
       var pct = Math.round((correct / items.length) * 1000) / 10;
       if (scorePill) scorePill.textContent = 'Правильных ответов: ' + correct + ' из ' + items.length;
       if (resultPill) resultPill.textContent = 'Результат: ' + pct + '%';
+    }
+    // отметки «верно/неверно» на кружках показываются только после кнопки
+    function markAnswers(){
+      quiz.querySelectorAll('.quiz-opt').forEach(function(opt){
+        var inp = opt.querySelector('input');
+        var dot = opt.querySelector('.dot');
+        dot.classList.remove('correct', 'wrong');
+        if (inp.dataset.correct === '1') dot.classList.add('correct');
+        else if (inp.checked) dot.classList.add('wrong');
+      });
+    }
+    quiz.addEventListener('change', function(){
+      updateScore();
+      if (quiz.classList.contains('graded')) markAnswers();
+    });
+    submitBtn && submitBtn.addEventListener('click', function(){
+      var leadSection = document.getElementById('lead-section');
+      // первый клик — только проверяем ответы и показываем результат, не уводя
+      // пользователя со страницы: вопросы остаются на экране, чтобы можно было
+      // прокрутить обратно и посмотреть, где отмечено правильно/неправильно
+      var wasGraded = quiz.classList.contains('graded');
+      quiz.classList.add('graded');
+      updateScore();
+      markAnswers();
       if (leadSection) leadSection.style.display = 'block';
       if (!wasGraded){
         var quizFooter = document.querySelector('.quiz-footer');
