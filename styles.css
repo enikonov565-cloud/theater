@@ -1501,3 +1501,20 @@ p{margin:0;}
   .spektakle-content .desc{left:65px;width:780px;top:261px;transform:translateY(-50%);text-align:center;}
   .spektakle-content .btn-buy-ticket{top:442px;}
 }
+
+/* Страницы спектаклей — планшетная ширина (600–767px): название на видео в правом
+   нижнем углу, строка «Возраст…» выровнена по левому краю текста */
+@media (min-width: 600px) and (max-width: 767px){
+  .spektakle-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.5),rgba(0,0,0,0) 45%);pointer-events:none;}
+  .spektakle-photo .photo-title{
+    display:block;position:absolute;right:24px;bottom:24px;z-index:2;margin:0;
+    font-weight:400;font-size:36px;line-height:1.22;color:#fff;text-align:right;white-space:nowrap;
+    text-shadow:0 4px 7px rgba(0,0,0,.35);
+  }
+  .spektakle-photo .photo-title.rep-font-koshkin{letter-spacing:.96px;}
+  .spektakle-content h1[class]{
+    position:absolute;left:0;top:0;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+    clip:rect(0 0 0 0);white-space:nowrap;
+  }
+  .spektakle-content .age[class]{text-align:left;}
+}
