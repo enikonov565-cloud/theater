@@ -946,7 +946,7 @@ p{margin:0;}
 /* точные координаты из Figma (node 1304:146, «СКАЗКА 9»), канва 1920×1080 */
 .lead-page{position:relative;width:1920px;max-width:100%;height:1080px;margin:0 auto;background:#E24221;overflow:hidden;}
 
-.lead-badge{position:absolute;left:212px;top:80px;width:311px;height:50px;box-sizing:border-box;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:space-between;padding:0 34px 0 14px;}
+.lead-badge{position:absolute;left:212px;top:80px;width:311px;height:50px;box-sizing:border-box;background:#fff;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:0 34px 0 14px;}
 .lead-badge img{width:22.7px;height:22.7px;flex:none;}
 .lead-badge span{font-family:'Montserrat',var(--font-sans);font-weight:400;font-size:16px;line-height:1.15;letter-spacing:.32px;color:#17252D;white-space:nowrap;}
 
@@ -1523,4 +1523,17 @@ p{margin:0;}
    выровнено по обоим краям */
 @media (min-width: 768px){
   .spektakle-content .desc{left:224.4px;width:461.2px;text-align:justify;text-align-last:center;hyphens:manual;-webkit-hyphens:manual;}
+}
+
+/* Окно «Спасибо!» после лид-формы — компактная версия карточки с Петрушкой */
+.lead-thanks-modal{max-width:400px;padding:22px 24px;border-radius:20px;}
+.lead-thanks-modal .review-modal-close{top:10px;right:10px;width:24px;height:24px;z-index:2;}
+.lead-thanks-modal .thanks{padding:6px 110px 6px 4px;}
+.lead-thanks-modal .thanks h3{font-size:24px;margin:0 0 6px;}
+.lead-thanks-modal .thanks p.sub{font-size:14px;line-height:1.35;margin:0;}
+.lead-thanks-modal .thanks-puppet{max-width:110px;object-fit:contain;}
+/* принудительные переносы в заголовке подарка — только когда хватает ширины (не на телефонах) */
+.lead-card-title .br-wide{display:none;}
+@media (min-width: 600px){
+  .lead-card-title .br-wide{display:inline;}
 }
