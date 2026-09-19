@@ -382,7 +382,7 @@ p{margin:0;}
 .about-text .about-divider::after{right:-2.67px;}
 .about-text .about-divider-1{top:203px;}
 .about-text .about-divider-2{top:369px;}
-.about-text .btn-repertoire{position:absolute;left:0;top:601px;}
+.about-text .btn-repertoire{position:absolute;left:48px;top:601px;}
 /* короткая версия текста и мобильная кнопка — только для мобильной вёрстки, см. @media ниже */
 .about-text .block-short{display:none;}
 .about-btn-mobile.btn-repertoire{display:none;}

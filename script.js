@@ -981,10 +981,31 @@
   /* ---------- Лид-форма ---------- */
   var leadForm = document.getElementById('lead-form');
   if (leadForm){
+    // после отправки — всплывающее окно «Спасибо!» с Петрушкой
+    // (та же карточка, что у окна «Спасибо за отзыв»)
+    var leadThanks = document.querySelector('[data-lead-thanks-modal]');
+    function closeLeadThanks(){
+      if (!leadThanks) return;
+      leadThanks.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if (leadThanks){
+      leadThanks.querySelectorAll('[data-close-lead-thanks]').forEach(function(btn){
+        btn.addEventListener('click', closeLeadThanks);
+      });
+      leadThanks.addEventListener('click', function(e){
+        if (e.target === leadThanks) closeLeadThanks();
+      });
+      document.addEventListener('keydown', function(e){
+        if (e.key === 'Escape' && leadThanks.classList.contains('open')) closeLeadThanks();
+      });
+    }
     leadForm.addEventListener('submit', function(e){
       e.preventDefault();
-      var submitSpan = leadForm.querySelector('.lead-submit span');
-      if (submitSpan) submitSpan.textContent = 'Спасибо! Мы свяжемся с вами';
+      if (!leadThanks) return;
+      leadThanks.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      leadForm.reset();
     });
   }
 })();
